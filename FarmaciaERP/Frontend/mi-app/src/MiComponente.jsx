@@ -3,7 +3,7 @@ import React from "react";
 function MiComponente() {
     return (
         <div>
-            <h1>Hola, mi amorcini sashenka ramirez </h1>
+            <h1>Hola gays </h1>
         </div>
     );
 }
