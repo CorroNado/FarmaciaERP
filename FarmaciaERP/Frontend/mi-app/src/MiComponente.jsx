@@ -25,7 +25,7 @@ function MiComponente() {
             <main className="main">
 
                 <header className="topbar">
-                    <h2>Bienvenido al sistema 🏥</h2>
+                    <h2>Bienvenido Coronadogay</h2>
 
                     <button className="login-btn">
                         👤 Iniciar sesión
