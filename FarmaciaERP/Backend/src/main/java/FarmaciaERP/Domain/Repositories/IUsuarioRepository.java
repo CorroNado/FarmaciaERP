@@ -1,11 +1,6 @@
 package FarmaciaERP.Domain.Repositories;
 
-import FarmaciaERP.Domain.Entities.Medicamento;
-import FarmaciaERP.Domain.Entities.Paciente;
-import FarmaciaERP.Domain.Entities.Receta;
 import FarmaciaERP.Domain.Entities.Usuario;
-import FarmaciaERP.Domain.Enums.RecetaEstados;
-import FarmaciaERP.Domain.Enums.TipoSeguro;
 import FarmaciaERP.Domain.Enums.UsuarioEstados;
 
 import java.util.List;

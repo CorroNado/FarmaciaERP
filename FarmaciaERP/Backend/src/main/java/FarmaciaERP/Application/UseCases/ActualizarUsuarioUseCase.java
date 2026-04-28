@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 public class ActualizarUsuarioUseCase {
     private final IUsuarioRepository usuarioRepository;
 
-    public ActualizarUsuarioUseCase(IUsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
+    public ActualizarUsuarioUseCase(IUsuarioRepository userRepository) {
+        this.usuarioRepository = userRepository;
     }
 
     public Usuario ejecutar (int id, Usuario usuarioActualizado) {

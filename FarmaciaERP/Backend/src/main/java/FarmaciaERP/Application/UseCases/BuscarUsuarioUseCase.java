@@ -1,7 +1,5 @@
 package FarmaciaERP.Application.UseCases;
-import FarmaciaERP.Domain.Entities.Paciente;
 import FarmaciaERP.Domain.Entities.Usuario;
-import FarmaciaERP.Domain.Enums.TipoSeguro;
 import FarmaciaERP.Domain.Enums.UsuarioEstados;
 import FarmaciaERP.Domain.Repositories.IUsuarioRepository;
 

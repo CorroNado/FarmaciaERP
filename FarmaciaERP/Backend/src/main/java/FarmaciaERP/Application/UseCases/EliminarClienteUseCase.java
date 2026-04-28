@@ -1,13 +1,13 @@
 package FarmaciaERP.Application.UseCases;
-import FarmaciaERP.Domain.Repositories.IPacienteRepository;
+import FarmaciaERP.Domain.Repositories.IClienteRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EliminarPacienteUseCase {
+public class EliminarClienteUseCase {
 
-    private final IPacienteRepository pacienteRepository;
+    private final IClienteRepository pacienteRepository;
 
-    public EliminarPacienteUseCase(IPacienteRepository pacienteRepository) {
+    public EliminarClienteUseCase(IClienteRepository pacienteRepository) {
         this.pacienteRepository = pacienteRepository;
     }
 
