@@ -1,6 +1,8 @@
 package FarmaciaERP.Application.UseCases;
+import FarmaciaERP.Domain.Entities.Paciente;
 import FarmaciaERP.Domain.Entities.Usuario;
 import FarmaciaERP.Domain.Enums.TipoSeguro;
+import FarmaciaERP.Domain.Enums.UsuarioEstados;
 import FarmaciaERP.Domain.Repositories.IUsuarioRepository;
 
 import java.util.List;
@@ -15,22 +17,19 @@ public class BuscarUsuarioUseCase {
     }
 
     public Optional<Usuario> porId(int id) {
-        return usuarioRepository.buscarPorId(id);
+        return usuarioRepository.findById(id);
     }
 
     public List<Usuario> todos() {
-        return usuarioRepository.listarTodos();
+        return usuarioRepository.findAll();
     }
 
-    public Optional<Usuario> porDocumento(String documento) {
-        return usuarioRepository.buscarPorDocumentoIdentidad(documento);
-    }
 
     public List<Usuario> porNombre(String nombre) {
         return usuarioRepository.buscarPorNombre(nombre);
     }
 
-    public List<Usuario> porTipoSeguro(TipoSeguro tipoSeguro) {
-        return usuarioRepository.buscarPorTipoSeguro(tipoSeguro);
+    public List<Usuario> porEstado (UsuarioEstados estado) {
+        return usuarioRepository.findByStatus(estado);
     }
 }

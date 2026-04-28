@@ -15,10 +15,6 @@ public interface IUsuarioRepository {
 
     Usuario save(Usuario usuario);
 
-    Optional<Usuario> buscarPorId(Integer id);
-
-    List<Usuario> listarTodos();
-
     Optional<Usuario> findById(int id);
 
     List<Usuario> findAll();
@@ -31,4 +27,6 @@ public interface IUsuarioRepository {
 
 
     List<Usuario> buscarPorNombre(String nombre);
+
+    Optional<Usuario> buscarPorGmail(String email);
 }
