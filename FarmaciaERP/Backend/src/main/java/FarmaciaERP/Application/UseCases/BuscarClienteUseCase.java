@@ -1,38 +1,38 @@
 package FarmaciaERP.Application.UseCases;
-import FarmaciaERP.Domain.Entities.Paciente;
+import FarmaciaERP.Domain.Entities.Cliente;
 import FarmaciaERP.Domain.Enums.TipoSeguro;
-import FarmaciaERP.Domain.Repositories.IPacienteRepository;
+import FarmaciaERP.Domain.Repositories.IClienteRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BuscarPacienteUseCase {
+public class BuscarClienteUseCase {
 
-    private final IPacienteRepository pacienteRepository;
+    private final IClienteRepository pacienteRepository;
 
-    public BuscarPacienteUseCase(IPacienteRepository pacienteRepository) {
+    public BuscarClienteUseCase(IClienteRepository pacienteRepository) {
         this.pacienteRepository = pacienteRepository;
     }
 
-    public Optional<Paciente> porId(int id) {
+    public Optional<Cliente> porId(int id) {
         return pacienteRepository.buscarPorId(id);
     }
 
-    public List<Paciente> todos() {
+    public List<Cliente> todos() {
         return pacienteRepository.listarTodos();
     }
 
-    public Optional<Paciente> porDocumento(String documento) {
+    public Optional<Cliente> porDocumento(String documento) {
         return pacienteRepository.buscarPorDocumentoIdentidad(documento);
     }
 
-    public List<Paciente> porNombre(String nombre) {
+    public List<Cliente> porNombre(String nombre) {
         return pacienteRepository.buscarPorNombre(nombre);
     }
 
-    public List<Paciente> porTipoSeguro(TipoSeguro tipoSeguro) {
+    public List<Cliente> porTipoSeguro(TipoSeguro tipoSeguro) {
         return pacienteRepository.buscarPorTipoSeguro(tipoSeguro);
     }
 }

@@ -1,6 +1,5 @@
 package FarmaciaERP.Application.UseCases;
 
-import FarmaciaERP.Domain.Repositories.IPacienteRepository;
 import FarmaciaERP.Domain.Repositories.IUsuarioRepository;
 
 public class EliminarUsuarioUseCase {
