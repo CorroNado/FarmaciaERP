@@ -2,6 +2,7 @@ package FarmaciaERP.Domain.Repositories;
 
 import FarmaciaERP.Domain.Entities.Usuario;
 import FarmaciaERP.Domain.Enums.UsuarioEstados;
+import FarmaciaERP.Domain.ValueObjects.FullName;
 
 import java.util.List;
 import java.util.Optional;

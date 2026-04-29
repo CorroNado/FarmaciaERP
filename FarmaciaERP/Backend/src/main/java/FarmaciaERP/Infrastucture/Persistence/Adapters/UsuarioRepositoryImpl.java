@@ -3,7 +3,10 @@ package FarmaciaERP.Infrastucture.Persistence.Adapters;
 import FarmaciaERP.Domain.Entities.Usuario;
 import FarmaciaERP.Domain.Enums.UsuarioEstados;
 import FarmaciaERP.Domain.Repositories.IUsuarioRepository;
+import FarmaciaERP.Domain.ValueObjects.Email;
+import FarmaciaERP.Domain.ValueObjects.FullName;
 import FarmaciaERP.Infrastucture.Persistence.Entities.UsuarioJPA;
+import FarmaciaERP.Infrastucture.Persistence.Mappers.FullnameMapper;
 import FarmaciaERP.Infrastucture.Persistence.Mappers.UsuarioMapper;
 import FarmaciaERP.Infrastucture.Persistence.Repositories.IUsuarioJPARepository;
 
@@ -25,14 +28,7 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository {
     @Override
     public Usuario save(Usuario usuario) {
 
-        UsuarioJPA usuarioJPA = new UsuarioJPA(
-                usuario.getId(),
-                usuario.getNombre(),
-                usuario.getEmail(),
-                usuario.getPassword(),
-                usuario.getEstado(),
-                usuario.getRegistro()
-        );
+        UsuarioJPA usuarioJPA = UsuarioMapper.ToEntity(usuario);
 
         UsuarioJPA guardadoJPA = jpaRepository.save(usuarioJPA);
         return UsuarioMapper.ToDomain(guardadoJPA);
@@ -67,15 +63,15 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository {
                 .collect(Collectors.toList());
     }
     @Override
-    public List<Usuario> findByName(String Nombre) {
+    public List<Usuario> findByName(FullName Nombre) {
 
-        return jpaRepository.findByNombreContainingIgnoreCase(Nombre).stream()
+        return jpaRepository.findByNombresContainingIgnoreCase(FullnameMapper.toEmbeddable(Nombre)).stream()
                 .map(UsuarioMapper::ToDomain)
                 .collect(Collectors.toList());
     }
     @Override
-    public Optional<Usuario> findByEmail(String Email) {
-        return jpaRepository.findByEmailContainingIgnoreCase(Email).stream()
+    public Optional<Usuario> findByEmail(Email email) {
+        return jpaRepository.findByEmailContainingIgnoreCase(email.getEmail()).stream()
                 .map(UsuarioMapper::ToDomain).findFirst();
     }
 }

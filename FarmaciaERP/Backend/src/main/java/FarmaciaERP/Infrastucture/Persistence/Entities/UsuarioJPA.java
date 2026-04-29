@@ -1,6 +1,10 @@
 package FarmaciaERP.Infrastucture.Persistence.Entities;
 
+import FarmaciaERP.Domain.Enums.RolUsuario;
 import FarmaciaERP.Domain.Enums.UsuarioEstados;
+import FarmaciaERP.Domain.ValueObjects.Email;
+import FarmaciaERP.Infrastucture.Persistence.ValueObjects.EmailEmb;
+import FarmaciaERP.Infrastucture.Persistence.ValueObjects.FullNameEmb;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,14 +19,17 @@ public class UsuarioJPA {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false, length = 100)
-    private String nombre;
+    @Embedded
+    private FullNameEmb nombres;
 
-    @Column(nullable = false, unique = true, length = 100)
-    private String email;
+    @Embedded
+    private EmailEmb email;
 
     @Column(nullable = false)
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private RolUsuario rol;
 
     @Enumerated(EnumType.STRING)
     private UsuarioEstados estado;
@@ -33,11 +40,12 @@ public class UsuarioJPA {
     public UsuarioJPA() {
     }
 
-    public UsuarioJPA(int id, String nombre, String email, String password, UsuarioEstados estado, LocalDateTime registro) {
+    public UsuarioJPA(int id, FullNameEmb nombres, EmailEmb email, String password, RolUsuario rol, UsuarioEstados estado, LocalDateTime registro) {
         this.id = id;
-        this.nombre = nombre;
+        this.nombres = nombres;
         this.email = email;
         this.password = password;
+        this.rol = rol;
         this.estado = estado;
         this.registro = registro;
     }
