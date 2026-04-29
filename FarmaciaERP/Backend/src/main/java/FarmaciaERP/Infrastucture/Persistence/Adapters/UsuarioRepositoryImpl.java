@@ -6,13 +6,13 @@ import FarmaciaERP.Domain.Repositories.IUsuarioRepository;
 import FarmaciaERP.Infrastucture.Persistence.Entities.UsuarioJPA;
 import FarmaciaERP.Infrastucture.Persistence.Repositories.IUsuarioJPARepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Component
+@Repository
 public class UsuarioRepositoryImpl implements IUsuarioRepository {
     @Autowired
     private IUsuarioJPARepository jpaRepository;
@@ -66,20 +66,4 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository {
                 .collect(Collectors.toList());
     }
 
-
-
-    private Usuario mapToDomain(UsuarioJPA jpa) {
-        Usuario usuario = new Usuario();
-        usuario.setId(jpa.getId());
-        usuario.setNombre(jpa.getNombre());
-        usuario.setEmail(jpa.getEmail());
-        usuario.setPassword(jpa.getPassword());
-
-        if (jpa.getEstado() != null) {
-            usuario.setEstado(UsuarioEstados.valueOf(jpa.getEstado()));
-        }
-
-        usuario.setRegistro(jpa.getRegistro());
-        return usuario;
-    }
 }
