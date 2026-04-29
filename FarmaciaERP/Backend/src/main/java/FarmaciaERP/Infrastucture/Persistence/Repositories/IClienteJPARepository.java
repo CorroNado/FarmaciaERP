@@ -1,9 +1,13 @@
 package FarmaciaERP.Infrastucture.Persistence.Repositories;
+import FarmaciaERP.Domain.ValueObjects.Dni;
 import FarmaciaERP.Infrastucture.Persistence.Entities.ClienteJPA;
 import FarmaciaERP.Domain.Enums.TipoSeguro;
+import FarmaciaERP.Infrastucture.Persistence.ValueObjects.DniEmb;
+import FarmaciaERP.Infrastucture.Persistence.ValueObjects.FullNameEmb;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,9 +15,9 @@ import java.util.Optional;
 public interface IClienteJPARepository extends JpaRepository<ClienteJPA,Integer> {
 
 
-    List<ClienteJPA> findByNombre(String nombre);
-
     List<ClienteJPA> findByTipoSeguro(TipoSeguro tipoSeguro);
 
-    Optional<ClienteJPA> findByDni(String dni);
+    Optional<ClienteJPA> findByDni(DniEmb dni);
+
+    Optional<ClienteJPA> findByNombres(FullNameEmb nombres);
 }

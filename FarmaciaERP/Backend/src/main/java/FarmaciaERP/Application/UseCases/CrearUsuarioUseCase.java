@@ -13,7 +13,7 @@ public class CrearUsuarioUseCase {
     }
 
     public Usuario ejecutar(Usuario usuario) {
-        Optional<Usuario> existente = usuarioRepository.buscarPorGmail(usuario.getEmail());
+        Optional<Usuario> existente = usuarioRepository.findByEmail(usuario.getEmail());
         if (existente.isPresent()) {
             throw new IllegalArgumentException("Ya existe un usuario con el gmail: " + usuario.getEmail());
         }

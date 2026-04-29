@@ -3,7 +3,7 @@ package FarmaciaERP.Domain.ValueObjects;
 import lombok.Value;
 
 @Value
-public class FullName {
+public class FullName{
     private String Nombres;
     private String Apellidos;
 }

@@ -17,7 +17,9 @@ public class UsuarioMapper {
 
     public static Usuario ToDomain(UsuarioJPA entity) {
         return new Usuario(
-                entity.getId(),
+                entity.getNombre(),
+                entity.getEmail(),
+                entity.getPassword()
         );
     }
 }

@@ -3,9 +3,14 @@ package FarmaciaERP.Infrastucture.Persistence.Adapters;
 import FarmaciaERP.Domain.Entities.Cliente;
 import FarmaciaERP.Domain.Enums.TipoSeguro;
 import FarmaciaERP.Domain.Repositories.IClienteRepository;
+import FarmaciaERP.Domain.ValueObjects.Dni;
+import FarmaciaERP.Domain.ValueObjects.FullName;
 import FarmaciaERP.Infrastucture.Persistence.Entities.ClienteJPA;
 import FarmaciaERP.Infrastucture.Persistence.Mappers.ClienteMapper;
+import FarmaciaERP.Infrastucture.Persistence.Mappers.DniMapper;
+import FarmaciaERP.Infrastucture.Persistence.Mappers.FullnameMapper;
 import FarmaciaERP.Infrastucture.Persistence.Repositories.IClienteJPARepository;
+import FarmaciaERP.Infrastucture.Persistence.ValueObjects.FullNameEmb;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -52,14 +57,14 @@ public class ClienteRepositoryImpl implements IClienteRepository {
     }
 
     @Override
-    public Optional<Cliente> buscarPorDocumentoIdentidad(String documentoIdentidad) {
-        return jpaRepository.findByDni(documentoIdentidad)
+    public Optional<Cliente> buscarPorDocumentoIdentidad(Dni documentoIdentidad) {
+        return jpaRepository.findByDni(DniMapper.toEmbeddable(documentoIdentidad))
                 .map(ClienteMapper::ToDomain);
     }
 
     @Override
-    public List<Cliente> buscarPorNombre(String nombre) {
-        return jpaRepository.findByNombre(nombre)
+    public List<Cliente> buscarPorNombres(FullName nombres) {
+        return jpaRepository.findByNombres(FullnameMapper.toEmbeddable(nombres))
                 .stream()
                 .map(ClienteMapper::ToDomain)
                 .toList();

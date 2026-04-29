@@ -20,8 +20,7 @@ public interface IUsuarioRepository {
 
     List<Usuario> findByStatus(UsuarioEstados estado);
 
+    List<Usuario> findByName(String nombre);
 
-    List<Usuario> buscarPorNombre(String nombre);
-
-    Optional<Usuario> buscarPorGmail(String email);
+    Optional<Usuario> findByEmail(String email);
 }

@@ -2,6 +2,8 @@ package FarmaciaERP.Application.UseCases;
 import FarmaciaERP.Domain.Entities.Cliente;
 import FarmaciaERP.Domain.Enums.TipoSeguro;
 import FarmaciaERP.Domain.Repositories.IClienteRepository;
+import FarmaciaERP.Domain.ValueObjects.Dni;
+import FarmaciaERP.Domain.ValueObjects.FullName;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,12 +26,12 @@ public class BuscarClienteUseCase {
         return pacienteRepository.listarTodos();
     }
 
-    public Optional<Cliente> porDocumento(String documento) {
+    public Optional<Cliente> porDocumento(Dni documento) {
         return pacienteRepository.buscarPorDocumentoIdentidad(documento);
     }
 
-    public List<Cliente> porNombre(String nombre) {
-        return pacienteRepository.buscarPorNombre(nombre);
+    public List<Cliente> porNombre(FullName nombre) {
+        return pacienteRepository.buscarPorNombres(nombre);
     }
 
     public List<Cliente> porTipoSeguro(TipoSeguro tipoSeguro) {

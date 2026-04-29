@@ -8,6 +8,8 @@ import FarmaciaERP.Application.UseCases.CrearClienteUseCase;
 import FarmaciaERP.Application.UseCases.EliminarClienteUseCase;
 import FarmaciaERP.Domain.Entities.Cliente;
 import FarmaciaERP.Domain.Enums.TipoSeguro;
+import FarmaciaERP.Domain.ValueObjects.Dni;
+import FarmaciaERP.Domain.ValueObjects.FullName;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -73,8 +75,8 @@ public class ClienteController {
 
     @GetMapping
     public ResponseEntity<List<Cliente>> obtenerTodos(
-            @RequestParam(required = false) String nombre,
-            @RequestParam(required = false) String dni,
+            @RequestParam(required = false) FullName nombres,
+            @RequestParam(required = false) Dni dni,
             @RequestParam(required = false) TipoSeguro tipoSeguro) {
 
         if (dni != null) {
@@ -83,8 +85,8 @@ public class ClienteController {
                     .orElse(ResponseEntity.notFound().build());
         }
 
-        if (nombre != null) {
-            return ResponseEntity.ok(buscarClienteUseCase.porNombre(nombre));
+        if (nombres != null) {
+            return ResponseEntity.ok(buscarClienteUseCase.porNombre(nombres));
         }
 
         if (tipoSeguro != null) {
