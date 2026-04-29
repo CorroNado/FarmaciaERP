@@ -2,6 +2,8 @@ package FarmaciaERP.Application.UseCases;
 import FarmaciaERP.Domain.Entities.Usuario;
 import FarmaciaERP.Domain.Enums.UsuarioEstados;
 import FarmaciaERP.Domain.Repositories.IUsuarioRepository;
+import FarmaciaERP.Domain.ValueObjects.Email;
+import FarmaciaERP.Domain.ValueObjects.FullName;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +25,7 @@ public class BuscarUsuarioUseCase {
     }
 
 
-    public List<Usuario> porNombre(String nombre) {
+    public List<Usuario> porNombre(FullName nombre) {
         return usuarioRepository.findByName(nombre);
     }
 
@@ -31,7 +33,7 @@ public class BuscarUsuarioUseCase {
         return usuarioRepository.findByStatus(estado);
     }
 
-    public Optional<Usuario> porEmail(String email) {
+    public Optional<Usuario> porEmail(Email email) {
         return usuarioRepository.findByEmail(email);
     }
 }

@@ -5,6 +5,8 @@ import FarmaciaERP.Domain.Enums.UsuarioEstados;
 
 import java.util.List;
 import java.util.Optional;
+import FarmaciaERP.Domain.ValueObjects.Email;
+import FarmaciaERP.Domain.ValueObjects.FullName;
 
 public interface IUsuarioRepository {
 
@@ -20,7 +22,7 @@ public interface IUsuarioRepository {
 
     List<Usuario> findByStatus(UsuarioEstados estado);
 
-    List<Usuario> findByName(String nombre);
+    List<Usuario> findByName(FullName nombre);
 
-    Optional<Usuario> findByEmail(String email);
+    Optional<Usuario> findByEmail(Email email);
 }
