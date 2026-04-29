@@ -6,9 +6,10 @@ import FarmaciaERP.Application.DTOs.Response.CrearPacienteResponse;
 import FarmaciaERP.Application.DTOs.Response.CrearUsuarioResponse;
 import FarmaciaERP.Domain.Entities.Usuario;
 import FarmaciaERP.Domain.Repositories.IUsuarioRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Service
 public class CrearUsuarioUseCase {
     private final IUsuarioRepository usuarioRepository;
 

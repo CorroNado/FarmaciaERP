@@ -1,7 +1,9 @@
 package FarmaciaERP.Application.UseCases;
 
 import FarmaciaERP.Domain.Repositories.IUsuarioRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class EliminarUsuarioUseCase {
     private final IUsuarioRepository usuarioRepository;
 

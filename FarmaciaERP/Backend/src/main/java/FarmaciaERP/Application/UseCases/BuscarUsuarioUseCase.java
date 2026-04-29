@@ -2,11 +2,13 @@ package FarmaciaERP.Application.UseCases;
 import FarmaciaERP.Domain.Entities.Usuario;
 import FarmaciaERP.Domain.Enums.UsuarioEstados;
 import FarmaciaERP.Domain.Repositories.IUsuarioRepository;
+import FarmaciaERP.Domain.ValueObjects.Email;
 import FarmaciaERP.Domain.ValueObjects.FullName;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class BuscarUsuarioUseCase {
 
     private final IUsuarioRepository usuarioRepository;

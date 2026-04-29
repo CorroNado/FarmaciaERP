@@ -1,6 +1,7 @@
 package FarmaciaERP.Infrastucture.Persistence.Repositories;
 
 import FarmaciaERP.Domain.Entities.Usuario;
+import FarmaciaERP.Domain.ValueObjects.Email;
 import FarmaciaERP.Infrastucture.Persistence.Entities.UsuarioJPA;
 import FarmaciaERP.Infrastucture.Persistence.ValueObjects.FullNameEmb;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,5 +16,5 @@ public interface IUsuarioJPARepository extends JpaRepository<UsuarioJPA, Integer
 
     List<UsuarioJPA> findByNombresContainingIgnoreCase(FullNameEmb nombres);
 
-    List<UsuarioJPA>  findByEmailContainingIgnoreCase(String email);
+    List<UsuarioJPA>  findByEmailContainingIgnoreCase(Email email);
 }
