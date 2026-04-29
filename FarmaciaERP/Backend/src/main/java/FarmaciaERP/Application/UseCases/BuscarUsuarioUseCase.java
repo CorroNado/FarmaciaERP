@@ -32,7 +32,7 @@ public class BuscarUsuarioUseCase {
         return usuarioRepository.findByStatus(estado);
     }
 
-    public Optional<Usuario> porEmail(String email) {
+    public Optional<Usuario> porEmail(Email email) {
         return usuarioRepository.findByEmail(email);
     }
 }

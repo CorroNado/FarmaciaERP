@@ -1,5 +1,9 @@
 package FarmaciaERP.Application.UseCases;
 
+import FarmaciaERP.Application.DTOs.Request.CrearPacienteRequest;
+import FarmaciaERP.Application.DTOs.Request.CrearUsuarioResquest;
+import FarmaciaERP.Application.DTOs.Response.CrearPacienteResponse;
+import FarmaciaERP.Application.DTOs.Response.CrearUsuarioResponse;
 import FarmaciaERP.Domain.Entities.Usuario;
 import FarmaciaERP.Domain.Repositories.IUsuarioRepository;
 
@@ -12,11 +16,11 @@ public class CrearUsuarioUseCase {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public Usuario ejecutar(Usuario usuario) {
-        Optional<Usuario> existente = usuarioRepository.findByEmail(usuario.getEmail());
+    public CrearUsuarioResponse ejecutar(CrearUsuarioResquest request) {
+        Optional<Usuario> existente = usuarioRepository.findByEmail(request.getEmail());
         if (existente.isPresent()) {
-            throw new IllegalArgumentException("Ya existe un usuario con el gmail: " + usuario.getEmail());
+            throw new IllegalArgumentException("Ya existe un usuario con el gmail: " + request.getEmail());
         }
-        return usuarioRepository.save(usuario);
+        return new CrearUsuarioResponse(request.getEmail());
     }
 }
