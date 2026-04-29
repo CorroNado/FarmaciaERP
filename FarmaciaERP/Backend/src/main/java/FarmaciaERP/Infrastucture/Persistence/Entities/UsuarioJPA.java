@@ -1,6 +1,7 @@
 package FarmaciaERP.Infrastucture.Persistence.Entities;
 
 import FarmaciaERP.Domain.Enums.UsuarioEstados;
+import FarmaciaERP.Infrastucture.Persistence.ValueObjects.FullNameEmb;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,8 +16,8 @@ public class UsuarioJPA {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false, length = 100)
-    private String nombre;
+    @Embedded
+    private FullNameEmb nombres;
 
     @Column(nullable = false, unique = true, length = 100)
     private String email;
@@ -33,9 +34,9 @@ public class UsuarioJPA {
     public UsuarioJPA() {
     }
 
-    public UsuarioJPA(int id, String nombre, String email, String password, UsuarioEstados estado, LocalDateTime registro) {
+    public UsuarioJPA(int id, FullNameEmb nombres, String email, String password, UsuarioEstados estado, LocalDateTime registro) {
         this.id = id;
-        this.nombre = nombre;
+        this.nombres = nombres;
         this.email = email;
         this.password = password;
         this.estado = estado;

@@ -4,11 +4,12 @@ import FarmaciaERP.Domain.Entities.Cliente;
 import FarmaciaERP.Domain.Entities.Usuario;
 import FarmaciaERP.Infrastucture.Persistence.Entities.ClienteJPA;
 import FarmaciaERP.Infrastucture.Persistence.Entities.UsuarioJPA;
+import jakarta.persistence.Entity;
 
 public class UsuarioMapper {
     public static UsuarioJPA ToEntity(Usuario usuario) {
         UsuarioJPA entity = new UsuarioJPA();
-        entity.setNombre(usuario.getNombre());
+        entity.setNombres(FullnameMapper.toEmbeddable(usuario.getNombres()));
         entity.setEmail(usuario.getEmail());
         entity.setPassword(usuario.getPassword());
         entity.setEstado(usuario.getEstado());
@@ -17,9 +18,11 @@ public class UsuarioMapper {
 
     public static Usuario ToDomain(UsuarioJPA entity) {
         return new Usuario(
-                entity.getNombre(),
+                FullnameMapper.toDomain(entity.getNombres()),
                 entity.getEmail(),
-                entity.getPassword()
+                entity.getPassword(),
+                entity.getEstado(),
+                entity.getRegistro()
         );
     }
 }
