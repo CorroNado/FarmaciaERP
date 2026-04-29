@@ -1,5 +1,6 @@
 package FarmaciaERP.Infrastucture.Persistence.Entities;
 
+import FarmaciaERP.Domain.Enums.RolUsuario;
 import FarmaciaERP.Domain.Enums.UsuarioEstados;
 import FarmaciaERP.Domain.ValueObjects.Email;
 import FarmaciaERP.Infrastucture.Persistence.ValueObjects.EmailEmb;
@@ -28,6 +29,9 @@ public class UsuarioJPA {
     private String password;
 
     @Enumerated(EnumType.STRING)
+    private RolUsuario rol;
+
+    @Enumerated(EnumType.STRING)
     private UsuarioEstados estado;
 
     @Column(name = "fecha_registro", updatable = false)
@@ -36,11 +40,12 @@ public class UsuarioJPA {
     public UsuarioJPA() {
     }
 
-    public UsuarioJPA(int id, FullNameEmb nombres, EmailEmb email, String password, UsuarioEstados estado, LocalDateTime registro) {
+    public UsuarioJPA(int id, FullNameEmb nombres, EmailEmb email, String password, RolUsuario rol, UsuarioEstados estado, LocalDateTime registro) {
         this.id = id;
         this.nombres = nombres;
         this.email = email;
         this.password = password;
+        this.rol = rol;
         this.estado = estado;
         this.registro = registro;
     }

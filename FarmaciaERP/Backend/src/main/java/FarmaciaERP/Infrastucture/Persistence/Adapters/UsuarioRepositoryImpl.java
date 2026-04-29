@@ -71,7 +71,7 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository {
     }
     @Override
     public Optional<Usuario> findByEmail(Email email) {
-        return jpaRepository.findByEmailContainingIgnoreCase(email).stream()
+        return jpaRepository.findByEmailContainingIgnoreCase(email.getEmail()).stream()
                 .map(UsuarioMapper::ToDomain).findFirst();
     }
 }

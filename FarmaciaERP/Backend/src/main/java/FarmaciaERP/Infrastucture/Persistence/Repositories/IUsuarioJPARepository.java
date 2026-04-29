@@ -16,5 +16,5 @@ public interface IUsuarioJPARepository extends JpaRepository<UsuarioJPA, Integer
 
     List<UsuarioJPA> findByNombresContainingIgnoreCase(FullNameEmb nombres);
 
-    List<UsuarioJPA>  findByEmailContainingIgnoreCase(Email email);
+    List<UsuarioJPA>  findByEmailContainingIgnoreCase(String email);
 }

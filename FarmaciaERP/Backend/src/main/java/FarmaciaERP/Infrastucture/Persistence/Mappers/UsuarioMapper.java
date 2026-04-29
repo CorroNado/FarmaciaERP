@@ -2,6 +2,7 @@ package FarmaciaERP.Infrastucture.Persistence.Mappers;
 
 import FarmaciaERP.Domain.Entities.Cliente;
 import FarmaciaERP.Domain.Entities.Usuario;
+import FarmaciaERP.Domain.Enums.RolUsuario;
 import FarmaciaERP.Infrastucture.Persistence.Entities.ClienteJPA;
 import FarmaciaERP.Infrastucture.Persistence.Entities.UsuarioJPA;
 import FarmaciaERP.Infrastucture.Persistence.ValueObjects.EmailEmb;
@@ -13,6 +14,7 @@ public class UsuarioMapper {
         entity.setNombres(FullnameMapper.toEmbeddable(usuario.getNombres()));
         entity.setEmail(EmailMapper.toEmbeddable(usuario.getEmail()));
         entity.setPassword(usuario.getPassword());
+        entity.setRol(usuario.getRole());
         entity.setEstado(usuario.getEstado());
         return entity;
     }
@@ -22,6 +24,7 @@ public class UsuarioMapper {
                 FullnameMapper.toDomain(entity.getNombres()),
                 EmailMapper.toDomain(entity.getEmail()),
                 entity.getPassword(),
+                entity.getRol(),
                 entity.getEstado(),
                 entity.getRegistro()
         );
