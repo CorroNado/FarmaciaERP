@@ -8,19 +8,16 @@ import FarmaciaERP.Infrastucture.Persistence.Entities.UsuarioJPA;
 public class UsuarioMapper {
     public static UsuarioJPA ToEntity(Usuario usuario) {
         UsuarioJPA entity = new UsuarioJPA();
-        entity.setId(usuario.getId());
-        entity.setNombres(FullnameMapper.toEmbeddable(usuario.getNombres()));
-        entity.setDni(DniMapper.toEmbeddable(usuario.getDni()));
-        entity.setTipoSeguro(usuario.getTipoSeguro());
+        entity.setNombre(usuario.getNombre());
+        entity.setEmail(usuario.getEmail());
+        entity.setPassword(usuario.getPassword());
+        entity.setEstado(usuario.getEstado());
         return entity;
     }
 
-    public static Cliente ToDomain(ClienteJPA entity) {
-        return new Cliente(
+    public static Usuario ToDomain(UsuarioJPA entity) {
+        return new Usuario(
                 entity.getId(),
-                FullnameMapper.toDomain(entity.getNombres()),
-                DniMapper.toDomain(entity.getDni()),
-                entity.getTipoSeguro()
         );
     }
 }
