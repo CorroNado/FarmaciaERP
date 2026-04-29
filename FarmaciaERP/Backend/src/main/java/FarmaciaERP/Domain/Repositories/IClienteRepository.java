@@ -2,6 +2,8 @@ package FarmaciaERP.Domain.Repositories;
 
 import FarmaciaERP.Domain.Entities.Cliente;
 import FarmaciaERP.Domain.Enums.TipoSeguro;
+import FarmaciaERP.Domain.ValueObjects.Dni;
+import FarmaciaERP.Domain.ValueObjects.FullName;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,9 +19,9 @@ public interface IClienteRepository {
 
     boolean existePorId(Integer id);
 
-    Optional<Cliente> buscarPorDocumentoIdentidad(String documentoIdentidad);
+    Optional<Cliente> buscarPorDocumentoIdentidad(Dni documentoIdentidad);
 
-    List<Cliente> buscarPorNombre(String nombre);
+    List<Cliente> buscarPorNombres(FullName nombre);
 
     List<Cliente> buscarPorTipoSeguro(TipoSeguro tipoSeguro);
 }

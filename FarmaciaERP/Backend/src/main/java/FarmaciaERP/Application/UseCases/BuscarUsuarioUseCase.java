@@ -24,10 +24,14 @@ public class BuscarUsuarioUseCase {
 
 
     public List<Usuario> porNombre(String nombre) {
-        return usuarioRepository.buscarPorNombre(nombre);
+        return usuarioRepository.findByName(nombre);
     }
 
     public List<Usuario> porEstado (UsuarioEstados estado) {
         return usuarioRepository.findByStatus(estado);
+    }
+
+    public Optional<Usuario> porEmail(String email) {
+        return usuarioRepository.findByEmail(email);
     }
 }

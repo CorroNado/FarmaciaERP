@@ -4,8 +4,9 @@ import FarmaciaERP.Domain.Entities.Usuario;
 import FarmaciaERP.Domain.Enums.UsuarioEstados;
 import FarmaciaERP.Domain.Repositories.IUsuarioRepository;
 import FarmaciaERP.Infrastucture.Persistence.Entities.UsuarioJPA;
+import FarmaciaERP.Infrastucture.Persistence.Mappers.UsuarioMapper;
 import FarmaciaERP.Infrastucture.Persistence.Repositories.IUsuarioJPARepository;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,37 +15,37 @@ import java.util.stream.Collectors;
 
 @Repository
 public class UsuarioRepositoryImpl implements IUsuarioRepository {
-    @Autowired
+
     private IUsuarioJPARepository jpaRepository;
+
+    public UsuarioRepositoryImpl(IUsuarioJPARepository jpaRepository) {
+        this.jpaRepository = jpaRepository;
+    }
 
     @Override
     public Usuario save(Usuario usuario) {
-        String estadoString = (usuario.getEstado() != null) ? usuario.getEstado().name() : null;
 
         UsuarioJPA usuarioJPA = new UsuarioJPA(
                 usuario.getId(),
                 usuario.getNombre(),
                 usuario.getEmail(),
                 usuario.getPassword(),
-                estadoString,
+                usuario.getEstado(),
                 usuario.getRegistro()
         );
 
         UsuarioJPA guardadoJPA = jpaRepository.save(usuarioJPA);
-        return mapToDomain(guardadoJPA);
+        return UsuarioMapper.ToDomain(guardadoJPA);
     }
-
-
-
     @Override
     public Optional<Usuario> findById(int id) {
-        return jpaRepository.findById(id).map(this::mapToDomain);
+        return jpaRepository.findById(id).map(UsuarioMapper::ToDomain);
     }
 
     @Override
     public List<Usuario> findAll() {
         return jpaRepository.findAll().stream()
-                .map(this::mapToDomain)
+                .map(UsuarioMapper::ToDomain)
                 .collect(Collectors.toList());
     }
 
@@ -62,8 +63,19 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository {
     public List<Usuario> findByStatus(UsuarioEstados estado) {
 
         return jpaRepository.findByEstado(estado.name()).stream()
-                .map(this::mapToDomain)
+                .map(UsuarioMapper::ToDomain)
                 .collect(Collectors.toList());
     }
+    @Override
+    public List<Usuario> findByName(String Nombre) {
 
+        return jpaRepository.findByNombreContainingIgnoreCase(Nombre).stream()
+                .map(UsuarioMapper::ToDomain)
+                .collect(Collectors.toList());
+    }
+    @Override
+    public Optional<Usuario> findByEmail(String Email) {
+        return jpaRepository.findByEmailContainingIgnoreCase(Email).stream()
+                .map(UsuarioMapper::ToDomain).findFirst();
+    }
 }
