@@ -20,26 +20,40 @@ public class JwtUtils {
     @Value("${jwt.expiration}")
     private long expiration;
 
-    public String generateToken(String username) {
+    public String generateToken(Long id, String email) {
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(String.valueOf(id))
+                .claim("email", email)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
-    public String extractUsername(String token) {
+    public Long extractUserId(String token) {
+        return Long.parseLong(
+                Jwts.parserBuilder()
+                        .setSigningKey(getSignKey())
+                        .build()
+                        .parseClaimsJws(token)
+                        .getBody()
+                        .getSubject()
+        );
+    }
+    public String extractUserEmail(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSignKey())
                 .build()
                 .parseClaimsJws(token)
                 .getBody()
-                .getSubject();
+                .get("email").toString();
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
-        return extractUsername(token).equals(userDetails.getUsername())
+        if (!(userDetails instanceof CustomUserDetails customUser)) {
+            return false;
+        }
+        return extractUserId(token).equals(customUser.getId())
                 && !isTokenExpired(token);
     }
 

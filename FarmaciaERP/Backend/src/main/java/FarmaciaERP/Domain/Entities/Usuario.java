@@ -7,17 +7,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.management.relation.Role;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @AllArgsConstructor
 public class Usuario{
-    private int id;
+    private Long id;
     private FullName nombres;
     private Email email;
-    private String password;
+    private String constrasena;
     private RolUsuario role;
     private UsuarioEstados estado;
     private LocalDateTime registro;
@@ -25,19 +24,19 @@ public class Usuario{
     public Usuario() {
     }
 
-    public Usuario(FullName nombres, Email email, String password, RolUsuario rol) {
+    public Usuario(FullName nombres, Email email, String constrasena, RolUsuario rol) {
         this.nombres = nombres;
         this.email = email;
-        this.password = password;
+        this.constrasena = constrasena;
         this.role = rol;
         this.estado = UsuarioEstados.ACTIVO;
         this.registro = LocalDateTime.now();
     }
 
-    public Usuario(FullName nombres, Email email, String password, RolUsuario rol, UsuarioEstados estado, LocalDateTime registro) {
+    public Usuario(FullName nombres, Email email, String constrasena, RolUsuario rol, UsuarioEstados estado, LocalDateTime registro) {
         this.nombres = nombres;
         this.email = email;
-        this.password = password;
+        this.constrasena = constrasena;
         this.role = rol;
         this.estado = estado;
         this.registro = registro;

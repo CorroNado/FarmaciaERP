@@ -17,7 +17,7 @@ public class BuscarUsuarioUseCase {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public Optional<Usuario> porId(int id) {
+    public Optional<Usuario> porId(Long id) {
         return usuarioRepository.findById(id);
     }
 

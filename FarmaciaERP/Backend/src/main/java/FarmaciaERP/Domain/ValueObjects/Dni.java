@@ -4,12 +4,12 @@ import lombok.Value;
 
 @Value
 public class Dni {
-    private String digitos;
+    private String dni;
 
-    public Dni(String digitos){
-        if (digitos == null || !digitos.matches("\\d{8}")) {
+    public Dni(String dni){
+        if (dni == null || !dni.matches("\\d{8}")) {
             throw new IllegalArgumentException("DNI inválido");
         }
-        this.digitos = digitos;
+        this.dni = dni;
     }
 }

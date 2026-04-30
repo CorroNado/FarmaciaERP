@@ -13,13 +13,13 @@ public interface IUsuarioRepository {
 
     Usuario save(Usuario usuario);
 
-    Optional<Usuario> findById(int id);
+    Optional<Usuario> findById(Long id);
 
     List<Usuario> findAll();
 
-    void deleteById(int id);
+    void deleteById(Long id);
 
-    boolean existsById(int id);
+    boolean existsById(Long id);
 
     List<Usuario> findByStatus(UsuarioEstados estado);
 

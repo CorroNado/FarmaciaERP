@@ -9,4 +9,7 @@ import lombok.Getter;
 @Embeddable
 public class EmailEmb {
     private String email;
+
+    protected EmailEmb() {
+    }
 }

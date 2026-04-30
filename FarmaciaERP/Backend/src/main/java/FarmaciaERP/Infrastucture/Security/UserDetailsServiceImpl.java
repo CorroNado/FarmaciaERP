@@ -1,30 +1,48 @@
 package FarmaciaERP.Infrastucture.Security;
 
-import FarmaciaERP.Domain.ValueObjects.Email;
-import FarmaciaERP.Infrastucture.Persistence.Mappers.EmailMapper;
+import FarmaciaERP.Application.Security.CustomUserDetails;
+import FarmaciaERP.Application.Services.UserDetailsServiceCustom;
 import FarmaciaERP.Infrastucture.Persistence.Repositories.IUsuarioJPARepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsServiceCustom, UserDetailsService {
 
     private final IUsuarioJPARepository usuarioRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return usuarioRepository.findByEmailContainingIgnoreCase(username)
-                .stream().map(usuario -> User.builder()
-                        .username(EmailMapper.toDomain(usuario.getEmail()).getEmail())
-                        .password(usuario.getPassword())
-                        .roles(usuario.getRol().name())
-                        .build()
-                ).findAny().orElseThrow(() -> new UsernameNotFoundException(
-                        "Usuario no encontrado: " + username ));
+    public CustomUserDetails loadUserById(Long id) throws UsernameNotFoundException {
+
+        var usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+
+        return new CustomUserDetails(
+                (long) usuario.getId(),
+                usuario.getEmail().getEmail(),
+                usuario.getPassword(),
+                List.of(new SimpleGrantedAuthority("ROLE_" + usuario.getRol().name()))
+        );
+    }
+    public UserDetails  loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("BUSCANDO: " + username);
+
+        var usuario = usuarioRepository.findByEmail_Email(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+        System.out.println("ENCONTRADO: " + usuario.getEmail());
+        System.out.println("PASSWORD BD: " + usuario.getPassword());
+        return new CustomUserDetails(
+                usuario.getId(),
+                usuario.getEmail().getEmail(),
+                usuario.getPassword(),
+                List.of(new SimpleGrantedAuthority("ROLE_" + usuario.getRol().name()))
+        );
     }
 }
