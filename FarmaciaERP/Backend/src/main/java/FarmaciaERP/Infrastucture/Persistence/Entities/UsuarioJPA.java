@@ -11,7 +11,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Usuarios")
+@Table(name = "Usuario")
 @Getter
 @Setter
 public class UsuarioJPA {

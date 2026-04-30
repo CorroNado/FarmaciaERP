@@ -12,5 +12,5 @@ import lombok.Setter;
 @NoArgsConstructor
 
 public class CrearUsuarioResponse {
-    private Email email;
+    private String email;
 }

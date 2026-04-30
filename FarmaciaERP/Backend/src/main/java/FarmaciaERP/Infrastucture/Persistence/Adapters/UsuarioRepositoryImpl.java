@@ -63,9 +63,9 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository {
                 .collect(Collectors.toList());
     }
     @Override
-    public List<Usuario> findByName(FullName Nombre) {
+    public List<Usuario> findByName(FullName fullName) {
 
-        return jpaRepository.findByNombresContainingIgnoreCase(FullnameMapper.toEmbeddable(Nombre)).stream()
+        return jpaRepository.findByNombres_Value(fullName.getValue()).stream()
                 .map(UsuarioMapper::ToDomain)
                 .collect(Collectors.toList());
     }

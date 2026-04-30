@@ -11,8 +11,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class CrearUsuarioResquest {
-    private FullName nombre;
-    private Email email;
+    private String nombre;
+    private String apellido;
+    private String email;
     private String password;
-    private UsuarioEstados estado;
 }

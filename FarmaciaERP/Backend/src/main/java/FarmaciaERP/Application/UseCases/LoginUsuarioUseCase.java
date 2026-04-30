@@ -23,15 +23,12 @@ public class LoginUsuarioUseCase {
 
     public LoginResponse execute(LoginRequest request) {
         try {
-            System.out.println("ANTES AUTH");
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             request.getEmail(),
                             request.getPassword()
                     )
             );
-            System.out.println("DESPUES AUTH");
-
             CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
 
             String token = jwtUtils.generateToken(
