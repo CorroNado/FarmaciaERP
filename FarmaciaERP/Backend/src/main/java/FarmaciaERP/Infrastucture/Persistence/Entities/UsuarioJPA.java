@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class UsuarioJPA {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Embedded
     private FullNameEmb nombres;
@@ -40,7 +40,7 @@ public class UsuarioJPA {
     public UsuarioJPA() {
     }
 
-    public UsuarioJPA(int id, FullNameEmb nombres, EmailEmb email, String password, RolUsuario rol, UsuarioEstados estado, LocalDateTime registro) {
+    public UsuarioJPA(Long id, FullNameEmb nombres, EmailEmb email, String password, RolUsuario rol, UsuarioEstados estado, LocalDateTime registro) {
         this.id = id;
         this.nombres = nombres;
         this.email = email;
@@ -48,5 +48,15 @@ public class UsuarioJPA {
         this.rol = rol;
         this.estado = estado;
         this.registro = registro;
+    }
+
+    public String getEmailValue() {
+        return email.getEmail();
+    }
+    public String getNombresValue() {
+        return nombres.getNombres();
+    }
+    public String getApellidosValue() {
+        return nombres.getApellidos();
     }
 }

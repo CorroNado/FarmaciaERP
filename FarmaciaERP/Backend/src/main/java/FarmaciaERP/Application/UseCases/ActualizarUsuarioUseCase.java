@@ -11,7 +11,7 @@ public class ActualizarUsuarioUseCase {
         this.usuarioRepository = userRepository;
     }
 
-    public Usuario ejecutar (int id, Usuario usuarioActualizado) {
+    public Usuario ejecutar (Long id, Usuario usuarioActualizado) {
         if (!usuarioRepository.existsById(id)) {
             throw new RuntimeException("El usuario con ID " + id + " no existe.");
         }

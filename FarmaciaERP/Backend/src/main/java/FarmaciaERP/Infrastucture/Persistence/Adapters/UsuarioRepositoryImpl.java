@@ -34,7 +34,7 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository {
         return UsuarioMapper.ToDomain(guardadoJPA);
     }
     @Override
-    public Optional<Usuario> findById(int id) {
+    public Optional<Usuario> findById(Long id) {
         return jpaRepository.findById(id).map(UsuarioMapper::ToDomain);
     }
 
@@ -46,12 +46,12 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(Long id) {
         jpaRepository.deleteById(id);
     }
 
     @Override
-    public boolean existsById(int id) {
+    public boolean existsById(Long id) {
         return jpaRepository.existsById(id);
     }
 
@@ -71,7 +71,7 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository {
     }
     @Override
     public Optional<Usuario> findByEmail(Email email) {
-        return jpaRepository.findByEmailContainingIgnoreCase(email.getEmail()).stream()
+        return jpaRepository.findByEmail_Email(email.getEmail()).stream()
                 .map(UsuarioMapper::ToDomain).findFirst();
     }
 }

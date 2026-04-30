@@ -48,7 +48,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> actualizar(@PathVariable int id, @RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> actualizar(@PathVariable Long id, @RequestBody Usuario usuario) {
         try {
             Usuario usuarioActualizado = actualizarUsuarioUseCase.ejecutar(id, usuario);
             return ResponseEntity.ok(usuarioActualizado);
@@ -58,7 +58,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable int id) {
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         try {
             eliminarUsuarioUseCase.ejecutar(id);
             return ResponseEntity.noContent().build(); // 204 No Content
@@ -68,8 +68,8 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-        public ResponseEntity<Usuario> obtenerPorId(@PathVariable Email gmail) {
-        return buscarUsuarioUseCase.porEmail(gmail)
+        public ResponseEntity<Usuario> obtenerPorId(@PathVariable Long id) {
+        return buscarUsuarioUseCase.porId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
