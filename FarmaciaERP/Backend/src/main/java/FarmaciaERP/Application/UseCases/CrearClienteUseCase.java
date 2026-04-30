@@ -4,6 +4,8 @@ import FarmaciaERP.Application.DTOs.Request.CrearPacienteRequest;
 import FarmaciaERP.Application.DTOs.Response.CrearPacienteResponse;
 import FarmaciaERP.Domain.Entities.Cliente;
 import FarmaciaERP.Domain.Repositories.IClienteRepository;
+import FarmaciaERP.Domain.ValueObjects.Dni;
+import FarmaciaERP.Domain.ValueObjects.FullName;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -11,18 +13,26 @@ import java.util.Optional;
 @Service
 public class CrearClienteUseCase {
 
-    private final IClienteRepository pacienteRepository;
+    private final IClienteRepository clienteRepository;
 
-    public CrearClienteUseCase(IClienteRepository pacienteRepository) {
-        this.pacienteRepository = pacienteRepository;
+    public CrearClienteUseCase(IClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
     }
 
     public CrearPacienteResponse ejecutar(CrearPacienteRequest request) {
-        Optional<Cliente> existente = pacienteRepository.buscarPorDocumentoIdentidad(request.getDni());
+        Dni dni = new Dni(request.getDni());
+        FullName fullName = new FullName(request.getNombre(), request.getApellido());
+        Optional<Cliente> existente = clienteRepository.buscarPorDocumentoIdentidad(dni);
         if (existente.isPresent()) {
             throw new IllegalArgumentException("Ya existe un paciente con el documento: " + request.getDni());
         }
-
-        return new CrearPacienteResponse(request.getDni());
+        clienteRepository.guardar(
+                new Cliente(
+                        fullName,
+                        dni,
+                        request.getTipoSeguro()
+                )
+        );
+        return new CrearPacienteResponse(dni.getDni());
     }
 }

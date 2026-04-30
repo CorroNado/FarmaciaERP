@@ -7,6 +7,8 @@ import FarmaciaERP.Domain.Entities.Usuario;
 import FarmaciaERP.Domain.Enums.RolUsuario;
 import FarmaciaERP.Domain.Enums.UsuarioEstados;
 import FarmaciaERP.Domain.Repositories.IUsuarioRepository;
+import FarmaciaERP.Domain.ValueObjects.Email;
+import FarmaciaERP.Domain.ValueObjects.FullName;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,17 +22,18 @@ public class RegisterUsuarioUseCase {
     private final PasswordEncoder passwordEncoder;
 
     public RegisterResponse execute(@RequestBody RegisterRequest request){
-
-        var existe = usuarioRepository.findByEmail(request.getEmail());
+        Email email = new Email(request.getEmail());
+        FullName fullName = new FullName(request.getNombre(), request.getApellido());
+        var existe = usuarioRepository.findByEmail(email);
 
         if (existe.isPresent()) {
             throw new RuntimeException("El email ya está registrado");
         }
 
         Usuario usuario = new Usuario();
-        usuario.setEmail(request.getEmail());
+        usuario.setEmail(email);
         usuario.setConstrasena(passwordEncoder.encode(request.getPassword()));
-        usuario.setNombres(request.getNombres());
+        usuario.setNombres(fullName);
         usuario.setEstado(UsuarioEstados.ACTIVO);
         usuario.setRole(RolUsuario.ADMINISTRADOR);
         usuario.setRegistro(java.time.LocalDateTime.now());

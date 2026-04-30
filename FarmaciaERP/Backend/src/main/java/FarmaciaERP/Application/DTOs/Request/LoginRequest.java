@@ -1,5 +1,6 @@
 package FarmaciaERP.Application.DTOs.Request;
 
+import FarmaciaERP.Domain.Enums.RolUsuario;
 import lombok.Getter;
 
 @Getter

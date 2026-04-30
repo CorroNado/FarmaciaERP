@@ -18,7 +18,7 @@ public class ClienteJPA {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Embedded
     private FullNameEmb nombres;

@@ -58,7 +58,7 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 
     @Override
     public Optional<Cliente> buscarPorDocumentoIdentidad(Dni documentoIdentidad) {
-        return jpaRepository.findByDni(DniMapper.toEmbeddable(documentoIdentidad))
+        return jpaRepository.findByDni_Dni(documentoIdentidad.getDni())
                 .map(ClienteMapper::ToDomain);
     }
 

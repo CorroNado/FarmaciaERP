@@ -32,12 +32,8 @@ public class UserDetailsServiceImpl implements UserDetailsServiceCustom, UserDet
         );
     }
     public UserDetails  loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("BUSCANDO: " + username);
-
         var usuario = usuarioRepository.findByEmail_Email(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
-        System.out.println("ENCONTRADO: " + usuario.getEmail());
-        System.out.println("PASSWORD BD: " + usuario.getPassword());
         return new CustomUserDetails(
                 usuario.getId(),
                 usuario.getEmail().getEmail(),

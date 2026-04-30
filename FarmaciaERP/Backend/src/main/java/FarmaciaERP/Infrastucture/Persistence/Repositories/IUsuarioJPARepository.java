@@ -15,7 +15,7 @@ public interface IUsuarioJPARepository extends JpaRepository<UsuarioJPA, Long> {
 
     List<UsuarioJPA> findByEstado(String estado);
 
-    List<UsuarioJPA> findByNombresContainingIgnoreCase(FullNameEmb nombres);
+    List<UsuarioJPA> findByNombres_Value(String fullname);
 
     @Query("SELECT u FROM UsuarioJPA u WHERE u.email.email = :email")
     Optional<UsuarioJPA> findByEmail_Email(@Param("email") String email);

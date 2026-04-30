@@ -11,5 +11,5 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CrearPacienteResponse {
-    private Dni dni;
+    private String dni;
 }

@@ -39,6 +39,7 @@ public class ClienteController {
     @PostMapping
     public ResponseEntity<?> crear(@RequestBody CrearPacienteRequest request) {
         try {
+            System.out.println("POST CLIENTE EJECUTANDO");
             CrearPacienteResponse nuevoPaciente = crearClienteUseCase.ejecutar(request);
             return new ResponseEntity<>(nuevoPaciente, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
@@ -78,7 +79,7 @@ public class ClienteController {
             @RequestParam(required = false) FullName nombres,
             @RequestParam(required = false) Dni dni,
             @RequestParam(required = false) TipoSeguro tipoSeguro) {
-
+        System.out.println("GET CLIENTE EJECUTANDO");
         if (dni != null) {
             return buscarClienteUseCase.porDocumento(dni)
                     .map(paciente -> ResponseEntity.ok(List.of(paciente)))

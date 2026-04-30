@@ -11,7 +11,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class CrearPacienteRequest {
-    private FullName nombre;
-    private Dni dni;
+    private String nombre;
+    private String apellido;
+    private String dni;
     private TipoSeguro tipoSeguro;
 }
