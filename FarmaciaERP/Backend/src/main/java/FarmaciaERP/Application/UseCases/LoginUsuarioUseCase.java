@@ -15,10 +15,13 @@ public class LoginUsuarioUseCase {
 
     private final AuthenticationManager authenticationManager;
     private final JwtUtils jwtUtils;
+    private final RegistrarHistorialAccesoUseCase historialUseCase;
 
-    public LoginUsuarioUseCase(AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
+    public LoginUsuarioUseCase(AuthenticationManager authenticationManager, JwtUtils jwtUtils, RegistrarHistorialAccesoUseCase historialUseCase) {
         this.authenticationManager = authenticationManager;
         this.jwtUtils = jwtUtils;
+        this.historialUseCase = historialUseCase;
+
     }
 
     public LoginResponse execute(LoginRequest request) {
@@ -36,6 +39,12 @@ public class LoginUsuarioUseCase {
                     user.getUsername()
             );
 
+            historialUseCase.ejecutar(
+                    user.getId(),
+                    user.getUsername(),
+                    "LOGIN",
+                    "127.0.0.1"
+            );
             return new LoginResponse(token);
 
         } catch (BadCredentialsException ex) {
