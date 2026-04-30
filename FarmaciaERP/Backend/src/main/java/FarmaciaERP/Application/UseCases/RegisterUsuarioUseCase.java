@@ -30,13 +30,12 @@ public class RegisterUsuarioUseCase {
             throw new RuntimeException("El email ya está registrado");
         }
 
-        Usuario usuario = new Usuario();
-        usuario.setEmail(email);
-        usuario.setConstrasena(passwordEncoder.encode(request.getPassword()));
-        usuario.setNombres(fullName);
-        usuario.setEstado(UsuarioEstados.ACTIVO);
-        usuario.setRole(RolUsuario.ADMINISTRADOR);
-        usuario.setRegistro(java.time.LocalDateTime.now());
+        Usuario usuario = new Usuario(
+                fullName,
+                email,
+                passwordEncoder.encode(request.getPassword()),
+                RolUsuario.ADMINISTRADOR
+        );
 
         var saved = usuarioRepository.save(usuario);
 

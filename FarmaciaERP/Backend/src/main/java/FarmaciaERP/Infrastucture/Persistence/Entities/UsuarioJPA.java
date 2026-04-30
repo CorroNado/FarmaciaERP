@@ -37,6 +37,12 @@ public class UsuarioJPA {
     @Column(name = "fecha_registro", updatable = false)
     private LocalDateTime registro;
 
+    @Column(nullable = false)
+    private Integer loginAttempts = 0;
+
+    @Column
+    private LocalDateTime lockUntil;
+
     public UsuarioJPA() {
     }
 

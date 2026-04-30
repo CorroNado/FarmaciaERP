@@ -1,7 +1,6 @@
 package FarmaciaERP.Infrastucture.Security;
 
 import FarmaciaERP.Application.Security.CustomUserDetails;
-import FarmaciaERP.Application.Services.UserDetailsServiceCustom;
 import FarmaciaERP.Infrastucture.Persistence.Repositories.IUsuarioJPARepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,11 +13,10 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserDetailsServiceImpl implements UserDetailsServiceCustom, UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final IUsuarioJPARepository usuarioRepository;
 
-    @Override
     public CustomUserDetails loadUserById(Long id) throws UsernameNotFoundException {
 
         var usuario = usuarioRepository.findById(id)
@@ -31,6 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsServiceCustom, UserDet
                 List.of(new SimpleGrantedAuthority("ROLE_" + usuario.getRol().name()))
         );
     }
+    @Override
     public UserDetails  loadUserByUsername(String username) throws UsernameNotFoundException {
         var usuario = usuarioRepository.findByEmail_Email(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));

@@ -33,9 +33,7 @@ public class CrearUsuarioUseCase {
                 fullName,
                 email,
                 request.getPassword(),
-                RolUsuario.ADMINISTRADOR,
-                UsuarioEstados.ACTIVO,
-                LocalDateTime.now());
+                RolUsuario.ADMINISTRADOR);
         usuarioRepository.save(saved);
         return new CrearUsuarioResponse(saved.getEmail().getEmail());
     }

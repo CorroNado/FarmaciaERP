@@ -78,7 +78,6 @@ public class UsuarioController {
     public ResponseEntity<List<Usuario>> obtenerTodos(
             @RequestParam(required = false) FullName nombre,
             @RequestParam(required = false) Email email,
-            @RequestParam(required = false) String password,
             @RequestParam(required = false) UsuarioEstados estados) {
 
         if (email != null) {
