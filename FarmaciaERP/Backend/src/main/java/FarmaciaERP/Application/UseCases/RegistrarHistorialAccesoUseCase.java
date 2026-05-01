@@ -2,6 +2,7 @@ package FarmaciaERP.Application.UseCases;
 
 import FarmaciaERP.Domain.Entities.HistorialAcceso;
 import FarmaciaERP.Domain.Repositories.IHistorialAccesoRepository;
+import FarmaciaERP.Domain.ValueObjects.Email;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,7 +18,7 @@ public class RegistrarHistorialAccesoUseCase {
 
     public void ejecutar(
             Long usuarioId,
-            String email,
+            Email email,
             String accion,
             String ip) {
 

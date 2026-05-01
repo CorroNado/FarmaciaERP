@@ -21,6 +21,9 @@ public class Usuario{
     private UsuarioEstados estado;
     private LocalDateTime registro;
 
+    private Integer loginAttempts;
+    private LocalDateTime lockUntil;
+
     public Usuario() {
     }
 
@@ -31,14 +34,8 @@ public class Usuario{
         this.role = rol;
         this.estado = UsuarioEstados.ACTIVO;
         this.registro = LocalDateTime.now();
+        this.loginAttempts = 0;
+        this.lockUntil = null;
     }
 
-    public Usuario(FullName nombres, Email email, String constrasena, RolUsuario rol, UsuarioEstados estado, LocalDateTime registro) {
-        this.nombres = nombres;
-        this.email = email;
-        this.constrasena = constrasena;
-        this.role = rol;
-        this.estado = estado;
-        this.registro = registro;
-    }
 }

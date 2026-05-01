@@ -1,6 +1,7 @@
 package FarmaciaERP.Domain.Repositories;
 
 import FarmaciaERP.Domain.Entities.HistorialAcceso;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

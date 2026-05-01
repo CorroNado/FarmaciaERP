@@ -1,5 +1,7 @@
 package FarmaciaERP.Domain.Entities;
 
+import FarmaciaERP.Domain.ValueObjects.Email;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,20 +9,22 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class HistorialAcceso {
 
     private Long id;
     private Long usuarioId;
-    private String email;
+    private Email email;
     private String accion;
     private String ip;
     private LocalDateTime fecha;
+
 
     public HistorialAcceso() {}
 
     public HistorialAcceso(
             Long usuarioId,
-            String email,
+            Email email,
             String accion,
             String ip) {
 

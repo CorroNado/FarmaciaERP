@@ -1,5 +1,6 @@
 package FarmaciaERP.Infrastucture.Persistence.Entities;
 
+import FarmaciaERP.Domain.Entities.HistorialAcceso;
 import FarmaciaERP.Domain.Enums.RolUsuario;
 import FarmaciaERP.Domain.Enums.UsuarioEstados;
 import FarmaciaERP.Domain.ValueObjects.Email;
@@ -9,6 +10,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Usuario")
@@ -37,6 +40,17 @@ public class UsuarioJPA {
     @Column(name = "fecha_registro", updatable = false)
     private LocalDateTime registro;
 
+    @Column(nullable = false)
+    private Integer loginAttempts = 0;
+
+    @Column
+    private LocalDateTime lockUntil;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<HistorialAccesoJPA> historialAccesos = new ArrayList<>();
+
+
+
     public UsuarioJPA() {
     }
 
@@ -58,5 +72,9 @@ public class UsuarioJPA {
     }
     public String getApellidosValue() {
         return nombres.getApellidos();
+    }
+    public void agregarHistorial(HistorialAccesoJPA historial) {
+        historialAccesos.add(historial);
+        historial.setUsuario(this);
     }
 }
