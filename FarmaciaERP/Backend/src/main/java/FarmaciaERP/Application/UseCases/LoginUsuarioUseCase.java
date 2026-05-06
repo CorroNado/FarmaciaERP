@@ -2,8 +2,8 @@ package FarmaciaERP.Application.UseCases;
 
 import FarmaciaERP.Application.DTOs.Request.LoginRequest;
 import FarmaciaERP.Application.DTOs.Response.LoginResponse;
-import FarmaciaERP.Application.Security.CustomUserDetails;
-import FarmaciaERP.Application.Security.JwtUtils;
+import FarmaciaERP.Infrastucture.Security.CustomUserDetails;
+import FarmaciaERP.Infrastucture.Security.jwt.JwtUtils;
 import FarmaciaERP.Domain.Enums.UsuarioEstados;
 import FarmaciaERP.Domain.Repositories.IUsuarioRepository;
 import FarmaciaERP.Domain.ValueObjects.Email;
@@ -12,7 +12,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -27,28 +26,29 @@ public class LoginUsuarioUseCase {
     private final IUsuarioRepository usuarioRepository;
 
     private static final int MAX_ATTEMPTS = 3;
-    private static final int LOCK_MINUTES = 15;
+    private static final int LOCK_MINUTES = 1;
 
 
     public LoginResponse execute(LoginRequest request) {
         var usuario = usuarioRepository.findByEmail(new Email(request.getEmail()))
                 .orElseThrow(() -> new RuntimeException("Credenciales inválidas"));
 
+        if(usuario.getEstado() == UsuarioEstados.INACTIVO){
+            throw new RuntimeException("Cuenta fuera de servicio");
+        }
         if (usuario.getEstado() == UsuarioEstados.BLOQUEADO) {
-            if (usuario.getLockUntil() != null) {
-                if (usuario.getLockUntil().isBefore(LocalDateTime.now())) {
-                    usuario.setEstado(UsuarioEstados.ACTIVO);
-                    usuario.setLockUntil(null);
-                    usuario.setLoginAttempts(0);
-                    usuarioRepository.save(usuario);
-                } else {
-                    long minutesLeft = ChronoUnit.MINUTES.between(LocalDateTime.now(), usuario.getLockUntil());
-                    throw new RuntimeException("Cuenta bloqueada. Intenta en " + minutesLeft + " minutos");
-                }
-
-            } else {
+            if (usuario.getLockUntil() == null) {
                 throw new RuntimeException("Cuenta bloqueada. Contacta al administrador");
             }
+            if (usuario.getLockUntil().isAfter(LocalDateTime.now())) {
+                long minutesLeft = ChronoUnit.MINUTES.between(LocalDateTime.now(), usuario.getLockUntil());
+                throw new RuntimeException("Cuenta bloqueada. Intenta en " + minutesLeft + " minutos");
+            }
+
+            usuario.setEstado(UsuarioEstados.ACTIVO);
+            usuario.setLockUntil(null);
+            usuario.setLoginAttempts(0);
+            usuarioRepository.save(usuario);
         }
 
         try {

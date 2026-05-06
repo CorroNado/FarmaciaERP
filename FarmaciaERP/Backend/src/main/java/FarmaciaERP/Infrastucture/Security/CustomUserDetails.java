@@ -1,4 +1,4 @@
-package FarmaciaERP.Application.Security;
+package FarmaciaERP.Infrastucture.Security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

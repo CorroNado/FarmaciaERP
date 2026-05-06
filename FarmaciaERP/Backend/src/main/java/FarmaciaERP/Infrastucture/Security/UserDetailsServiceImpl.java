@@ -1,6 +1,5 @@
 package FarmaciaERP.Infrastucture.Security;
 
-import FarmaciaERP.Application.Security.CustomUserDetails;
 import FarmaciaERP.Infrastucture.Persistence.Repositories.IUsuarioJPARepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

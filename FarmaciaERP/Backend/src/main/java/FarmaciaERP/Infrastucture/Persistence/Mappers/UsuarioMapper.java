@@ -9,7 +9,7 @@ public class UsuarioMapper {
         entity.setId(usuario.getId());
         entity.setNombres(FullnameMapper.toEmbeddable(usuario.getNombres()));
         entity.setEmail(EmailMapper.toEmbeddable(usuario.getEmail()));
-        entity.setPassword(usuario.getConstrasena());
+        entity.setPassword(usuario.getPassword());
         entity.setRol(usuario.getRole());
         entity.setEstado(usuario.getEstado());
         entity.setLoginAttempts(usuario.getLoginAttempts());

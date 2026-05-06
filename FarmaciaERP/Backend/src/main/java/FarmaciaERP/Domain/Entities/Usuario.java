@@ -16,7 +16,7 @@ public class Usuario{
     private Long id;
     private FullName nombres;
     private Email email;
-    private String constrasena;
+    private String password;
     private RolUsuario role;
     private UsuarioEstados estado;
     private LocalDateTime registro;
@@ -27,10 +27,10 @@ public class Usuario{
     public Usuario() {
     }
 
-    public Usuario(FullName nombres, Email email, String constrasena, RolUsuario rol) {
+    public Usuario(FullName nombres, Email email, String password, RolUsuario rol) {
         this.nombres = nombres;
         this.email = email;
-        this.constrasena = constrasena;
+        this.password = password;
         this.role = rol;
         this.estado = UsuarioEstados.ACTIVO;
         this.registro = LocalDateTime.now();

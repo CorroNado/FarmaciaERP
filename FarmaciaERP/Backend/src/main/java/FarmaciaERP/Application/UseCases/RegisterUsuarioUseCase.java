@@ -2,10 +2,8 @@ package FarmaciaERP.Application.UseCases;
 
 import FarmaciaERP.Application.DTOs.Request.RegisterRequest;
 import FarmaciaERP.Application.DTOs.Response.RegisterResponse;
-import FarmaciaERP.Application.Security.JwtUtils;
 import FarmaciaERP.Domain.Entities.Usuario;
 import FarmaciaERP.Domain.Enums.RolUsuario;
-import FarmaciaERP.Domain.Enums.UsuarioEstados;
 import FarmaciaERP.Domain.Repositories.IUsuarioRepository;
 import FarmaciaERP.Domain.ValueObjects.Email;
 import FarmaciaERP.Domain.ValueObjects.FullName;

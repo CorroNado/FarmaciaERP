@@ -1,4 +1,4 @@
-package FarmaciaERP.Application.Security;
+package FarmaciaERP.Infrastucture.Security.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
