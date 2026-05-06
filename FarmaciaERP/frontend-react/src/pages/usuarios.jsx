@@ -1,6 +1,6 @@
 import React from "react";
 import "./usuarios.css";
-
+import "../services/authService.js"
 function Usuarios() {
     return (
         <div className="container">
