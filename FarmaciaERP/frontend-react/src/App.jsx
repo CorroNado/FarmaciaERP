@@ -1,16 +1,22 @@
-import { Routes, Route } from "react-router-dom";
-import Usuarios from "./pages/Usuarios";
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from './assets/vite.svg'
+import heroImg from './assets/hero.png'
+import './App.css'
 import Login from "./pages/Login";
-import Principal from "./pages/Principal";
+import Usuarios from "./pages/usuarios";
+
+
 
 function App() {
-  return (
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/usuarios" element={<Usuarios />} />
-        <Route path="/principal" element={<Principal />} />
-      </Routes>
-  );
+  const path = window.location.pathname;
+
+  if (path === "/usuarios") {
+    return <Usuarios />;
+  }
+
+  return <Login />;
+
 }
 
 export default App;
