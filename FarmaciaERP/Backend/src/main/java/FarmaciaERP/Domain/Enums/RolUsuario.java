@@ -2,5 +2,9 @@ package FarmaciaERP.Domain.Enums;
 
 public enum RolUsuario {
     ADMINISTRADOR,
-    TECNICO
+    JEFE_GENERAL,
+    JEFE_LOGISTICA,
+    QUIMICO_FARMACEUTICO,
+    TECNICO_FARMACIA,
+    CONTADOR
 }

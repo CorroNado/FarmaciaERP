@@ -1,5 +1,6 @@
-package FarmaciaERP.Application.Security;
+package FarmaciaERP.Infrastucture.Security.jwt;
 
+import FarmaciaERP.Infrastucture.Security.CustomUserDetails;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;

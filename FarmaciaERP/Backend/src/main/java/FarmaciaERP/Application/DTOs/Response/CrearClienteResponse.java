@@ -1,6 +1,5 @@
 package FarmaciaERP.Application.DTOs.Response;
 
-import FarmaciaERP.Domain.ValueObjects.Dni;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +9,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CrearPacienteResponse {
+public class CrearClienteResponse {
     private String dni;
 }

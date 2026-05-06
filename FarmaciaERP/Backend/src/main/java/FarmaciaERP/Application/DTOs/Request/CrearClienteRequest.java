@@ -1,8 +1,6 @@
 package FarmaciaERP.Application.DTOs.Request;
 
 import FarmaciaERP.Domain.Enums.TipoSeguro;
-import FarmaciaERP.Domain.ValueObjects.Dni;
-import FarmaciaERP.Domain.ValueObjects.FullName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class CrearPacienteRequest {
+public class CrearClienteRequest {
     private String nombre;
     private String apellido;
     private String dni;

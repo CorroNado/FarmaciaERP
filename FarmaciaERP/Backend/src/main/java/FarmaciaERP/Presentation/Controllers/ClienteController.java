@@ -1,7 +1,7 @@
 package FarmaciaERP.Presentation.Controllers;
 
-import FarmaciaERP.Application.DTOs.Request.CrearPacienteRequest;
-import FarmaciaERP.Application.DTOs.Response.CrearPacienteResponse;
+import FarmaciaERP.Application.DTOs.Request.CrearClienteRequest;
+import FarmaciaERP.Application.DTOs.Response.CrearClienteResponse;
 import FarmaciaERP.Application.UseCases.ActualizarClienteUseCase;
 import FarmaciaERP.Application.UseCases.BuscarClienteUseCase;
 import FarmaciaERP.Application.UseCases.CrearClienteUseCase;
@@ -37,10 +37,10 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<?> crear(@RequestBody CrearPacienteRequest request) {
+    public ResponseEntity<?> crear(@RequestBody CrearClienteRequest request) {
         try {
             System.out.println("POST CLIENTE EJECUTANDO");
-            CrearPacienteResponse nuevoPaciente = crearClienteUseCase.ejecutar(request);
+            CrearClienteResponse nuevoPaciente = crearClienteUseCase.ejecutar(request);
             return new ResponseEntity<>(nuevoPaciente, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();

@@ -7,7 +7,6 @@ import FarmaciaERP.Application.DTOs.Response.RegisterResponse;
 import FarmaciaERP.Application.UseCases.LoginUsuarioUseCase;
 import FarmaciaERP.Application.UseCases.RegisterUsuarioUseCase;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
