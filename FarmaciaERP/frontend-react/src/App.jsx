@@ -1,5 +1,4 @@
-import { Routes, Route } from "react-router-dom";
-import Usuarios from "./pages/Usuarios";
+import './App.css'
 import Login from "./pages/Login";
 import Principal from "./pages/Principal";
 
