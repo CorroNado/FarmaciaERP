@@ -85,7 +85,6 @@ public class ClienteController {
                     .map(paciente -> ResponseEntity.ok(List.of(paciente)))
                     .orElse(ResponseEntity.notFound().build());
         }
-
         if (nombres != null) {
             return ResponseEntity.ok(buscarClienteUseCase.porNombre(nombres));
         }
@@ -93,7 +92,6 @@ public class ClienteController {
         if (tipoSeguro != null) {
             return ResponseEntity.ok(buscarClienteUseCase.porTipoSeguro(tipoSeguro));
         }
-
         return ResponseEntity.ok(buscarClienteUseCase.todos());
     }
 }
