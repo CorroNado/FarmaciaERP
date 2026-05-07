@@ -1,6 +1,6 @@
 package FarmaciaERP.Domain.Entities;
 
-import FarmaciaERP.Domain.ValueObjects.Email;
+import FarmaciaERP.Domain.Enums.AccionAcceso;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,20 +14,20 @@ public class HistorialAcceso {
 
     private Long id;
     private Long usuarioId;
-    private String email;
-    private String accion;
+    private AccionAcceso accion;
+    private String userAgent;
     private String ip;
     private LocalDateTime fecha;
 
 
     public HistorialAcceso() {}
 
-    public HistorialAcceso(Long usuarioId, String email, String accion, String ip) {
-
+    public HistorialAcceso(Long usuarioId, AccionAcceso accion, String ip,
+                           String userAgent) {
         this.usuarioId = usuarioId;
-        this.email = email;
         this.accion = accion;
         this.ip = ip;
+        this.userAgent = userAgent;
         this.fecha = LocalDateTime.now();
     }
 }
