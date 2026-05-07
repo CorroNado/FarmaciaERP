@@ -16,20 +16,7 @@ public class RegistrarHistorialAccesoUseCase {
         this.repository = repository;
     }
 
-    public void ejecutar(
-            Long usuarioId,
-            Email email,
-            String accion,
-            String ip) {
-
-        HistorialAcceso historial =
-                new HistorialAcceso(
-                        usuarioId,
-                        email,
-                        accion,
-                        ip
-                );
-
-        repository.save(historial);
+    public void ejecutar(HistorialAcceso historialAcceso) {
+        repository.save(historialAcceso);
     }
 }

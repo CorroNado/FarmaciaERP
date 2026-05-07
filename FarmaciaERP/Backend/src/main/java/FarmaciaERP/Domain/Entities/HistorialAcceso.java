@@ -14,7 +14,7 @@ public class HistorialAcceso {
 
     private Long id;
     private Long usuarioId;
-    private Email email;
+    private String email;
     private String accion;
     private String ip;
     private LocalDateTime fecha;
@@ -22,11 +22,7 @@ public class HistorialAcceso {
 
     public HistorialAcceso() {}
 
-    public HistorialAcceso(
-            Long usuarioId,
-            Email email,
-            String accion,
-            String ip) {
+    public HistorialAcceso(Long usuarioId, String email, String accion, String ip) {
 
         this.usuarioId = usuarioId;
         this.email = email;

@@ -7,16 +7,17 @@ import FarmaciaERP.Domain.Enums.RolUsuario;
 import FarmaciaERP.Domain.Repositories.IUsuarioRepository;
 import FarmaciaERP.Domain.ValueObjects.Email;
 import FarmaciaERP.Domain.ValueObjects.FullName;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 @Service
+@RequiredArgsConstructor
 public class CrearUsuarioUseCase {
     private final IUsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public CrearUsuarioUseCase(IUsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
-    }
 
     public CrearUsuarioResponse ejecutar(CrearUsuarioResquest request) {
         Email email = new Email(request.getEmail());
@@ -28,7 +29,7 @@ public class CrearUsuarioUseCase {
         Usuario saved = new Usuario(
                 fullName,
                 email,
-                request.getPassword(),
+                passwordEncoder.encode(request.getPassword()),
                 RolUsuario.ADMINISTRADOR);
         usuarioRepository.save(saved);
         return new CrearUsuarioResponse(saved.getEmail().getEmail());

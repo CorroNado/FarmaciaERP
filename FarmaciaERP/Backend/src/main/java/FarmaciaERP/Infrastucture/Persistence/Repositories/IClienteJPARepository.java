@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface IClienteJPARepository extends JpaRepository<ClienteJPA,Integer> {
+public interface IClienteJPARepository extends JpaRepository<ClienteJPA,Long> {
 
 
     List<ClienteJPA> findByTipoSeguro(TipoSeguro tipoSeguro);

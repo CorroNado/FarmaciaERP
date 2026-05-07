@@ -58,7 +58,7 @@ public class ClienteController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable int id) {
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         try {
             eliminarClienteUseCase.ejecutar(id);
             return ResponseEntity.noContent().build(); // 204 No Content

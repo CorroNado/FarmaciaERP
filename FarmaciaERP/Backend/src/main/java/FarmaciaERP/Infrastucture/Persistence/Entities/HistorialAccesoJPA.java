@@ -21,13 +21,13 @@ public class HistorialAccesoJPA {
     @JoinColumn(name = "usuario_id", nullable = false)
     private UsuarioJPA usuario;
 
-    @Embedded
-    private EmailEmb email;
+    @Column(nullable = false,length = 100)
+    private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false,length = 200)
     private String accion;
 
-    @Column(nullable = false)
+    @Column(nullable = false,length = 45)
     private String ip;
 
     @Column(nullable = false)
@@ -35,7 +35,7 @@ public class HistorialAccesoJPA {
 
     public HistorialAccesoJPA() {}
 
-    public HistorialAccesoJPA(UsuarioJPA usuario, EmailEmb email, String accion, String ip) {
+    public HistorialAccesoJPA(UsuarioJPA usuario, String email, String accion, String ip) {
         this.usuario = usuario;
         this.email = email;
         this.accion = accion;
