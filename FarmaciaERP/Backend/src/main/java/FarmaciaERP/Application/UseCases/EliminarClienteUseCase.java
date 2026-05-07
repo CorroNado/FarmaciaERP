@@ -1,20 +1,21 @@
 package FarmaciaERP.Application.UseCases;
+import FarmaciaERP.Domain.Entities.Cliente;
 import FarmaciaERP.Domain.Repositories.IClienteRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EliminarClienteUseCase {
 
-    private final IClienteRepository pacienteRepository;
+    private final IClienteRepository clienteRepository;
 
-    public EliminarClienteUseCase(IClienteRepository pacienteRepository) {
-        this.pacienteRepository = pacienteRepository;
+    public EliminarClienteUseCase(IClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
     }
 
-    public void ejecutar(int id) {
-        if (!pacienteRepository.existePorId(id)) {
-            throw new RuntimeException("El paciente con ID " + id + " no existe.");
-        }
-        pacienteRepository.eliminarPorId(id);
+    public void ejecutar(Long id) {
+        Cliente cliente = clienteRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException
+                        ("Cliente con el id:" + id + "no existe."));
+        clienteRepository.deleteById(id);
     }
 }

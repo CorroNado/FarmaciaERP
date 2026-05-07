@@ -18,23 +18,23 @@ public class BuscarClienteUseCase {
         this.pacienteRepository = pacienteRepository;
     }
 
-    public Optional<Cliente> porId(int id) {
-        return pacienteRepository.buscarPorId(id);
+    public Optional<Cliente> porId(Long id) {
+        return pacienteRepository.findById(id);
     }
 
     public List<Cliente> todos() {
-        return pacienteRepository.listarTodos();
+        return pacienteRepository.findAll();
     }
 
     public Optional<Cliente> porDocumento(Dni documento) {
-        return pacienteRepository.buscarPorDocumentoIdentidad(documento);
+        return pacienteRepository.findByDni(documento);
     }
 
     public List<Cliente> porNombre(FullName nombre) {
-        return pacienteRepository.buscarPorNombres(nombre);
+        return pacienteRepository.findByName(nombre);
     }
 
     public List<Cliente> porTipoSeguro(TipoSeguro tipoSeguro) {
-        return pacienteRepository.buscarPorTipoSeguro(tipoSeguro);
+        return pacienteRepository.findByInsurance(tipoSeguro);
     }
 }

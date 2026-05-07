@@ -1,5 +1,6 @@
 package FarmaciaERP.Infrastucture.Persistence.Entities;
 
+import FarmaciaERP.Domain.Enums.AccionAcceso;
 import FarmaciaERP.Infrastucture.Persistence.ValueObjects.EmailEmb;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -21,13 +22,13 @@ public class HistorialAccesoJPA {
     @JoinColumn(name = "usuario_id", nullable = false)
     private UsuarioJPA usuario;
 
-    @Embedded
-    private EmailEmb email;
-
     @Column(nullable = false)
-    private String accion;
+    private String userAgent;
 
-    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private AccionAcceso accion;
+
+    @Column(nullable = false,length = 45)
     private String ip;
 
     @Column(nullable = false)
@@ -35,9 +36,9 @@ public class HistorialAccesoJPA {
 
     public HistorialAccesoJPA() {}
 
-    public HistorialAccesoJPA(UsuarioJPA usuario, EmailEmb email, String accion, String ip) {
+    public HistorialAccesoJPA(UsuarioJPA usuario, AccionAcceso accion, String ip,String userAgent) {
         this.usuario = usuario;
-        this.email = email;
+        this.userAgent = userAgent;
         this.accion = accion;
         this.ip = ip;
         this.fecha = LocalDateTime.now();

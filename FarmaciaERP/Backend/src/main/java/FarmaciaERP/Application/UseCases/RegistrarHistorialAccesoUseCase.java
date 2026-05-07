@@ -1,35 +1,26 @@
 package FarmaciaERP.Application.UseCases;
 
 import FarmaciaERP.Domain.Entities.HistorialAcceso;
+import FarmaciaERP.Domain.Enums.AccionAcceso;
 import FarmaciaERP.Domain.Repositories.IHistorialAccesoRepository;
-import FarmaciaERP.Domain.ValueObjects.Email;
+
 import org.springframework.stereotype.Service;
 
 @Service
 public class RegistrarHistorialAccesoUseCase {
 
-    private final IHistorialAccesoRepository repository;
+    private final IHistorialAccesoRepository historialRepository;
 
-    public RegistrarHistorialAccesoUseCase(
-            IHistorialAccesoRepository repository) {
-
-        this.repository = repository;
+    public RegistrarHistorialAccesoUseCase(IHistorialAccesoRepository historialRepository) {
+        this.historialRepository = historialRepository;
     }
 
-    public void ejecutar(
-            Long usuarioId,
-            Email email,
-            String accion,
-            String ip) {
+    public HistorialAcceso execute(Long usuarioId, AccionAcceso accion, String ip, String userAgent) {
 
-        HistorialAcceso historial =
-                new HistorialAcceso(
-                        usuarioId,
-                        email,
-                        accion,
-                        ip
-                );
+        HistorialAcceso historial = new HistorialAcceso(usuarioId, accion, ip, userAgent);
+        historialRepository.save(historial);
 
-        repository.save(historial);
+        return historial;
     }
+
 }

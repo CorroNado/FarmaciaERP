@@ -22,11 +22,11 @@ public class CrearClienteUseCase {
     public CrearClienteResponse ejecutar(CrearClienteRequest request) {
         Dni dni = new Dni(request.getDni());
         FullName fullName = new FullName(request.getNombre(), request.getApellido());
-        Optional<Cliente> existente = clienteRepository.buscarPorDocumentoIdentidad(dni);
+        Optional<Cliente> existente = clienteRepository.findByDni(dni);
         if (existente.isPresent()) {
             throw new IllegalArgumentException("Ya existe un paciente con el documento: " + request.getDni());
         }
-        clienteRepository.guardar(
+        clienteRepository.save(
                 new Cliente(
                         fullName,
                         dni,

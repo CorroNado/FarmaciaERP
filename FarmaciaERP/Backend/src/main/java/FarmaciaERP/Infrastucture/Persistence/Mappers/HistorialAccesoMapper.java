@@ -10,9 +10,9 @@ public class HistorialAccesoMapper {
     public static HistorialAccesoJPA toEntity(HistorialAcceso domain) {
         HistorialAccesoJPA entity = new HistorialAccesoJPA();
         entity.setId(domain.getId());
-        entity.setEmail(EmailMapper.toEmbeddable(domain.getEmail()));
         entity.setAccion(domain.getAccion());
         entity.setIp(domain.getIp());
+        entity.setUserAgent(domain.getUserAgent());
         entity.setFecha(domain.getFecha());
         UsuarioJPA usuarioRef = new UsuarioJPA();
         usuarioRef.setId(domain.getUsuarioId());
@@ -24,9 +24,9 @@ public class HistorialAccesoMapper {
         return new HistorialAcceso(
                 entity.getId(),
                 entity.getUsuario().getId(),
-                EmailMapper.toDomain(entity.getEmail()),
                 entity.getAccion(),
                 entity.getIp(),
+                entity.getUserAgent(),
                 entity.getFecha()
         );
     }

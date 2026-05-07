@@ -12,11 +12,11 @@ public class ActualizarClienteUseCase {
         this.pacienteRepository = pacienteRepository;
     }
 
-    public Cliente ejecutar(int id, Cliente clienteActualizado) {
-        if (!pacienteRepository.existePorId(id)) {
+    public Cliente ejecutar(Long id, Cliente clienteActualizado) {
+        if (!pacienteRepository.existById(id)) {
             throw new RuntimeException("El paciente con ID " + id + " no existe.");
         }
         // Aquí podrías agregar validaciones extra antes de guardar
-        return pacienteRepository.guardar(clienteActualizado);
+        return pacienteRepository.save(clienteActualizado);
     }
 }

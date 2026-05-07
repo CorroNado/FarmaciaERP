@@ -48,7 +48,7 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> actualizar(@PathVariable int id, @RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> actualizar(@PathVariable Long id, @RequestBody Cliente cliente) {
         try {
             Cliente clienteActualizado = actualizarClienteUseCase.ejecutar(id, cliente);
             return ResponseEntity.ok(clienteActualizado);
@@ -58,7 +58,7 @@ public class ClienteController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable int id) {
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         try {
             eliminarClienteUseCase.ejecutar(id);
             return ResponseEntity.noContent().build(); // 204 No Content
@@ -68,7 +68,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> obtenerPorId(@PathVariable int id) {
+    public ResponseEntity<Cliente> obtenerPorId(@PathVariable Long id) {
         return buscarClienteUseCase.porId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -79,7 +79,6 @@ public class ClienteController {
             @RequestParam(required = false) FullName nombres,
             @RequestParam(required = false) Dni dni,
             @RequestParam(required = false) TipoSeguro tipoSeguro) {
-        System.out.println("GET CLIENTE EJECUTANDO");
         if (dni != null) {
             return buscarClienteUseCase.porDocumento(dni)
                     .map(paciente -> ResponseEntity.ok(List.of(paciente)))

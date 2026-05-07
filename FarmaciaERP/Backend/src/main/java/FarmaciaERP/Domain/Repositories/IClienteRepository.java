@@ -9,19 +9,19 @@ import java.util.List;
 import java.util.Optional;
 public interface IClienteRepository {
 
-    Cliente guardar(Cliente cliente);
+    Cliente save(Cliente cliente);
 
-    Optional<Cliente> buscarPorId(Integer id);
+    Optional<Cliente> findById(Long id);
 
-    List<Cliente> listarTodos();
+    List<Cliente> findAll();
 
-    void eliminarPorId(Integer id);
+    void deleteById(Long id);
 
-    boolean existePorId(Integer id);
+    boolean existById(Long id);
 
-    Optional<Cliente> buscarPorDocumentoIdentidad(Dni documentoIdentidad);
+    Optional<Cliente> findByDni(Dni documentoIdentidad);
 
-    List<Cliente> buscarPorNombres(FullName nombre);
+    List<Cliente> findByName(FullName nombre);
 
-    List<Cliente> buscarPorTipoSeguro(TipoSeguro tipoSeguro);
+    List<Cliente> findByInsurance(TipoSeguro tipoSeguro);
 }
