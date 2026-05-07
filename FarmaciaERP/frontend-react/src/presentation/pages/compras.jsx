@@ -13,7 +13,7 @@ const inventarioInicial = [
     { id: 1, nombre: "Paracetamol 500mg", stock: 50, stockMinimo: 200 },
     { id: 2, nombre: "Ibuprofeno 400mg", stock: 30, stockMinimo: 150 },
     { id: 3, nombre: "Amoxicilina 500mg", stock: 20, stockMinimo: 100 },
-    { id: 4, nombre: "Omeprazol 20mg", stock: 180, stockMinimo: 100 },
+    { id: 4, nombre: "Omeprazol 20mg", stock: 180, stockMinimo: 150 },
 ];
 
 // Órdenes de compra
@@ -23,24 +23,36 @@ const ordenesIniciales = [
         numero: "OC-001",
         proveedorId: 1,
         proveedorNombre: "Laboratorios XYZ S.A.",
-        fecha: "2026-05-03",
-        estado: "Pendiente",
+        fecha: "2026-05-08",
+        estado: "En tránsito",
         productos: [
-            { nombre: "Paracetamol 500mg", cantidad: 200, precioUnitario: 5.5, subtotal: 1100 },
+            { nombre: "Paracetamol 500mg", cantidad: 200, precioUnitario: 8.5, subtotal: 1700 },
         ],
-        total: 1100,
+        total: 1700,
     },
     {
         id: 2,
         numero: "OC-002",
         proveedorId: 2,
         proveedorNombre: "Droguería ABC S.A.C.",
-        fecha: "2026-05-02",
-        estado: "En Tránsito",
+        fecha: "2026-05-07",
+        estado: "Recibida",
         productos: [
-            { nombre: "Ibuprofeno 400mg", cantidad: 150, precioUnitario: 4.2, subtotal: 630 },
+            { nombre: "Ibuprofeno 400mg", cantidad: 150, precioUnitario: 10, subtotal: 1500 },
         ],
-        total: 630,
+        total: 1500,
+    },
+    {
+        id: 3,
+        numero: "OC-003",
+        proveedorId: 4,
+        proveedorNombre: "Farma Corp S.A.",
+        fecha: "2026-05-10",
+        estado: "Pendiente",
+        productos: [
+            { nombre: "Omeprazol 20mg", cantidad: 50, precioUnitario: 3.8, subtotal: 190 },
+        ],
+        total: 190,
     },
 ];
 
