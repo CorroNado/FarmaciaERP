@@ -2,6 +2,7 @@ package FarmaciaERP.Application.UseCases;
 
 import FarmaciaERP.Application.DTOs.Request.LoginRequest;
 import FarmaciaERP.Application.DTOs.Response.LoginResponse;
+import FarmaciaERP.Domain.Entities.HistorialAcceso;
 import FarmaciaERP.Domain.Enums.AccionAcceso;
 import FarmaciaERP.Domain.Enums.ResultadoBloqueo;
 import FarmaciaERP.Infrastucture.Security.CustomUserDetails;
@@ -49,8 +50,8 @@ public class LoginUsuarioUseCase {
             );
             usuario.setLoginAttempts(0);
             usuario.setLockUntil(null);
-            usuarioRepository.save(usuario);
             registrarHistorialAccesoUseCase.execute(usuario.getId(),AccionAcceso.LOGIN_EXITOSO,ip,userAgent);
+            usuarioRepository.save(usuario);
 
             CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
 

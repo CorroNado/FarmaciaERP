@@ -44,41 +44,6 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository {
                 .map(UsuarioMapper::ToDomain)
                 .collect(Collectors.toList());
     }
-/**/
-//    @Override
-//    public List<Usuario> buscarPorNombre(String nombre) {
-//        return List.of(); /*jpaRepository.findByNombreContainingIgnoreCase(nombre).stream()
-//                .map(this::mapToDomain)
-//                .collect(Collectors.toList());*/
-//    }
-/////**/
-//    @Override
-//    public Optional<Usuario> buscarPorGmail(String email) {
-//        return /*Optional.empty();*/ jpaRepository.findByEmail(email).map(this::mapToDomain);
-//    }
-///**/
-//private Usuario mapToDomain(UsuarioJPA jpa) {
-//    Usuario usuario = new Usuario();
-//    usuario.setId(jpa.getId());
-//    usuario.setNombre(jpa.getNombre());
-//    usuario.setEmail(jpa.getEmail());
-//    usuario.setPassword(jpa.getPassword());
-//
-//    if (jpa.getEstado() != null && !jpa.getEstado().isEmpty()) {
-//        try {
-//            usuario.setEstado(UsuarioEstados.valueOf(jpa.getEstado().toUpperCase()));
-//        } catch (IllegalArgumentException e) {
-//            usuario.setEstado(null); // Opcional: asigna un valor por defecto si prefieres
-//        }
-//    } else {
-//        usuario.setEstado(null);
-//    }
-//
-//    usuario.setRegistro(jpa.getRegistro());
-//    return usuario;
-//}
-
-
     @Override
     public void deleteById(Long id) {
         jpaRepository.deleteById(id);
@@ -105,6 +70,7 @@ public class UsuarioRepositoryImpl implements IUsuarioRepository {
     }
     @Override
     public Optional<Usuario> findByEmail(Email email) {
+        System.out.printf("UsuarioRepositoryImpl.findByEmail(%s): ", email);
         return jpaRepository.findByEmail_Email(email.getEmail()).stream()
                 .map(UsuarioMapper::ToDomain).findFirst();
     }

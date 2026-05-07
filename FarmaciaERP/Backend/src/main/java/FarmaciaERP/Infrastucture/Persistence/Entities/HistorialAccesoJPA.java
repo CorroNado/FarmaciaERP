@@ -22,7 +22,7 @@ public class HistorialAccesoJPA {
     @JoinColumn(name = "usuario_id", nullable = false)
     private UsuarioJPA usuario;
 
-    @Column(nullable = false,length = 100)
+    @Column(nullable = false)
     private String userAgent;
 
     @Enumerated(EnumType.STRING)
