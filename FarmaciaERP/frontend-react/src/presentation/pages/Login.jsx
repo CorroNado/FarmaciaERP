@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { login } from "../../infrastructure/services/authService";
 
 function Login() {
-    const [form, setForm] = useState({ email: "", password: "" });
+    const [form, setForm] = useState({ emailContact: "", password: "" });
     const [showPass, setShowPass] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -70,11 +70,11 @@ function Login() {
                     <i className="bi bi-person text-secondary"></i>
                   </span>
                                     <input
-                                        type="email"
-                                        name="email"
+                                        type="emailContact"
+                                        name="emailContact"
                                         className="form-control border-start-0 ps-0"
-                                        placeholder="usuario@farmacia.com"
-                                        value={form.email}
+                                        placeholder="user@farmacia.com"
+                                        value={form.emailContact}
                                         onChange={handleChange}
                                         required
                                     />

@@ -12,7 +12,7 @@
 	<artifactId>FarmaciaERP</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>FarmaciaERP</name>
-	<description>FarmaciaERP</description>
+	<descripcion>FarmaciaERP</descripcion>
 	<url/>
 	<licenses>
 		<license/>

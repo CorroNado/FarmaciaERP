@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
 const USUARIOS_INICIALES = [
-    { id: 1, nombre: "Carlos Mendoza",  email: "c.mendoza@farma.pe", rol: "Admin",         estado: "Activo",   telefono: "987-654-321", creado: "02/01/2025", ultimo: "Hoy" },
-    { id: 2, nombre: "Ana Torres",      email: "a.torres@farma.pe",  rol: "Farmacéutico",  estado: "Activo",   telefono: "912-345-678", creado: "15/01/2025", ultimo: "Ayer" },
-    { id: 3, nombre: "Luis Quispe",     email: "l.quispe@farma.pe",  rol: "Cajero",        estado: "Activo",   telefono: "956-123-789", creado: "20/01/2025", ultimo: "04/05/2025" },
-    { id: 4, nombre: "María Huanca",    email: "m.huanca@farma.pe",  rol: "Almacén",       estado: "Inactivo", telefono: "934-567-890", creado: "01/02/2025", ultimo: "01/03/2025" },
-    { id: 5, nombre: "Jorge Paredes",   email: "j.paredes@farma.pe", rol: "Cajero",        estado: "Activo",   telefono: "921-987-654", creado: "10/02/2025", ultimo: "Hoy" },
-    { id: 6, nombre: "Rosa Ccoa",       email: "r.ccoa@farma.pe",    rol: "Farmacéutico",  estado: "Activo",   telefono: "945-321-456", creado: "18/02/2025", ultimo: "Hoy" },
-    { id: 7, nombre: "Pedro Mamani",    email: "p.mamani@farma.pe",  rol: "Almacén",       estado: "Activo",   telefono: "963-147-258", creado: "05/03/2025", ultimo: "05/05/2025" },
+    { id: 1, nombre: "Carlos Mendoza",  emailContact: "c.mendoza@farma.pe", rol: "Admin",         estado: "Activo",   telefono: "987-654-321", creado: "02/01/2025", ultimo: "Hoy" },
+    { id: 2, nombre: "Ana Torres",      emailContact: "a.torres@farma.pe",  rol: "Farmacéutico",  estado: "Activo",   telefono: "912-345-678", creado: "15/01/2025", ultimo: "Ayer" },
+    { id: 3, nombre: "Luis Quispe",     emailContact: "l.quispe@farma.pe",  rol: "Cajero",        estado: "Activo",   telefono: "956-123-789", creado: "20/01/2025", ultimo: "04/05/2025" },
+    { id: 4, nombre: "María Huanca",    emailContact: "m.huanca@farma.pe",  rol: "Almacén",       estado: "Inactivo", telefono: "934-567-890", creado: "01/02/2025", ultimo: "01/03/2025" },
+    { id: 5, nombre: "Jorge Paredes",   emailContact: "j.paredes@farma.pe", rol: "Cajero",        estado: "Activo",   telefono: "921-987-654", creado: "10/02/2025", ultimo: "Hoy" },
+    { id: 6, nombre: "Rosa Ccoa",       emailContact: "r.ccoa@farma.pe",    rol: "Farmacéutico",  estado: "Activo",   telefono: "945-321-456", creado: "18/02/2025", ultimo: "Hoy" },
+    { id: 7, nombre: "Pedro Mamani",    emailContact: "p.mamani@farma.pe",  rol: "Almacén",       estado: "Activo",   telefono: "963-147-258", creado: "05/03/2025", ultimo: "05/05/2025" },
 ];
 
 const AVATAR_COLORS = [
@@ -19,7 +19,7 @@ const ROL_BADGE = {
     Admin: "primary", Farmacéutico: "success", Cajero: "warning", Almacén: "secondary"
 };
 
-const FORM_VACIO = { nombre: "", email: "", rol: "", estado: "Activo", telefono: "" };
+const FORM_VACIO = { nombre: "", emailContact: "", rol: "", estado: "Activo", telefono: "" };
 const PER_PAGE = 5;
 
 function iniciales(nombre) {
@@ -40,7 +40,7 @@ function Usuario() {
     const filtrados = usuarios.filter(u => {
         const q = busqueda.toLowerCase();
         return (
-            (!q || u.nombre.toLowerCase().includes(q) || u.email.toLowerCase().includes(q)) &&
+            (!q || u.nombre.toLowerCase().includes(q) || u.emailContact.toLowerCase().includes(q)) &&
             (!filtroRol || u.rol === filtroRol) &&
             (!filtroEstado || u.estado === filtroEstado)
         );
@@ -61,7 +61,7 @@ function Usuario() {
 
     // CRUD
     const guardar = () => {
-        if (!form.nombre || !form.email || !form.rol) return alert("Nombre, correo y rol son obligatorios.");
+        if (!form.nombre || !form.emailContact || !form.rol) return alert("Nombre, correo y rol son obligatorios.");
         if (modal.tipo === "nuevo") {
             setUsuarios([...usuarios, { ...form, id: nextId, creado: "Hoy", ultimo: "—" }]);
             setNextId(nextId + 1);
@@ -103,7 +103,7 @@ function Usuario() {
                     <span className="input-group-text bg-white"><i className="bi bi-search text-secondary"></i></span>
                     <input
                         className="form-control"
-                        placeholder="Buscar nombre o email…"
+                        placeholder="Buscar nombre o emailContact…"
                         value={busqueda}
                         onChange={e => { setBusqueda(e.target.value); setPagina(1); }}
                         style={{ fontSize: 13 }}
@@ -162,7 +162,7 @@ function Usuario() {
                                             </div>
                                             <div>
                                                 <div className="fw-medium">{u.nombre}</div>
-                                                <div className="text-secondary" style={{ fontSize: 11 }}>{u.email}</div>
+                                                <div className="text-secondary" style={{ fontSize: 11 }}>{u.emailContact}</div>
                                             </div>
                                         </div>
                                     </td>
@@ -229,8 +229,8 @@ function Usuario() {
                                     </div>
                                     <div className="col-12">
                                         <label className="form-label small">Correo electrónico</label>
-                                        <input className="form-control form-control-sm" value={form.email}
-                                               onChange={e => setForm({ ...form, email: e.target.value })} placeholder="correo@farma.pe" />
+                                        <input className="form-control form-control-sm" value={form.emailContact}
+                                               onChange={e => setForm({ ...form, emailContact: e.target.value })} placeholder="correo@farma.pe" />
                                     </div>
                                     <div className="col-md-6">
                                         <label className="form-label small">Rol</label>
@@ -283,7 +283,7 @@ function Usuario() {
                                         </div>
                                         <div>
                                             <div className="fw-semibold">{u.nombre}</div>
-                                            <div className="text-secondary small">{u.email}</div>
+                                            <div className="text-secondary small">{u.emailContact}</div>
                                         </div>
                                         <span className={`badge ms-auto bg-${ROL_BADGE[u.rol]}-subtle text-${ROL_BADGE[u.rol]}`}>{u.rol}</span>
                                     </div>
