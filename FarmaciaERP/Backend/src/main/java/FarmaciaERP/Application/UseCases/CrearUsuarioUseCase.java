@@ -30,7 +30,8 @@ public class CrearUsuarioUseCase {
                 fullName,
                 email,
                 passwordEncoder.encode(request.getPassword()),
-                RolUsuario.ADMINISTRADOR);
+                request.getRole()
+            );
         usuarioRepository.save(saved);
         return new CrearUsuarioResponse(saved.getEmail().getEmail());
     }

@@ -12,6 +12,7 @@ public class UsuarioMapper {
         entity.setPassword(usuario.getPassword());
         entity.setRol(usuario.getRole());
         entity.setEstado(usuario.getEstado());
+        entity.setRegistro(usuario.getRegistro());
         entity.setLoginAttempts(usuario.getLoginAttempts());
         entity.setLockUntil(usuario.getLockUntil());
         return entity;
