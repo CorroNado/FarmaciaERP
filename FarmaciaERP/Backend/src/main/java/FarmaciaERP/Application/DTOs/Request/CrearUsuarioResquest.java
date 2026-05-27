@@ -1,5 +1,6 @@
 package FarmaciaERP.Application.DTOs.Request;
 
+import FarmaciaERP.Domain.Enums.RolUsuario;
 import FarmaciaERP.Domain.ValueObjects.Email;
 import FarmaciaERP.Domain.ValueObjects.FullName;
 import FarmaciaERP.Domain.Enums.UsuarioEstados;
@@ -15,4 +16,5 @@ public class CrearUsuarioResquest {
     private String apellido;
     private String email;
     private String password;
+    private RolUsuario role;
 }

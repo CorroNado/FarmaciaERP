@@ -8,8 +8,12 @@ import FarmaciaERP.Application.UseCases.LoginUsuarioUseCase;
 import FarmaciaERP.Application.UseCases.RegisterUsuarioUseCase;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import FarmaciaERP.Application.DTOs.Request.CrearUsuarioResquest;
+import FarmaciaERP.Application.UseCases.CrearUsuarioUseCase;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -17,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final LoginUsuarioUseCase loginUsuarioUseCase;
-    private final RegisterUsuarioUseCase registerUsuarioUseCase;
+    private final CrearUsuarioUseCase registerUsuarioUseCase;
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request,
@@ -31,8 +35,8 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public RegisterResponse register(@RequestBody RegisterRequest request){
-        return registerUsuarioUseCase.execute(request);
+    public ResponseEntity<?> register(@RequestBody CrearUsuarioResquest request){
+        return ResponseEntity.ok(registerUsuarioUseCase.ejecutar(request));
     }
 
     private String obtenerIp(HttpServletRequest request) {
