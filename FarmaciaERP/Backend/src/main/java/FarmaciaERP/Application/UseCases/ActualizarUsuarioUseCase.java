@@ -16,13 +16,13 @@ public class ActualizarUsuarioUseCase {
         this.usuarioRepository = userRepository;
     }
 
-    public ActualizarUsuarioResponse ejecutar (ActualizarUsuarioRequest request) {
-        if (!usuarioRepository.existsById(request.getId())) {
-            throw new RuntimeException("El usuario con ID " + request.getId() + " no existe.");
+    public ActualizarUsuarioResponse ejecutar ( Long  id,ActualizarUsuarioRequest request) {
+        if (!usuarioRepository.existsById(id)) {
+            throw new RuntimeException("El usuario con ID " + id + " no existe.");
         }
         // Aquí podrías agregar validaciones extra antes de guardar
         Usuario actualizado = new Usuario(
-            request.getId(),
+            id,
             new FullName(request.getNombre(), request.getApellido()),
             new Email(request.getEmail()),
             request.getPassword(),
@@ -33,6 +33,6 @@ public class ActualizarUsuarioUseCase {
             request.getLockUntil()
         );
         usuarioRepository.save(actualizado);
-        return new ActualizarUsuarioResponse(request.getId(), "Usuario actualizado correctamente.");
+        return new ActualizarUsuarioResponse(id, "Usuario actualizado correctamente.");
     }
 }

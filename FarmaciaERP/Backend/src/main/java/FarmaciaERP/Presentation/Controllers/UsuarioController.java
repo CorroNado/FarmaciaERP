@@ -13,6 +13,8 @@ import FarmaciaERP.Domain.ValueObjects.FullName;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import FarmaciaERP.Application.DTOs.Request.ActualizarUsuarioRequest;
+import FarmaciaERP.Application.DTOs.Response.ActualizarUsuarioResponse;
 
 import java.util.List;
 
@@ -48,10 +50,10 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> actualizar(@PathVariable Long id, @RequestBody Usuario usuario) {
+    public ResponseEntity<?> actualizar(@PathVariable Long id, @RequestBody ActualizarUsuarioRequest usuario) {
         try {
-            Usuario usuarioActualizado = actualizarUsuarioUseCase.ejecutar(id, usuario);
-            return ResponseEntity.ok(usuarioActualizado);
+            ActualizarUsuarioResponse response = actualizarUsuarioUseCase.ejecutar(id, usuario);
+            return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }

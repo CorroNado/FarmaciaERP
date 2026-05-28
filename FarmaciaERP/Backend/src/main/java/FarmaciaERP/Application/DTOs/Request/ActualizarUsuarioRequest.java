@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ActualizarUsuarioRequest {
-    private Long id;
     private String nombre;
     private String apellido;
     private String email;

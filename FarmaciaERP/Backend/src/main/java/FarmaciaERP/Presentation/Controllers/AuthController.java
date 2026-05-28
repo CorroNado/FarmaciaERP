@@ -1,11 +1,8 @@
 package FarmaciaERP.Presentation.Controllers;
 
 import FarmaciaERP.Application.DTOs.Request.LoginRequest;
-import FarmaciaERP.Application.DTOs.Request.RegisterRequest;
 import FarmaciaERP.Application.DTOs.Response.LoginResponse;
-import FarmaciaERP.Application.DTOs.Response.RegisterResponse;
 import FarmaciaERP.Application.UseCases.LoginUsuarioUseCase;
-import FarmaciaERP.Application.UseCases.RegisterUsuarioUseCase;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
