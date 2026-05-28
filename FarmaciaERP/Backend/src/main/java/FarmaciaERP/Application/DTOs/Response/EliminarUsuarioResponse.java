@@ -1,12 +1,13 @@
 package FarmaciaERP.Application.DTOs.Response;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
-public class RegisterResponse {
+@NoArgsConstructor
+public class EliminarUsuarioResponse {
     private Long id;
-    private String email;
     private String mensaje;
 }

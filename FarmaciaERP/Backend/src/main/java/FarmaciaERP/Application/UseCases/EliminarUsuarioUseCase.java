@@ -5,6 +5,8 @@ import FarmaciaERP.Domain.Enums.UsuarioEstados;
 import FarmaciaERP.Domain.Repositories.IUsuarioRepository;
 import FarmaciaERP.Infrastucture.Persistence.Mappers.UsuarioMapper;
 import org.springframework.stereotype.Service;
+import FarmaciaERP.Application.DTOs.Request.EliminarUsuarioRequest;
+import FarmaciaERP.Application.DTOs.Response.EliminarUsuarioResponse;
 
 import java.util.Optional;
 
@@ -16,11 +18,12 @@ public class EliminarUsuarioUseCase {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public void ejecutar(Long id) {
-        Usuario usuario = usuarioRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException
-                        ("El usuario con ID " + id + " no existe."));
+    public EliminarUsuarioResponse ejecutar(EliminarUsuarioRequest request) {
+        Usuario usuario = usuarioRepository.findById(request.getId())
+                .orElseThrow(() -> new RuntimeException
+                        ("El usuario con ID " + request.getId() + " no existe."));
         usuario.setEstado(UsuarioEstados.INACTIVO);
         usuarioRepository.save(usuario);
+        return new EliminarUsuarioResponse(request.getId(), "Usuario eliminado (estado inactivo) correctamente.");
     }
 }
