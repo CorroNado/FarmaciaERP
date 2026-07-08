@@ -18,7 +18,7 @@ public class ActualizarUsuarioRequest {
     private String password;
     private RolUsuario role;
     private UsuarioEstados estado;
-    private LocalDateTime registro;
-    private Integer loginAttempts;
-    private LocalDateTime lockUntil;
+    //private LocalDateTime registro;
+    //private Integer loginAttempts;
+    //private LocalDateTime lockUntil;
 }
