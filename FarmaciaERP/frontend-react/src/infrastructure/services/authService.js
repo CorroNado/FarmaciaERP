@@ -1,15 +1,17 @@
-export const login = async (data) => {
-    const response = await fetch("http://localhost:9090/api/auth/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
+import apiClient     from '@/core/api/apiClient';
+import { ENDPOINTS } from '@/core/api/endpoints';
+
+export const authService = {
+  async login(credentials) {
+    const { data } = await apiClient.post(ENDPOINTS.auth.login, {
+      email:    credentials.email,
+      password: credentials.password,
     });
+    return data;
+  },
 
-    if (!response.ok) {
-        throw new Error("Credenciales incorrectas");
-    }
-
-    return response.json();
+  async getMe() {
+    const { data } = await apiClient.get(ENDPOINTS.users.list);
+    return data;
+  },
 };

@@ -1,7 +1,5 @@
 package FarmaciaERP.Application.DTOs.Request;
 
-import java.time.LocalDateTime;
-
 import FarmaciaERP.Domain.Enums.RolUsuario;
 import FarmaciaERP.Domain.Enums.UsuarioEstados;
 import lombok.Getter;
@@ -18,7 +16,7 @@ public class ActualizarUsuarioRequest {
     private String password;
     private RolUsuario role;
     private UsuarioEstados estado;
-    private LocalDateTime registro;
-    private Integer loginAttempts;
-    private LocalDateTime lockUntil;
+    //private LocalDateTime registro;
+    //private Integer loginAttempts;
+    //private LocalDateTime lockUntil;
 }
