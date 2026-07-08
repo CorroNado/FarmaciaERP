@@ -1,7 +1,5 @@
 package FarmaciaERP.Application.DTOs.Request;
 
-import java.time.LocalDateTime;
-
 import FarmaciaERP.Domain.Enums.RolUsuario;
 import FarmaciaERP.Domain.Enums.UsuarioEstados;
 import lombok.Getter;
