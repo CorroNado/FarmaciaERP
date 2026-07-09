@@ -1,13 +1,14 @@
 package FarmaciaERP.presentation.controllers;
 
-import FarmaciaERP.application.dto.Request.CrearUsuarioResquest;
+import FarmaciaERP.application.dto.Request.ActualizarUsuarioRequest;
+import FarmaciaERP.application.dto.Request.CrearUsuarioRequest;
+import FarmaciaERP.application.dto.Response.ActualizarUsuarioResponse;
 import FarmaciaERP.application.dto.Response.CrearUsuarioResponse;
 import FarmaciaERP.application.dto.Response.UserListResponse;
 import FarmaciaERP.application.usecases.usuario.ActualizarUsuarioUseCase;
 import FarmaciaERP.application.usecases.usuario.BuscarUsuarioUseCase;
 import FarmaciaERP.application.usecases.usuario.CrearUsuarioUseCase;
 import FarmaciaERP.application.usecases.usuario.EliminarUsuarioUseCase;
-import FarmaciaERP.domain.entities.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody CrearUsuarioResquest request) {
+    public ResponseEntity<?> create(@RequestBody CrearUsuarioRequest request) {
         try {
             CrearUsuarioResponse nuevoUsuario = crearUsuarioUseCase.ejecutar(request);
             return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);
@@ -46,11 +47,10 @@ public class UsuarioController {
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ActualizarUsuarioRequest request) {
         try {
-            System.out.println(user.getEmailContacts());
-            User userActualizado = actualizarUsuarioUseCase.ejecutar(id, user);
-            return ResponseEntity.ok(userActualizado);
+            ActualizarUsuarioResponse response = actualizarUsuarioUseCase.ejecutar(id,request);
+            return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
