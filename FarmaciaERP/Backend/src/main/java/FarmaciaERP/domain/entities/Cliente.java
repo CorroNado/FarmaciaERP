@@ -1,0 +1,26 @@
+package FarmaciaERP.domain.entities;
+
+import FarmaciaERP.domain.enums.InsuranceType;
+import FarmaciaERP.domain.valueObjects.Dni;
+import FarmaciaERP.domain.valueObjects.FullName;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+public class Cliente {
+    private Long id;
+    private FullName nombres;
+    private Dni dni;
+    private InsuranceType InsuranceType;
+
+    public Cliente() {}
+
+    public Cliente(FullName nombres, Dni dni, InsuranceType InsuranceType) {
+        this.nombres = nombres;
+        this.dni = dni;
+        this.InsuranceType = InsuranceType;
+    }
+}
