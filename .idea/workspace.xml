@@ -5,11 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac367e06-cb9d-4594-ae0e-684f9fa8d017" name="Changes" comment="Mi tortura // 09/07">
+      <change afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Request/CrearUsuarioRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Request/ActualizarUsuarioRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Request/ActualizarUsuarioRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Response/ActualizarUsuarioResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Response/ActualizarUsuarioResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/usecases/usuario/ActualizarUsuarioUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/usecases/usuario/ActualizarUsuarioUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/presentation/controllers/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/presentation/controllers/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/Presentation/Controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/Presentation/Controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/Presentation/Controllers/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/Presentation/Controllers/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Request/CrearUsuarioResquest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Request/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Request/LoginRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Response/CrearUsuarioResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Response/CrearUsuarioResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Response/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Response/LoginResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Response/RegisterResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/usecases/auth/LoginUsuarioUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/usecases/auth/LoginUsuarioUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/usecases/usuario/CrearUsuarioUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/usecases/usuario/CrearUsuarioUseCase.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +235,7 @@
       <workItem from="1783061453493" duration="78000" />
       <workItem from="1783468996152" duration="41845000" />
       <workItem from="1783569746957" duration="4967000" />
-      <workItem from="1783574774028" duration="3208000" />
+      <workItem from="1783574774028" duration="3925000" />
     </task>
     <task id="LOCAL-00001" summary="Tortura para los de Front // 08/07">
       <option name="closed" value="true" />
@@ -279,7 +285,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783577118644</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Mi tortura // 09/07">
+      <option name="closed" value="true" />
+      <created>1783578030223</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1783578030223</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

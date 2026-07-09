@@ -1,10 +1,9 @@
 package FarmaciaERP.presentation.controllers;
 
-import FarmaciaERP.application.dto.Request.CrearUsuarioResquest;
+import FarmaciaERP.application.dto.Request.CrearUsuarioRequest;
 import FarmaciaERP.application.dto.Request.LoginRequest;
 import FarmaciaERP.application.dto.Response.CrearUsuarioResponse;
 import FarmaciaERP.application.dto.Response.LoginResponse;
-import FarmaciaERP.application.dto.Response.RegisterResponse;
 import FarmaciaERP.application.usecases.auth.LoginUsuarioUseCase;
 import FarmaciaERP.application.usecases.usuario.CrearUsuarioUseCase;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,7 +31,7 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public CrearUsuarioResponse register(@RequestBody CrearUsuarioResquest request){
+    public CrearUsuarioResponse register(@RequestBody CrearUsuarioRequest request){
         return registerUsuarioUseCase.ejecutar(request);
     }
 

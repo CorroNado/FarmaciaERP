@@ -35,7 +35,7 @@ public class LoginUsuarioUseCase {
 
 
     public LoginResponse execute(LoginRequest request,String ip, String userAgent) {
-        var usuario = usuarioRepository.findByUsername(new Username(request.getUsername()))
+        var usuario = usuarioRepository.findByUsername(new Username(request.username()))
                 .orElseThrow(() -> new RuntimeException("Credenciales inválidas"));
 
         verificarEstadoUsuarioUseCase.execute(usuario);
@@ -43,8 +43,8 @@ public class LoginUsuarioUseCase {
         try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            request.getUsername(),
-                            request.getPassword()
+                            request.username(),
+                            request.password()
                     )
             );
             usuario.setLoginSeguro(new LoginSecurity());

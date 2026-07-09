@@ -1,16 +1,3 @@
 package FarmaciaERP.application.dto.Response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-
-public class CrearUsuarioResponse {
-    private String username;
-    private String mensaje;
-}
+public record CrearUsuarioResponse(String username, String mensaje) {}

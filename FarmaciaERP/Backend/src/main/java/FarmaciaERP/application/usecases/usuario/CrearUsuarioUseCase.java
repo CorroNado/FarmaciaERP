@@ -1,6 +1,6 @@
 package FarmaciaERP.application.usecases.usuario;
 
-import FarmaciaERP.application.dto.Request.CrearUsuarioResquest;
+import FarmaciaERP.application.dto.Request.CrearUsuarioRequest;
 import FarmaciaERP.application.dto.Response.CrearUsuarioResponse;
 import FarmaciaERP.domain.entities.EmailContact;
 import FarmaciaERP.domain.entities.User;
@@ -21,14 +21,13 @@ public class CrearUsuarioUseCase {
     private final IUsuarioRepository usuarioRepository;
     private final IEmailContactRepository emailContactRepository;
 
-    public CrearUsuarioResponse ejecutar(CrearUsuarioResquest request) {
+    public CrearUsuarioResponse ejecutar(CrearUsuarioRequest request) {
         try {
-            System.out.printf(request.getPassword());
 
-            FullName fullName = new FullName(request.getNombre(), request.getApellido());
-            Username username = new Username(request.getUsername());
-            Password password = new Password(request.getPassword());
-            EmailAddress emailAddress = new EmailAddress(request.getEmail());
+            FullName fullName = new FullName(request.nombre(), request.apellido());
+            Username username = new Username(request.username());
+            Password password = new Password(request.password());
+            EmailAddress emailAddress = new EmailAddress(request.email());
 
             Optional<User> existente = usuarioRepository.findByUsername(username);
             if (existente.isPresent()) {
@@ -38,7 +37,7 @@ public class CrearUsuarioUseCase {
                 throw new IllegalArgumentException("Este correo electrónico ya está registrado");
             }
 
-            User saved = new User(fullName, request.getPerfilId(), password, username);
+            User saved = new User(fullName, request.perfilId(), password, username);
             usuarioRepository.save(saved);
 
             EmailContact emailContact = new EmailContact(emailAddress);
