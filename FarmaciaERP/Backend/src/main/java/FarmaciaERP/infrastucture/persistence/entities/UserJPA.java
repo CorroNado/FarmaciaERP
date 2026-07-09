@@ -1,6 +1,5 @@
 package FarmaciaERP.infrastucture.persistence.entities;
 
-import FarmaciaERP.domain.enums.UserRole;
 import FarmaciaERP.infrastucture.persistence.embeddable.FullNameEmb;
 import FarmaciaERP.infrastucture.persistence.embeddable.TelephoneEmb;
 import FarmaciaERP.infrastucture.persistence.embeddable.usuario.LoginSecurityEmb;
@@ -10,12 +9,14 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLRestriction;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "User")
+@Table(name = "App_User")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,7 +24,8 @@ public class UserJPA {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "user_id")
+    private Long userId;
 
     @Embedded
     private UsernameEmb username;
@@ -33,44 +35,49 @@ public class UserJPA {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id", nullable = false)
-    private ProfileJPA profile;
+    private ProfileJPA perfil;
 
     @Embedded
-    private FullNameEmb fullName;
+    private FullNameEmb nombreCompleto;
 
     @Embedded
-    private LoginSecurityEmb loginSecurity;
+    private LoginSecurityEmb loginSeguro;
 
     @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
+    private LocalDateTime fechaCreacion ;
 
     @ElementCollection
     @CollectionTable(
-            name = "usuario_telephones",
-            joinColumns = @JoinColumn(name = "usuario_id")
+            name = "user_telephones",
+            joinColumns = @JoinColumn(name = "user_id")
     )
-    private List<TelephoneEmb> telephones = new ArrayList<>();
+    private List<TelephoneEmb> telefonos = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = false)
-    @JoinColumn(name = "email_id")
+    @JoinColumn(name = "owner_id")
+    @SQLRestriction("owner_type = 'USUARIO'")
     private List<EmailContactJPA> emails = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = false)
-    @JoinColumn(name = "address_id")
-    private List<AddressJPA> address = new ArrayList<>();
+    @JoinColumn(name = "owner_id")
+    @SQLRestriction("owner_type = 'USUARIO'")
+    private List<AddressJPA> direcciones = new ArrayList<>();
 
-    public UserJPA(UsernameEmb username, PasswordEmb userPassword, ProfileJPA profile,
-                   FullNameEmb fullName, LoginSecurityEmb loginSecurity,
-                   List<TelephoneEmb> telephones, List<EmailContactJPA> emails, List<AddressJPA> address) {
+    public UserJPA(UsernameEmb username, PasswordEmb userPassword, ProfileJPA perfil,
+                   FullNameEmb nombreCompleto, LoginSecurityEmb loginSeguro,
+                   List<TelephoneEmb> telefonos, List<EmailContactJPA> emails, List<AddressJPA> direcciones) {
         this.username = username;
         this.userPassword = userPassword;
-        this.profile = profile;
-        this.fullName = fullName;
-        this.loginSecurity = loginSecurity;
-        this.createdAt = LocalDateTime.now();
-        this.telephones = telephones;
+        this.perfil = perfil;
+        this.nombreCompleto = nombreCompleto;
+        this.loginSeguro = loginSeguro;
+        this.fechaCreacion = LocalDateTime.now();
+        this.telefonos = telefonos;
         this.emails = emails;
-        this.address = address;
+        this.direcciones = direcciones;
     }
-
+    public UserJPA(Long userId) {
+        this.userId = userId;
+        // Usuario de Referencia
+    }
 }

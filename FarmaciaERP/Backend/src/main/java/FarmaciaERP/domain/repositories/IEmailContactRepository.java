@@ -10,15 +10,14 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IEmailContactRepository {
-    EmailContact save(EmailContact email);
-    void updateEmailAddress(Long id, EmailAddress newEmail);
-    void updateLabel(Long id, EmailLabel newLabel);
 
+    void save(EmailContact saved);
     Optional<EmailContact> findById(Long id);
+
     List<EmailContact> findByOwnerId(Long ownerId, OwnerType ownerType);
     Optional<EmailContact> findPrincipalByOwnerId(Long ownerId, OwnerType ownerType);
-    boolean existsByEmailAddress(EmailAddress email, OwnerType ownerType);
+    boolean existsByEmailAddress(EmailAddress email);
 
-    void changeStatus(Long id, EmailStatus status);
-    void changePrincipal(Long currentPrincipalId, Long newPrincipalId);
+    void updateEmailDetails(Long id, EmailAddress newEmail, EmailLabel newLabel);
+    void changePrincipal(Long ownerId, OwnerType ownerType, Long newPrincipalId);
 }

@@ -4,7 +4,6 @@ import FarmaciaERP.infrastucture.persistence.embeddable.UbigeoEmb;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -15,7 +14,7 @@ import lombok.Setter;
 public class DistrictJPA {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long distritoId;
 
     @Column(nullable = false)
     private String nombre;
@@ -25,13 +24,17 @@ public class DistrictJPA {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "province_id", nullable = false)
-    private ProvinceJPA province;
+    private ProvinceJPA provincia;
 
-    protected DistrictJPA() {}
+    public DistrictJPA() {}
 
-    public DistrictJPA(String nombre, UbigeoEmb ubigeo, ProvinceJPA province) {
+    public DistrictJPA(String nombre, UbigeoEmb ubigeo, ProvinceJPA provincia) {
         this.nombre = nombre;
         this.ubigeo = ubigeo;
-        this.province = province;
+        this.provincia = provincia;
+    }
+    public DistrictJPA(Long distritoId) {
+        this.distritoId = distritoId;
+        // Distrito de Referencia
     }
 }

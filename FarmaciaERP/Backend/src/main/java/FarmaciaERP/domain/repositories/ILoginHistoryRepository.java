@@ -4,7 +4,7 @@ import FarmaciaERP.domain.entities.LoginHistory;
 
 import java.util.List;
 
-public interface IHistorialAccesoRepository {
+public interface ILoginHistoryRepository {
 
     LoginHistory save(LoginHistory historial);
 

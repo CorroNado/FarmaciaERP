@@ -11,8 +11,8 @@ import lombok.Getter;
 @Embeddable
 public class EmailAddressEmb {
 
-    @Column(name = "direccion", nullable = false, unique = true)
-    private String address;
+    @Column(name = "email_address", nullable = false, unique = true)
+    private String direccion;
 
     protected EmailAddressEmb() {
     }

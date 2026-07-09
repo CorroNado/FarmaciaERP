@@ -1,8 +1,5 @@
 package FarmaciaERP.domain.entities;
-import FarmaciaERP.domain.enums.AddressLabel;
-import FarmaciaERP.domain.enums.AddressStatus;
-import FarmaciaERP.domain.enums.EmailLabel;
-import FarmaciaERP.domain.enums.EmailStatus;
+import FarmaciaERP.domain.enums.*;
 import FarmaciaERP.domain.valueObjects.*;
 import FarmaciaERP.domain.valueObjects.usuario.LoginSecurity;
 import FarmaciaERP.domain.valueObjects.usuario.Password;
@@ -10,6 +7,7 @@ import FarmaciaERP.domain.valueObjects.usuario.Username;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 @Getter
@@ -20,79 +18,102 @@ public class User {
     private Long id;
     private Username username;
     private Password userPassword;
-    private Profile profile;
-    private FullName fullName;
-    private LoginSecurity loginSecurity;
-    private LocalDateTime createdAt;
+    private Long perfilId;
+    private FullName nombreCompleto;
+    private LoginSecurity loginSeguro;
+    private LocalDateTime fechaCreacion;
 
     @Getter(AccessLevel.NONE)
     private List<EmailContact> emailContacts;
     @Getter(AccessLevel.NONE)
-    private List<Address> addresses;
+    private List<Address> direcciones;
     @Getter(AccessLevel.NONE)
-    private List<Telephone>  telephones;
+    private List<Telephone>  telefonos;
 
-    public User(Username username, Password userPassword,Profile profile, FullName fullName, List<Address> addresses, List<EmailContact> emailContacts, List<Telephone> telephones) {
+    public User(FullName nombreCompleto, Long perfilId, Password userPassword, Username username) {
         this.username = username;
         this.userPassword = userPassword;
-        this.profile = profile;
-        this.fullName = fullName;
-        this.addresses = addresses;
-        this.emailContacts = emailContacts;
-        this.telephones = telephones;
-        this.createdAt = LocalDateTime.now();
+        this.perfilId = perfilId;
+        this.nombreCompleto = nombreCompleto;
+        this.loginSeguro = new LoginSecurity();
+        this.fechaCreacion = LocalDateTime.now();
+        this.emailContacts = new ArrayList<>();
+        this.direcciones = new ArrayList<>();
+        this.telefonos = new ArrayList<>();
     }
 
-    public Collection<Address> getAddresses() {
-        return addresses;
+    public User(Username username, Password userPassword, Long perfilId, FullName nombreCompleto, LoginSecurity loginSeguro, LocalDateTime fechaCreacion, List<EmailContact> emailContacts, List<Address> direcciones, List<Telephone> telefonos) {
+        this.username = username;
+        this.userPassword = userPassword;
+        this.perfilId = perfilId;
+        this.nombreCompleto = nombreCompleto;
+        this.loginSeguro = loginSeguro;
+        this.fechaCreacion = fechaCreacion;
+        this.emailContacts = emailContacts;
+        this.direcciones = direcciones;
+        this.telefonos = telefonos;
+    }
+
+    public Collection<Address> getDirecciones() {
+        return direcciones;
     }
     public Collection<EmailContact> getEmailContacts() {
         return emailContacts;
     }
-    public Collection<Telephone> getTelephones() {
-        return telephones;
+    public Collection<Telephone> getTelefonos() {
+        return telefonos;
     }
 
-    //DIRECCIONES
-    public void addAddress(Address address) {
-        if (this.addresses.isEmpty()) {
-            address.setEstado(AddressStatus.PRINCIPAL);
-        } else {
-            address.setEstado(AddressStatus.ACTIVA);
-        }
-        this.addresses.add(address);
+    public void desactivar() {
+        this.setLoginSeguro(new LoginSecurity(UserStatus.ACTIVO));
     }
-    public void updateAddress(Long addressId, String description,
-                              AddressLabel label, Long districtId) {
-        Address address = this.addresses.stream()
-                .filter(d -> d.getId().equals(addressId)
+    //DIRECCIONES
+    public EmailContact getEmailPrincipal(){
+        EmailContact principal = emailContacts.stream()
+                .filter(e -> e.getEstado().equals(EmailStatus.PRINCIPAL))
+                .findFirst().orElseThrow(()-> new RuntimeException("SI"));
+        return principal;
+    }
+
+    public void añadirDireccion(Address direccion) {
+        if (this.direcciones.isEmpty()) {
+            direccion.setEstado(AddressStatus.PRINCIPAL);
+        } else {
+            direccion.setEstado(AddressStatus.ACTIVA);
+        }
+        this.direcciones.add(direccion);
+    }
+    public void actualizarDireccion(Long direccionesId, String descripcion,
+                              AddressLabel etiqueta, Long distritoId) {
+        Address address = this.direcciones.stream()
+                .filter(d -> d.getId().equals(direccionesId)
                         && d.getEstado() != AddressStatus.INACTIVA)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Dirección no encontrada o inactiva"));
 
-        address.setDescripcion(description);
-        address.setEtiqueta(label);
-        address.setDistrictId(districtId);
+        address.setDescripcion(descripcion);
+        address.setEtiqueta(etiqueta);
+        address.setDistrictId(distritoId);
     }
-    public void changePrincipalAddress(Long addressId) {
-        boolean exists = this.addresses.stream()
-                .anyMatch(d -> d.getId().equals(addressId)
+    public void cambiarPrincipalDireccion(Long direccionId) {
+        boolean exists = this.direcciones.stream()
+                .anyMatch(d -> d.getId().equals(direccionId)
                         && d.getEstado() != AddressStatus.INACTIVA);
         if (!exists) throw new IllegalArgumentException("Dirección no encontrada o inactiva");
 
-        this.addresses.stream()
+        this.direcciones.stream()
                 .filter(d -> d.getEstado() == AddressStatus.PRINCIPAL)
                 .findFirst()
                 .ifPresent(d -> d.setEstado(AddressStatus.ACTIVA));
 
-        this.addresses.stream()
-                .filter(d -> d.getId().equals(addressId))
+        this.direcciones.stream()
+                .filter(d -> d.getId().equals(direccionId))
                 .findFirst()
                 .ifPresent(d -> d.setEstado(AddressStatus.PRINCIPAL));
     }
-    public void removeAddress(Long addressId) {
-        Address address = this.addresses.stream()
-                .filter(d -> d.getId().equals(addressId)
+    public void eliminarDireccion(Long direccionId) {
+        Address address = this.direcciones.stream()
+                .filter(d -> d.getId().equals(direccionId)
                         && d.getEstado() != AddressStatus.INACTIVA)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Dirección no encontrada o ya inactiva"));
@@ -104,27 +125,26 @@ public class User {
     }
 
     // TELEFONOS
-    public void addTelephone(Telephone telephone) {
-        this.telephones.add(telephone);
+    public void añadirTelefono(Telephone telefono) {
+        this.telefonos.add(telefono);
     }
-    public void removeTelephone(Telephone telephone) {
-        this.telephones.remove(telephone);
-    }
-    public void updateTelephone(Telephone old, Telephone updated) {
-        removeTelephone(old);
-        addTelephone(updated);
+    public void eliminarTelefono(Telephone telefono) { this.telefonos.remove(telefono);}
+    public void actualizarTelefono(Telephone antiguo, Telephone nuevo) {
+        eliminarTelefono(antiguo);
+        añadirTelefono(nuevo);
     }
 
     //EMAILS
-    public void addEmail(EmailContact emailContact) {
+    public EmailContact añadirEmail(EmailContact emailContact) {
         if (this.emailContacts.isEmpty()) {
             emailContact.setEstado(EmailStatus.PRINCIPAL);
         } else {
             emailContact.setEstado(EmailStatus.ACTIVO);
         }
         this.emailContacts.add(emailContact);
+        return emailContact;
     }
-    public void updateEmail(Long emailId, EmailAddress address, EmailLabel label) {
+    public void actualizarEmail(Long emailId, EmailAddress address, EmailLabel label) {
         emailContacts.stream()
                 .filter(e -> e.getId().equals(emailId)
                         && e.getEstado() != EmailStatus.INACTIVO)
@@ -133,7 +153,7 @@ public class User {
                 .update(address,label);
     }
 
-    public void removeEmail(Long emailId) {
+    public void eliminarEmail(Long emailId) {
         this.emailContacts.stream()
                 .filter(e -> e.getId().equals(emailId)
                         && e.getEstado() != EmailStatus.INACTIVO)
@@ -141,7 +161,7 @@ public class User {
                 .orElseThrow(() -> new IllegalArgumentException("EmailContact no encontrado o inactivo"))
                 .deactivate();
     }
-    public void changePrincipalEmail(Long emailId) {
+    public void cambiarPrincipalEmail(Long emailId) {
         this.emailContacts.stream()
                 .filter(e -> e.getEstado() == EmailStatus.PRINCIPAL)
                 .findFirst()

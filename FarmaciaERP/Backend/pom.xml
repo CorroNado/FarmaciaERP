@@ -12,7 +12,7 @@
 	<artifactId>FarmaciaERP</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>FarmaciaERP</name>
-	<descripcion>FarmaciaERP</descripcion>
+	<description>FarmaciaERP</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -27,7 +27,8 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>25</java.version>
+		<java.version>26</java.version>
+		<maven.compiler.release>26</maven.compiler.release>
 	</properties>
 	<dependencies>
 
@@ -51,7 +52,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
+			<version>1.18.38</version>
 		</dependency>
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
@@ -91,8 +92,16 @@
             <version>0.11.5</version>
             <scope>runtime</scope>
         </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-flyway</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-sqlserver</artifactId>
+		</dependency>
 
-    </dependencies>
+	</dependencies>
 
 	<build>
 		<plugins>
@@ -100,8 +109,21 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version>
+				<configuration>
+					<release>26</release>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>1.18.38</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-
-
 </project>

@@ -3,13 +3,15 @@ package FarmaciaERP.infrastucture.persistence.mappers;
 import FarmaciaERP.domain.entities.LoginHistory;
 import FarmaciaERP.infrastucture.persistence.entities.LoginHistoryJPA;
 import FarmaciaERP.infrastucture.persistence.entities.UserJPA;
+import org.springframework.stereotype.Component;
 
+@Component
 public class LoginHistoryMapper {
     private LoginHistoryMapper() {}
 
-    public static LoginHistoryJPA toEntity(LoginHistory domain) {
+    public LoginHistoryJPA toEntity(LoginHistory domain) {
         UserJPA usuarioRef = new UserJPA();
-        usuarioRef.setId(domain.getUsuarioId());
+        usuarioRef.setUserId(domain.getUsuarioId());
         LoginHistoryJPA entity = new LoginHistoryJPA(
                 domain.getId(),
                 usuarioRef,
@@ -21,10 +23,10 @@ public class LoginHistoryMapper {
         return entity;
     }
 
-    public static LoginHistory toDomain(LoginHistoryJPA entity) {
+    public LoginHistory toDomain(LoginHistoryJPA entity) {
         return new LoginHistory(
-                entity.getId(),
-                entity.getUsuario().getId(),
+                entity.getLoginHistorialId(),
+                entity.getUsuario().getUserId(),
                 entity.getAccion(),
                 entity.getIp(),
                 entity.getUserAgent(),

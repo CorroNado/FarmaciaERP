@@ -35,8 +35,10 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody CrearUsuarioResquest request){
         try {
-            CrearUsuarioResponse nuevoUsuario = crearUsuarioUseCase.ejecutar(request);
-            return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);
+            CrearUsuarioResponse response = crearUsuarioUseCase.ejecutar(request);
+            if(response.getUsername().equals("Error")){
+                return ResponseEntity.badRequest().body(response.getMensaje());
+            }return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
         }

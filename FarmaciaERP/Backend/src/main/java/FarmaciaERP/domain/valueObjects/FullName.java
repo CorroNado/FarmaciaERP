@@ -7,7 +7,7 @@ public class FullName{
     String nombres;
     String apellidos;
 
-    public String getValue(){
+    public String getValor(){
         return nombres +" "+ apellidos;
     }
 }

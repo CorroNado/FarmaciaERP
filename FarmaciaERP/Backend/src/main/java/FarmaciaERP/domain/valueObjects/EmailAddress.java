@@ -1,9 +1,11 @@
 package FarmaciaERP.domain.valueObjects;
 
+import jakarta.persistence.Column;
 import lombok.Value;
 
 @Value
 public class EmailAddress {
+    @Column(unique = true)
     String direccion;
 
     public EmailAddress(String direccion) {

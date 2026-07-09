@@ -15,6 +15,7 @@ public class ActualizarUsuarioUseCase {
         if (!usuarioRepository.existsById(id)) {
             throw new RuntimeException("El usuario con ID " + id + " no existe.");
         }
-        return usuarioRepository.save(userActualizado);
+        usuarioRepository.save(userActualizado);
+        return userActualizado;
     }
 }

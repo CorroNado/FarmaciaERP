@@ -17,7 +17,7 @@ public class EliminarUsuarioUseCase {
         User user = usuarioRepository.findById(id)
                 .orElseThrow(()-> new RuntimeException
                         ("El usuario con ID " + id + " no existe."));
-        user.setEstado(UserStatus.INACTIVO);
+        user.desactivar();
         usuarioRepository.save(user);
     }
 }

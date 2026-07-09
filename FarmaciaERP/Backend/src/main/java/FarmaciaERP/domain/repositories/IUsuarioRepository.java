@@ -1,36 +1,32 @@
 package FarmaciaERP.domain.repositories;
 
-import FarmaciaERP.domain.entities.EmailContact;
 import FarmaciaERP.domain.entities.User;
-import FarmaciaERP.domain.enums.UserRole;
 import FarmaciaERP.domain.enums.UserStatus;
+import FarmaciaERP.domain.valueObjects.EmailAddress;
 import FarmaciaERP.domain.valueObjects.FullName;
 
 import java.util.List;
 import java.util.Optional;
 
+import FarmaciaERP.domain.valueObjects.Telephone;
 import FarmaciaERP.domain.valueObjects.usuario.Username;
 
 public interface IUsuarioRepository {
 
-    User save(User user);
+    void save(User user);
     void deleteById(Long id);
     boolean existsById(Long id);
 
-    Optional<User> findById(Long id);
     List<User> findAll();
 
+    Optional<User> findById(Long id);
     List<User> findByStatus(UserStatus estado);
-    List<User> findByName(FullName nombre);
-    List<User> findByRol(UserRole rol);
-
+    List<User> findByFullName(FullName nombreCompleto);
+    List<User> findByProfile(Long perfilId);
     Optional<User> findByUsername(Username username);
-    boolean existsByUsername(Username username);
-
-    Optional<User> findEmailPrincipalById(Long usuarioId);
-    Optional<User> findByEmail(EmailContact emailContact);
-
-    Optional<User> findAddressPrincipalById(Long usuarioId);
-
-
+    Optional<User> findByEmail(EmailAddress emailAddress);
+    List<User> findByTelephone(Telephone telefono);
+    List<User> findByDepartment(Long departamentoId);
+    List<User> findByProvince(Long provinceId);
+    List<User> findByDistrict(Long districtId);
 }

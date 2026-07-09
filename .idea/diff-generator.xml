@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DiffGenerationConfig">
+    <option name="snapshotDb" value="false" />
+    <option name="snapshotModelValue" value="FarmaciaERP:entityManagerFactory" />
+    <option name="sourceModelValue" value="FarmaciaERP:entityManagerFactory" />
+    <option name="targetDbValue" value="6f8cded4-0e12-4e95-a1ef-83693ff760b5" />
+  </component>
+</project>

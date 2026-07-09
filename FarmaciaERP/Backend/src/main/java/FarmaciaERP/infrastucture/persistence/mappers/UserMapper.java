@@ -14,65 +14,91 @@ import FarmaciaERP.infrastucture.persistence.embeddable.usuario.PasswordEmb;
 import FarmaciaERP.infrastucture.persistence.embeddable.usuario.UsernameEmb;
 import FarmaciaERP.infrastucture.persistence.entities.ProfileJPA;
 import FarmaciaERP.infrastucture.persistence.entities.UserJPA;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
+@Component
+@RequiredArgsConstructor
 public class UserMapper {
-    public static User toDomain(UserJPA jpa) {
+    private final EmailContactMapper emailContactMapper;
+    private final AddressMapper addressMapper;
+
+    public User toDomain(UserJPA jpa) {
         return new User(
-                jpa.getId(),
-                new Username(jpa.getUsername().getValue()),
-                new Password(jpa.getUserPassword().getValue()),
-                ProfileMapper.toDomain(jpa.getPerfil()),   // reemplaza UserRole
-                new FullName(jpa.getFullName().getFirstName(), jpa.getFullName().getLastName()),
-                new LoginSecurity(
-                        jpa.getLoginSecurity().getLoginAttempts(),
-                        jpa.getLoginSecurity().getLockUntil(),
-                        jpa.getLoginSecurity().getEstado()
-                ),
-                jpa.getCreatedAt(),
-                jpa.getAddress().stream()
-                        .map(AddressMapper::toDomain)
-                        .toList(),
+                jpa.getUserId(),
+                usernameToDomain(jpa.getUsername()),
+                passwordToDomain(jpa.getUserPassword()),
+                jpa.getPerfil().getPerfilId(),
+                fullNameToDomain(jpa.getNombreCompleto()),
+                loginSecurityToDomain(jpa.getLoginSeguro()),
+                jpa.getFechaCreacion(),
                 jpa.getEmails().stream()
-                        .map(EmailContactMapper::toDomain)
+                        .map(emailContactMapper::toDomain)
                         .toList(),
-                jpa.getTelephones().stream()
-                        .map(UserMapper::telephoneToDomain)
+                jpa.getDirecciones().stream().
+                        map(addressMapper::toDomain)
+                        .toList(),
+                jpa.getTelefonos().stream()
+                        .map(this::telephoneToDomain)
                         .toList()
         );
     }
 
-    public static UserJPA toJPA(User domain, ProfileJPA profileJPA) {
+    public  UserJPA toEntity(User domain) {
         return new UserJPA(
                 usernameToEmb(domain.getUsername()),
                 passwordToEmb(domain.getUserPassword()),
-                profileJPA,                                  // necesita el JPA ya cargado
-                fullNameToEmb(domain.getFullName()),
-                loginSecurityToEmb(domain.getLoginSecurity()),
-                domain.getTelephones().stream()
-                        .map(UserMapper::telephoneToEmb)
-                        .toList(),
-                new ArrayList<>(),
-                new ArrayList<>()
+                new ProfileJPA(domain.getPerfilId()),                                  // necesita el JPA ya cargado
+                fullNameToEmb(domain.getNombreCompleto()),
+                loginSecurityToEmb(domain.getLoginSeguro()),
+                domain.getTelefonos() != null? new ArrayList<>(
+                        domain.getTelefonos().stream()
+                        .map(this::telephoneToEmb)
+                        .toList()): new ArrayList<>(),
+                domain.getEmailContacts()!= null? new ArrayList<>(
+                        domain.getEmailContacts().stream()
+                        .map(emailContactMapper::toJPA)
+                        .toList()): new ArrayList<>(),
+                domain.getDirecciones()!=null? new ArrayList<>(
+                        domain.getDirecciones().stream()
+                        .map(addressMapper::toJPA)
+                        .toList()): new ArrayList<>()
         );
     }
 
     // — Embeddables —
-
-    public static UsernameEmb usernameToEmb(Username username) {
+    public Username usernameToDomain(UsernameEmb username) {
+        return new Username(username.getValor());
+    }
+    public UsernameEmb usernameToEmb(Username username) {
         return new UsernameEmb(username.getValor());
     }
 
-    public static PasswordEmb passwordToEmb(Password password) {
+    public Password passwordToDomain(PasswordEmb password) {
+        return Password.setHashPassword(password.getValor());
+    }
+    public PasswordEmb passwordToEmb(Password password) {
         return new PasswordEmb(password.getValor());
     }
 
-    public static FullNameEmb fullNameToEmb(FullName fullName) {
+    public FullName fullNameToDomain(FullNameEmb fullName) {
+        return new FullName(fullName.getNombres(), fullName.getApellidos());
+    }
+    public FullNameEmb fullNameToEmb(FullName fullName) {
         return new FullNameEmb(fullName.getNombres(), fullName.getApellidos());
     }
 
-    public static LoginSecurityEmb loginSecurityToEmb(LoginSecurity loginSecurity) {
+    public LoginSecurity loginSecurityToDomain(LoginSecurityEmb loginSecurity) {
+        return new LoginSecurity(
+                loginSecurity.getIntentosLogin(),
+                loginSecurity.getTiempoDesbloqueo(),
+                loginSecurity.getEstado()
+        );
+    }
+    public LoginSecurityEmb loginSecurityToEmb(LoginSecurity loginSecurity) {
         return new LoginSecurityEmb(
                 loginSecurity.getIntentosLogin(),
                 loginSecurity.getTiempoDesbloqueo(),
@@ -82,7 +108,7 @@ public class UserMapper {
 
     // — Telephone —
 
-    private static Telephone telephoneToDomain(TelephoneEmb emb) {
+    private Telephone telephoneToDomain(TelephoneEmb emb) {
         if (emb.getTipo() == TelephoneType.CELULAR) {
             return new Telephone(emb.getPrefijo(), emb.getDescripcion(), emb.getNumero());
         }
@@ -90,7 +116,7 @@ public class UserMapper {
                 emb.getNumero(), emb.getDescripcion(), emb.getTipo());
     }
 
-    public static TelephoneEmb telephoneToEmb(Telephone domain) {
+    public TelephoneEmb telephoneToEmb(Telephone domain) {
         return new TelephoneEmb(
                 domain.getPrefijo(),
                 domain.getCodigoArea(),

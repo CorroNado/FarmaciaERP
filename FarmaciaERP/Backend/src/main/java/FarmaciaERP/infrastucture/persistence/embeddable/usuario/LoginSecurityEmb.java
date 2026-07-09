@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 public class LoginSecurityEmb {
 
     @Column(name = "login_attempts", nullable = false)
-    private Integer loginAttempts;
+    private Integer intentosLogin;
 
     @Column(name = "lock_until")
-    private LocalDateTime lockUntil;
+    private LocalDateTime tiempoDesbloqueo;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "estado", nullable = false)
@@ -24,24 +24,12 @@ public class LoginSecurityEmb {
     }
 
     public LoginSecurityEmb(
-            Integer loginAttempts,
-            LocalDateTime lockUntil,
+            Integer intentosLogin,
+            LocalDateTime tiempoDesbloqueo,
             UserStatus estado
     ) {
-        this.loginAttempts = loginAttempts;
-        this.lockUntil = lockUntil;
+        this.intentosLogin = intentosLogin;
+        this.tiempoDesbloqueo = tiempoDesbloqueo;
         this.estado = estado;
-    }
-
-    public Integer getLoginAttempts() {
-        return loginAttempts;
-    }
-
-    public LocalDateTime getLockUntil() {
-        return lockUntil;
-    }
-
-    public UserStatus getEstado() {
-        return estado;
     }
 }

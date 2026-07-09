@@ -15,7 +15,7 @@ import lombok.Setter;
 public class DepartmentJPA {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long departamentoId;
 
     @Column(nullable = false)
     private String nombre;
@@ -23,7 +23,11 @@ public class DepartmentJPA {
     @Embedded
     private UbigeoEmb ubigeo;
 
-    protected DepartmentJPA() {}
+    public DepartmentJPA() {}
+
+    public DepartmentJPA(Long departamentoId) {
+        this.departamentoId = departamentoId;
+    }
 
     public DepartmentJPA(String nombre, UbigeoEmb ubigeo) {
         this.nombre = nombre;

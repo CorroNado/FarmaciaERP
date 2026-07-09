@@ -1,8 +1,10 @@
 package FarmaciaERP.application.usecases.usuario;
+import FarmaciaERP.application.dto.Response.UserListResponse;
 import FarmaciaERP.domain.entities.EmailContact;
 import FarmaciaERP.domain.entities.User;
 import FarmaciaERP.domain.enums.UserStatus;
 import FarmaciaERP.domain.repositories.IUsuarioRepository;
+import FarmaciaERP.domain.valueObjects.EmailAddress;
 import FarmaciaERP.domain.valueObjects.FullName;
 import org.springframework.stereotype.Service;
 
@@ -17,24 +19,69 @@ public class BuscarUsuarioUseCase {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public Optional<User> byId(Long id) {
-        return usuarioRepository.findById(id);
+    public Optional<UserListResponse> byId(Long id) {
+        return usuarioRepository.findById(id).stream()
+                .map(user -> new UserListResponse(
+                        user.getId(),
+                        user.getUsername().getValor(),
+                        user.getNombreCompleto().getValor(),
+                        user.getPerfilId(),
+                        user.getLoginSeguro().getEstado().name(),
+                        user.getFechaCreacion()
+                ))
+                .findFirst();
     }
 
-    public List<User> all() {
-        return usuarioRepository.findAll();
+    public List<UserListResponse> all() {
+        return usuarioRepository.findAll().stream()
+                .map(user -> new UserListResponse(
+                        user.getId(),
+                        user.getUsername().getValor(),
+                        user.getNombreCompleto().getValor(),
+                        user.getPerfilId(),
+                        user.getLoginSeguro().getEstado().name(),
+                        user.getFechaCreacion()
+                ))
+                .toList();
     }
 
 
-    public List<User> byFullName(FullName nombre) {
-        return usuarioRepository.findByName(nombre);
+    public List<UserListResponse> byFullName(FullName nombre) {
+        return usuarioRepository.findByFullName(nombre).stream()
+                .map(user -> new UserListResponse(
+                        user.getId(),
+                        user.getUsername().getValor(),
+                        user.getNombreCompleto().getValor(),
+                        user.getPerfilId(), // Nombre del rol/perfil
+                        user.getLoginSeguro().getEstado().name(),
+                        user.getFechaCreacion()
+                ))
+                .toList();
     }
 
-    public List<User> byStatus(UserStatus estado) {
-        return usuarioRepository.findByStatus(estado);
+    public List<UserListResponse> byStatus(UserStatus estado) {
+        return usuarioRepository.findByStatus(estado).stream()
+                .map(user -> new UserListResponse(
+                        user.getId(),
+                        user.getUsername().getValor(),
+                        user.getNombreCompleto().getValor(),
+                        user.getPerfilId(), // Nombre del rol/perfil
+                        user.getLoginSeguro().getEstado().name(),
+                        user.getFechaCreacion()
+                ))
+                .toList();
     }
 
-    public Optional<User> byEmail(EmailContact emailContact) {
-        return usuarioRepository.findByEmail(emailContact);
+    public Optional<UserListResponse> byEmail(EmailAddress emailAddress) {
+        return usuarioRepository.findByEmail(emailAddress).stream()
+                .map(user -> new UserListResponse(
+                        user.getId(),
+                        user.getUsername().getValor(),
+                        user.getNombreCompleto().getValor(),
+                        user.getPerfilId(), // Nombre del rol/perfil
+                        user.getLoginSeguro().getEstado().name(),
+                        user.getFechaCreacion()
+                ))
+                .findFirst();
     }
 }

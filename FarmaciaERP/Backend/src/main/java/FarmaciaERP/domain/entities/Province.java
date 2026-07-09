@@ -13,19 +13,19 @@ import lombok.Setter;
 
 public class Province {
     private Long id;
-    private String name;
+    private String nombre;
     private Ubigeo ubigeo;
     private Long departmentId;
 
-    public Province(String name, Ubigeo ubigeo, Long departmentId) {
-        this.name = name;
+    public Province(String nombre, Ubigeo ubigeo, Long departmentId) {
+        this.nombre = nombre;
         this.departmentId = departmentId;
         this.ubigeo = validateUbigeoType(ubigeo);
     }
 
-    public Province(Long id, String name, Ubigeo ubigeo, Long departmentId) {
+    public Province(Long id, String nombre, Ubigeo ubigeo, Long departmentId) {
         this.id = id;
-        this.name = name;
+        this.nombre = nombre;
         this.departmentId = departmentId;
         this.ubigeo = validateUbigeoType(ubigeo);
     }

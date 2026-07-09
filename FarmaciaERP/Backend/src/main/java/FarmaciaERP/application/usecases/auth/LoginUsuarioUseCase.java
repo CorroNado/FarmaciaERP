@@ -6,6 +6,8 @@ import FarmaciaERP.application.usecases.RegistrarHistorialAccesoUseCase;
 import FarmaciaERP.domain.entities.EmailContact;
 import FarmaciaERP.domain.enums.LoginAction;
 import FarmaciaERP.domain.enums.ResultadoBloqueo;
+import FarmaciaERP.domain.valueObjects.usuario.LoginSecurity;
+import FarmaciaERP.domain.valueObjects.usuario.Username;
 import FarmaciaERP.infrastucture.security.CustomUserDetails;
 import FarmaciaERP.infrastucture.security.jwt.JwtUtils;
 import FarmaciaERP.domain.repositories.IUsuarioRepository;
@@ -33,7 +35,7 @@ public class LoginUsuarioUseCase {
 
 
     public LoginResponse execute(LoginRequest request,String ip, String userAgent) {
-        var usuario = usuarioRepository.findByEmail(new EmailContact(request.getEmail()))
+        var usuario = usuarioRepository.findByUsername(new Username(request.getUsername()))
                 .orElseThrow(() -> new RuntimeException("Credenciales inválidas"));
 
         verificarEstadoUsuarioUseCase.execute(usuario);
@@ -41,12 +43,11 @@ public class LoginUsuarioUseCase {
         try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            request.getEmail(),
+                            request.getUsername(),
                             request.getPassword()
                     )
             );
-            usuario.setLoginAttempts(0);
-            usuario.setLockUntil(null);
+            usuario.setLoginSeguro(new LoginSecurity());
             registrarHistorialAccesoUseCase.execute(usuario.getId(), LoginAction.LOGIN_EXITOSO,ip,userAgent);
             usuarioRepository.save(usuario);
 

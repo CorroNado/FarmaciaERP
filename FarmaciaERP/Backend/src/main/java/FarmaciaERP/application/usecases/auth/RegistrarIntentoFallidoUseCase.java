@@ -4,6 +4,7 @@ import FarmaciaERP.domain.entities.User;
 import FarmaciaERP.domain.enums.ResultadoBloqueo;
 import FarmaciaERP.domain.enums.UserStatus;
 import FarmaciaERP.domain.repositories.IUsuarioRepository;
+import FarmaciaERP.domain.valueObjects.usuario.LoginSecurity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,17 +16,22 @@ public class RegistrarIntentoFallidoUseCase {
 
     private final IUsuarioRepository usuarioRepository;
     public ResultadoBloqueo execute(User user, int maxAttempts, int lockMinutes) {
-        int attempts = user.getLoginAttempts() + 1;
+        int attempts = user.getLoginSeguro().getIntentosLogin() + 1;
+
+        LoginSecurity loginSecurity;
 
         if (attempts >= maxAttempts) {
-            user.setLockUntil(LocalDateTime.now().plusMinutes(lockMinutes));
-            user.setLoginAttempts(0);
-            user.setEstado(UserStatus.BLOQUEADO);
+            loginSecurity = new LoginSecurity(
+                    attempts,
+                    LocalDateTime.now().plusMinutes(lockMinutes),
+                    UserStatus.BLOQUEADO
+            );
+            user.setLoginSeguro(loginSecurity);
             usuarioRepository.save(user);
             return ResultadoBloqueo.CUENTA_BLOQUEADA;
         }
-
-        user.setLoginAttempts(attempts);
+        loginSecurity = new LoginSecurity(attempts);
+        user.setLoginSeguro(loginSecurity);
         usuarioRepository.save(user);
         return ResultadoBloqueo.INTENTO_REGISTRADO;
     }

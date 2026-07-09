@@ -2,16 +2,16 @@ package FarmaciaERP.application.usecases;
 
 import FarmaciaERP.domain.entities.LoginHistory;
 import FarmaciaERP.domain.enums.LoginAction;
-import FarmaciaERP.domain.repositories.IHistorialAccesoRepository;
+import FarmaciaERP.domain.repositories.ILoginHistoryRepository;
 
 import org.springframework.stereotype.Service;
 
 @Service
 public class RegistrarHistorialAccesoUseCase {
 
-    private final IHistorialAccesoRepository historialRepository;
+    private final ILoginHistoryRepository historialRepository;
 
-    public RegistrarHistorialAccesoUseCase(IHistorialAccesoRepository historialRepository) {
+    public RegistrarHistorialAccesoUseCase(ILoginHistoryRepository historialRepository) {
         this.historialRepository = historialRepository;
     }
 

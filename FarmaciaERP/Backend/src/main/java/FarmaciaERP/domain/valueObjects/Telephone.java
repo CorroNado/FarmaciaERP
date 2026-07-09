@@ -27,6 +27,11 @@ public class Telephone {
         this.tipo = tipo;
     }
 
+    public String getNumeroCompleto() {
+        String area = (codigoArea != null) ? codigoArea : "";
+        return prefijo + area + numero;
+    }
+
     private String validarPrefijo(String prefijo) {
         if (prefijo == null || prefijo.isBlank())
             throw new IllegalArgumentException("Prefijo requerido");

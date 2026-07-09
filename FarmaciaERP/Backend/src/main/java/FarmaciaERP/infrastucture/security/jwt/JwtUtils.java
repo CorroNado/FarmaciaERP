@@ -21,10 +21,10 @@ public class JwtUtils {
     @Value("${jwt.expiration}")
     private long expiration;
 
-    public String generateToken(Long id, String email) {
+    public String generateToken(Long id, String username) {
         return Jwts.builder()
                 .setSubject(String.valueOf(id))
-                .claim("direccion", email)
+                .claim("username", username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256)
@@ -41,19 +41,20 @@ public class JwtUtils {
                         .getSubject()
         );
     }
-    public String extractUserEmail(String token) {
+    public String extractUsername(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSignKey())
                 .build()
                 .parseClaimsJws(token)
                 .getBody()
-                .get("direccion").toString();
+                .get("username").toString();
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
         if (!(userDetails instanceof CustomUserDetails customUser)) {
             return false;
         }
+        System.out.println(extractUserId(token));
         return extractUserId(token).equals(customUser.getId())
                 && !isTokenExpired(token);
     }

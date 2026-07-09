@@ -20,11 +20,11 @@ public class UbigeoEmb {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "ubigeo_type", nullable = false)
-    private UbigeoType type;
+    private UbigeoType tipo;
 
-    public UbigeoEmb(String ubigeoReniec, String ubigeoInei, UbigeoType type) {
+    public UbigeoEmb(String ubigeoReniec, String ubigeoInei, UbigeoType tipo) {
         this.ubigeoReniec = ubigeoReniec;
         this.ubigeoInei = ubigeoInei;
-        this.type = type;
+        this.tipo = tipo;
     }
 }

@@ -31,6 +31,13 @@ public class EmailContact {
         this.estado = EmailStatus.ACTIVO;
         this.fechaCreacion = LocalDateTime.now();
     }
+    public EmailContact(EmailAddress direccion) {
+        this.direccion = direccion;
+        this.etiqueta = EmailLabel.PERSONAL;
+        this.estado = EmailStatus.ACTIVO;
+        this.fechaCreacion = LocalDateTime.now();
+    }
+
 
     public void update(EmailAddress address, EmailLabel label) {
         if (this.estado == EmailStatus.INACTIVO)
@@ -42,5 +49,9 @@ public class EmailContact {
         if (this.estado == EmailStatus.PRINCIPAL)
             throw new IllegalArgumentException("No puedes desactivar el email principal");
         this.estado = EmailStatus.INACTIVO;
+    }
+    public void setOwnerDetail(Long ownerId,  OwnerType ownerType) {
+        this.ownerId = ownerId;
+        this.ownerType = ownerType;
     }
 }

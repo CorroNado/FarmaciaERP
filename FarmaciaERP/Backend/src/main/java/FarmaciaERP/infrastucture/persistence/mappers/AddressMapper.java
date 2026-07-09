@@ -2,27 +2,33 @@ package FarmaciaERP.infrastucture.persistence.mappers;
 
 import FarmaciaERP.domain.entities.Address;
 import FarmaciaERP.infrastucture.persistence.entities.AddressJPA;
+import FarmaciaERP.infrastucture.persistence.entities.DistrictJPA;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AddressMapper {
 
-    public static Address toDomain(AddressJPA jpa) {
+    public Address toDomain(AddressJPA jpa) {
         return new Address(
                 jpa.getId(),
-                jpa.getUsuario().getId(),
+                jpa.getDueñoId(),
+                jpa.getTipoDueño(),
                 jpa.getDescripcion(),
                 jpa.getEtiqueta(),
                 jpa.getEstado(),
-                jpa.getDistrito().getId()
+                jpa.getDistrito().getDistritoId()
         );
     }
 
-    public static AddressJPA toJPA(Address domain) {
+    public AddressJPA toJPA(Address domain) {
         return new AddressJPA(
-                null,
-                null,
-                domain.getDescription(),
-                domain.getLabel(),
-                domain.getStatus()
+                domain.getId(),
+                domain.getDueñoId(),
+                domain.getTipoDueño(),
+                new DistrictJPA(domain.getDistrictId()),
+                domain.getDescripcion() ,
+                domain.getEtiqueta(),
+                domain.getEstado()
         );
     }
 }

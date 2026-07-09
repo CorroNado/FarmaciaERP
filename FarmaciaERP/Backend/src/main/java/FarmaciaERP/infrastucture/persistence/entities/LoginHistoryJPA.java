@@ -16,10 +16,10 @@ import java.time.LocalDateTime;
 public class LoginHistoryJPA {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long loginHistorialId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private UserJPA usuario;
 
     @Column(nullable = false)

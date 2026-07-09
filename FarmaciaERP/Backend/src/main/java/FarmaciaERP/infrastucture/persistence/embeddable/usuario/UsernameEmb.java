@@ -8,12 +8,12 @@ import lombok.Getter;
 @Embeddable
 @Getter
 public class UsernameEmb {
-    @Column(name = "username", nullable = false, length = 10, unique = true)
-    private String value;
+    @Column(name = "username", nullable = false, unique = true)
+    private String valor;
 
     protected UsernameEmb() {
     }
-    public UsernameEmb(String value) {
-        this.value = value;
+    public UsernameEmb(String valor) {
+        this.valor = valor;
     }
 }

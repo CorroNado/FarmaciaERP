@@ -2,6 +2,7 @@ package FarmaciaERP.presentation.controllers;
 
 import FarmaciaERP.application.dto.Request.CrearUsuarioResquest;
 import FarmaciaERP.application.dto.Response.CrearUsuarioResponse;
+import FarmaciaERP.application.dto.Response.UserListResponse;
 import FarmaciaERP.application.usecases.usuario.ActualizarUsuarioUseCase;
 import FarmaciaERP.application.usecases.usuario.BuscarUsuarioUseCase;
 import FarmaciaERP.application.usecases.usuario.CrearUsuarioUseCase;
@@ -44,10 +45,10 @@ public class UsuarioController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{userId}")
     public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
         try {
-            System.out.println(user.getEmail());
+            System.out.println(user.getEmailContacts());
             User userActualizado = actualizarUsuarioUseCase.ejecutar(id, user);
             return ResponseEntity.ok(userActualizado);
         } catch (RuntimeException e) {
@@ -55,7 +56,7 @@ public class UsuarioController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{userId}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         try {
             eliminarUsuarioUseCase.ejecutar(id);
@@ -65,15 +66,15 @@ public class UsuarioController {
         }
     }
 
-    @GetMapping("/{id}")
-        public ResponseEntity<User> findById(@PathVariable Long id) {
+    @GetMapping("/{userId}")
+        public ResponseEntity<UserListResponse> findById(@PathVariable Long id) {
         return buscarUsuarioUseCase.byId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> findALL() {
+    public ResponseEntity<List<UserListResponse>> findALL() {
 
         return ResponseEntity.ok(buscarUsuarioUseCase.all());
     }

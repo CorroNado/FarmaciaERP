@@ -1,6 +1,7 @@
 package FarmaciaERP.domain.entities;
 
 import FarmaciaERP.domain.enums.ProfileStatus;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,18 +11,19 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Profile {
     private Long id;
     private String nombre;
     private String descripcion;
-    private ProfileStatus status;
+    private ProfileStatus estado;
     private List<Permission> permisos;
 
     public void addPermission(Permission permiso) {
         boolean exists = this.permisos.stream()
-                .anyMatch(p -> p.getCode().equals(permiso.getCode()));
+                .anyMatch(p -> p.getCodigo().equals(permiso.getCodigo()));
         if (exists)
-            throw new IllegalArgumentException("Permiso ya existe en el perfil");
+            throw new IllegalArgumentException("Permiso ya existe en el perfilId");
         this.permisos.add(permiso);
     }
 

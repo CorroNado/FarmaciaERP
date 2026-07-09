@@ -2,26 +2,29 @@ package FarmaciaERP.infrastucture.persistence.embeddable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import lombok.AccessLevel;
 import lombok.Getter;
 
 @Embeddable
 @Getter
 public class FullNameEmb {
 
-    @Column(name = "nombres", nullable = true, length = 100)
-    private String Nombres;
+    @Column(name = "name", nullable = true, length = 100)
+    private String nombres;
 
-    @Column(name = "apellidos", nullable = true, length = 100)
-    private String Apellidos;
+    @Column(name = "last_name", nullable = true, length = 100)
+    private String apellidos;
+
+    @Column(name = "full_name")
+    @Getter(AccessLevel.NONE)
+    private String valor;
 
     public FullNameEmb(String nombres, String apellidos) {
-        Nombres = nombres;
-        Apellidos = apellidos;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+
+        valor = nombres +" "+  apellidos;
     }
 
     protected FullNameEmb() {}
-
-    public String getValue() {
-        return Nombres + " " + Apellidos;
-    }
 }

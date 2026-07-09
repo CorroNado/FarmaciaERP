@@ -9,16 +9,12 @@ import lombok.Getter;
 public class PasswordEmb {
 
     @Column(name = "password", nullable = false)
-    private String value;
+    private String valor;
 
     protected PasswordEmb() {
     }
 
-    public PasswordEmb(String value) {
-        this.value = value;
-    }
-
-    public String getValue() {
-        return value;
+    public PasswordEmb(String valor) {
+        this.valor = valor;
     }
 }

@@ -3,6 +3,7 @@ package FarmaciaERP.infrastucture.persistence.entities;
 import FarmaciaERP.domain.enums.PermissionModule;
 import FarmaciaERP.domain.enums.PermissionStatus;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,31 +12,33 @@ import lombok.Setter;
 @Table(name = "Permission")
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 public class PermissionJPA {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="permission_id")
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String code;
+    @Column(name = "code",nullable = false, unique = true)
+    private String codigo;
 
-    @Column(nullable = false)
-    private String description;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private PermissionModule module;
+    @Column(name = "description", nullable = false)
+    private String descripcion;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private PermissionStatus status;
+    @Column(name = "module",nullable = false)
+    private PermissionModule modulo;
 
-    public PermissionJPA(String code, String description,
-                         PermissionModule modulo, PermissionStatus status) {
-        this.code = code;
-        this.description = description;
-        this.module = modulo;
-        this.status = status;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private PermissionStatus estado;
+
+    public PermissionJPA(String codigo, String descripcion,
+                         PermissionModule modulo, PermissionStatus estado) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.modulo = modulo;
+        this.estado = estado;
     }
 }

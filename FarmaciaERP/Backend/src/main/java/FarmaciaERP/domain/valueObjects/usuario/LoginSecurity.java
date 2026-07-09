@@ -7,9 +7,27 @@ import java.time.LocalDateTime;
 
 @Value
 public class LoginSecurity {
-    private Integer intentosLogin;
-    private LocalDateTime tiempoDesbloqueo;
-    private UserStatus estado;
+    Integer intentosLogin;
+    LocalDateTime tiempoDesbloqueo;
+    UserStatus estado;
+
+    public LoginSecurity() {
+        this.intentosLogin = 0;
+        this.tiempoDesbloqueo = null;
+        this.estado = UserStatus.ACTIVO;
+    }
+
+    public LoginSecurity(Integer intentosLogin) {
+        this.intentosLogin = intentosLogin;
+        this.tiempoDesbloqueo = null;
+        this.estado = UserStatus.ACTIVO;
+    }
+
+    public LoginSecurity(UserStatus estado) {
+        this.intentosLogin = 0;
+        this.tiempoDesbloqueo = null;
+        this.estado = estado;
+    }
 
     public LoginSecurity(Integer intentosLogin, LocalDateTime tiempoDesbloqueo, UserStatus estado) {
         if (intentosLogin < 0)
