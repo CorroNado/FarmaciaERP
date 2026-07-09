@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FarmaciaERP/Backend/FarmaciaERP.iml" filepath="$PROJECT_DIR$/FarmaciaERP/Backend/FarmaciaERP.iml" />
-      <module fileurl="file://$PROJECT_DIR$/FarmaciaERP/frontend-react/frontend-react.iml" filepath="$PROJECT_DIR$/FarmaciaERP/frontend-react/frontend-react.iml" />
     </modules>
   </component>
 </project>

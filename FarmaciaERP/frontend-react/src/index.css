@@ -1,91 +1,10 @@
-body {
-  margin: 0;
-  padding: 0;
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
+@import "tailwindcss";
 
-/* CONTENEDOR GENERAL */
-.container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+/* Ocultar scrollbar pero mantener scroll funcional */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
-
-/* HEADER */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #2d6a4f;
-  color: white;
-  padding: 15px 20px;
-}
-
-.logo {
-  font-size: 20px;
-}
-
-.login {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.login button {
-  background: white;
-  color: #2d6a4f;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.login button:hover {
-  background: #d8f3dc;
-}
-
-/* MAIN */
-.main {
-  display: flex;
-  flex: 1;
-}
-
-/* CONTENIDO CENTRAL */
-.content {
-  flex: 1;
-  background-color: #f1faee;
-  padding: 20px;
-}
-
-/* SIDEBAR DERECHA */
-.sidebar {
-  width: 220px;
-  background-color: #40916c;
-  color: white;
-  padding: 20px;
-}
-
-.sidebar h3 {
-  margin-bottom: 15px;
-}
-
-.sidebar ul {
-  list-style: none;
-}
-
-.sidebar li {
-  padding: 10px;
-  margin-bottom: 8px;
-  background-color: #52b788;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.sidebar li:hover {
-  background-color: #74c69d;
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
