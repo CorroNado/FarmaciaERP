@@ -5,85 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac367e06-cb9d-4594-ae0e-684f9fa8d017" name="Changes" comment="Mi tortura // 09/07">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/6f8cded4-0e12-4e95-a1ef-83693ff760b5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/6f8cded4-0e12-4e95-a1ef-83693ff760b5/storage_v2/_src_/database/FarmaciaDB.jo56bQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/6f8cded4-0e12-4e95-a1ef-83693ff760b5/storage_v2/_src_/database/FarmaciaDB.jo56bQ/schema/INFORMATION_SCHEMA.NBgcMw.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/6f8cded4-0e12-4e95-a1ef-83693ff760b5/storage_v2/_src_/database/FarmaciaDB.jo56bQ/schema/sys.zb4BAA.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/Presentation/Controllers/AuthController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/Presentation/Controllers/UsuarioController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/public/favicon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/core/api/apiClient.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/core/api/endpoints.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/core/routes/AppRouter.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/core/routes/PrivateRoute.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/core/utils/formatters.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/core/utils/roles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/core/utils/tokenStorage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/domain/models/AccessReport.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/domain/models/User.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/domain/usecases/auth/LoginUseCase.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/domain/usecases/reports/getAccessReportUseCase.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/domain/usecases/users/createUserUseCase.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/domain/usecases/users/deleteUserUseCase.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/domain/usecases/users/editUserUseCase.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/domain/usecases/users/getUserByIdUseCase.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/domain/usecases/users/getUsersUseCase.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/infrastructure/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/infrastructure/repositories/reportRepository.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/infrastructure/repositories/userRepository.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/presentation/components/layout/MainLayout.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/presentation/components/layout/Navbar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/presentation/components/layout/Topbar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/presentation/components/ui/Badge.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/presentation/components/ui/Button.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/presentation/components/ui/Input.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/presentation/components/ui/Modal.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/presentation/components/ui/Select.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/presentation/components/ui/Table.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/presentation/context/AuthContext.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/presentation/context/AuthProvider.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/presentation/hooks/useAccessReport.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/presentation/hooks/useAuth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/presentation/hooks/useAuthContext.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/presentation/hooks/useUsers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ProyectoAña.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/Application/DTOs/Response/RegisterResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/Application/DTOs/Response/RegisterResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/Application/UseCases/CrearUsuarioUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/Application/UseCases/CrearUsuarioUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/Infrastucture/Persistence/Mappers/UsuarioMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/Infrastucture/Persistence/Mappers/UsuarioMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Request/CrearUsuarioResquest.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Request/CrearUsuarioResquest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/usecases/usuario/EliminarUsuarioUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/usecases/usuario/EliminarUsuarioUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/.vite/deps/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/.vite/deps/_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/public/favicon2.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/assets/boostrap/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/assets/boostrap/js/bootstrap.bundle.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/core/api/api.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/core/routes/routes.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/core/utils/utils.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/domain/models/models.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/domain/usecases/usecases.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/infrastructure/repositories/repositorie.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/infrastructure/services/api.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/infrastructure/services/authService.js" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/infrastructure/services/authService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/main.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/presentation/components/components.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/presentation/context/context.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/src/presentation/hooks/hooks.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmaciaERP/frontend-react/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/frontend-react/vite.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Request/ActualizarUsuarioRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Request/ActualizarUsuarioRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Response/ActualizarUsuarioResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/dto/Response/ActualizarUsuarioResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/usecases/usuario/ActualizarUsuarioUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/application/usecases/usuario/ActualizarUsuarioUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/presentation/controllers/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmaciaERP/Backend/src/main/java/FarmaciaERP/presentation/controllers/UsuarioController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -303,7 +229,7 @@
       <workItem from="1783061453493" duration="78000" />
       <workItem from="1783468996152" duration="41845000" />
       <workItem from="1783569746957" duration="4967000" />
-      <workItem from="1783574774028" duration="1658000" />
+      <workItem from="1783574774028" duration="3208000" />
     </task>
     <task id="LOCAL-00001" summary="Tortura para los de Front // 08/07">
       <option name="closed" value="true" />
@@ -337,7 +263,23 @@
       <option name="project" value="LOCAL" />
       <updated>1783572655840</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Mi tortura // 09/07">
+      <option name="closed" value="true" />
+      <created>1783576644628</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1783576644628</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Mi tortura // 09/07">
+      <option name="closed" value="true" />
+      <created>1783577118644</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1783577118644</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

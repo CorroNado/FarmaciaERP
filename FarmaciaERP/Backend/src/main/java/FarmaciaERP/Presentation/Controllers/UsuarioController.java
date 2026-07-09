@@ -1,6 +1,8 @@
 package FarmaciaERP.presentation.controllers;
 
+import FarmaciaERP.application.dto.Request.ActualizarUsuarioRequest;
 import FarmaciaERP.application.dto.Request.CrearUsuarioResquest;
+import FarmaciaERP.application.dto.Response.ActualizarUsuarioResponse;
 import FarmaciaERP.application.dto.Response.CrearUsuarioResponse;
 import FarmaciaERP.application.dto.Response.UserListResponse;
 import FarmaciaERP.application.usecases.usuario.ActualizarUsuarioUseCase;
@@ -46,11 +48,10 @@ public class UsuarioController {
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ActualizarUsuarioRequest request) {
         try {
-            System.out.println(user.getEmailContacts());
-            User userActualizado = actualizarUsuarioUseCase.ejecutar(id, user);
-            return ResponseEntity.ok(userActualizado);
+            ActualizarUsuarioResponse response = actualizarUsuarioUseCase.ejecutar(id,request);
+            return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
