@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Search, Plus, Minus, X, ShoppingCart, CreditCard, Wallet, Banknote, CheckCircle2, FileText, RotateCcw } from 'lucide-react';
 import Button from '@/presentation/components/ui/Button';
 import Select from '@/presentation/components/ui/Select';
@@ -21,10 +21,51 @@ const COMPROBANTES = [
   { value: 'NINGUNO', label: 'Sin comprobante' },
 ];
 
+function CantidadInput({ id, cantidad, stock, establecerCantidad }) {
+  const [val, setVal] = useState(cantidad.toString());
+
+  useEffect(() => {
+    setVal(cantidad.toString());
+  }, [cantidad]);
+
+  const handleChange = (e) => {
+    const rawValue = e.target.value;
+    if (rawValue === '' || /^\d+$/.test(rawValue)) {
+      setVal(rawValue);
+      const parsed = parseInt(rawValue, 10);
+      if (!isNaN(parsed) && parsed > 0) {
+        establecerCantidad(id, parsed);
+      }
+    }
+  };
+
+  const handleBlur = () => {
+    const parsed = parseInt(val, 10);
+    if (isNaN(parsed) || parsed <= 0) {
+      setVal('1');
+      establecerCantidad(id, 1);
+    } else if (parsed > stock) {
+      setVal(stock.toString());
+      establecerCantidad(id, stock);
+    }
+  };
+
+  return (
+    <input
+      type="text"
+      value={val}
+      onChange={handleChange}
+      onBlur={handleBlur}
+      onKeyDown={(e) => { if (e.key === 'Enter') e.target.blur(); }}
+      className="w-10 text-center text-sm font-semibold text-slate-800 border border-slate-200 rounded-md py-0.5 outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+    />
+  );
+}
+
 export default function VentaPage() {
   const {
     medicamentos, loadingCatalogo, error, setError, cargarCatalogo,
-    cart, agregarAlCarrito, cambiarCantidad, quitarDelCarrito, totales,
+    cart, agregarAlCarrito, cambiarCantidad, establecerCantidad, quitarDelCarrito, totales,
     cliente, buscarClientePorDni, registrarClienteRapido, limpiarCliente,
     metodoPago, setMetodoPago, tipoComprobante, setTipoComprobante,
     procesando, procesarPago, ultimaVenta, cerrarTicket,
@@ -201,7 +242,7 @@ export default function VentaPage() {
                       <button onClick={() => cambiarCantidad(i.id, -1)} className="w-6 h-6 rounded-md border border-slate-200 flex items-center justify-center hover:bg-slate-50">
                         <Minus size={12} />
                       </button>
-                      <span className="text-sm w-5 text-center">{i.cantidad}</span>
+                      <CantidadInput id={i.id} cantidad={i.cantidad} stock={i.stock} establecerCantidad={establecerCantidad} />
                       <button onClick={() => cambiarCantidad(i.id, 1)} disabled={i.cantidad >= i.stock} className="w-6 h-6 rounded-md border border-slate-200 flex items-center justify-center hover:bg-slate-50 disabled:opacity-40">
                         <Plus size={12} />
                       </button>

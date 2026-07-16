@@ -21,7 +21,7 @@ export function useVenta() {
     setLoadingCatalogo(true);
     setError(null);
     try {
-      const data = await useCases.medicamentos.getAll(filtro ? { nombre: filtro } : {});
+      const data = await useCases.medicamentos.getAll.execute(filtro ? { nombre: filtro } : {});
       setMedicamentos(data);
     } catch (err) {
       setError(err.message ?? 'No se pudo cargar el catálogo de medicamentos');
@@ -67,6 +67,15 @@ export function useVenta() {
       .filter((i) => i.cantidad > 0));
   }
 
+  function establecerCantidad(id, valor) {
+    setCart((prev) => prev
+      .map((i) => {
+        if (i.id !== id) return i;
+        const nuevaCantidad = Math.min(Math.max(1, valor), i.stock);
+        return { ...i, cantidad: nuevaCantidad };
+      }));
+  }
+
   function quitarDelCarrito(id) {
     setCart((prev) => prev.filter((i) => i.id !== id));
   }
@@ -84,13 +93,13 @@ export function useVenta() {
 
     setProcesando(true);
     try {
-      const venta = await useCases.ventas.crear({
+      const venta = await useCases.ventas.crear.execute({
         clienteId: cliente.id,
         metodoPago,
         tipoComprobante,
         cart,
       });
-      const pagada = await useCases.ventas.pagar(venta.id);
+      const pagada = await useCases.ventas.pagar.execute(venta.id);
       setUltimaVenta(pagada);
       vaciarCarrito();
       await cargarCatalogo(); // refresca stock mostrado
@@ -117,6 +126,7 @@ export function useVenta() {
     cart,
     agregarAlCarrito,
     cambiarCantidad,
+    establecerCantidad,
     quitarDelCarrito,
     vaciarCarrito,
     totales,

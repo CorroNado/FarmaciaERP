@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { RotateCcw, Plus, Minus, X, CheckCircle2 } from 'lucide-react';
 import Button from '@/presentation/components/ui/Button';
 import Select from '@/presentation/components/ui/Select';
@@ -9,12 +9,53 @@ import { MOTIVOS_DEVOLUCION, ACCIONES_DEVOLUCION } from '@/domain/models/Devoluc
 const MOTIVO_LABEL = Object.fromEntries(MOTIVOS_DEVOLUCION.map((m) => [m.value, m.label]));
 const ACCION_LABEL = Object.fromEntries(ACCIONES_DEVOLUCION.map((a) => [a.value, a.label]));
 
+function CantidadInput({ id, cantidad, maxCantidad, establecerCantidad }) {
+  const [val, setVal] = useState(cantidad.toString());
+
+  useEffect(() => {
+    setVal(cantidad.toString());
+  }, [cantidad]);
+
+  const handleChange = (e) => {
+    const rawValue = e.target.value;
+    if (rawValue === '' || /^\d+$/.test(rawValue)) {
+      setVal(rawValue);
+      const parsed = parseInt(rawValue, 10);
+      if (!isNaN(parsed)) {
+        establecerCantidad(id, maxCantidad, parsed);
+      }
+    }
+  };
+
+  const handleBlur = () => {
+    const parsed = parseInt(val, 10);
+    if (isNaN(parsed) || parsed < 0) {
+      setVal('0');
+      establecerCantidad(id, maxCantidad, 0);
+    } else if (parsed > maxCantidad) {
+      setVal(maxCantidad.toString());
+      establecerCantidad(id, maxCantidad, maxCantidad);
+    }
+  };
+
+  return (
+    <input
+      type="text"
+      value={val}
+      onChange={handleChange}
+      onBlur={handleBlur}
+      onKeyDown={(e) => { if (e.key === 'Enter') e.target.blur(); }}
+      className="w-10 text-center text-sm font-semibold text-slate-800 border border-slate-200 rounded-md py-0.5 outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+    />
+  );
+}
+
 export default function DevolucionTab() {
   const {
     ventas, loadingVentas, cargarVentas,
     historial, loadingHistorial, cargarHistorial,
     ventaSeleccionada, seleccionarVenta,
-    cantidades, cambiarCantidad,
+    cantidades, cambiarCantidad, establecerCantidad,
     items, montoEstimado,
     motivo, setMotivo,
     accion, setAccion,
@@ -81,7 +122,7 @@ export default function DevolucionTab() {
                         >
                           <Minus size={12} />
                         </button>
-                        <span className="text-sm w-5 text-center">{cantidadSel}</span>
+                        <CantidadInput id={d.medicamentoId} cantidad={cantidadSel} maxCantidad={d.cantidad} establecerCantidad={establecerCantidad} />
                         <button
                           onClick={() => cambiarCantidad(d.medicamentoId, d.cantidad, 1)}
                           disabled={cantidadSel >= d.cantidad}

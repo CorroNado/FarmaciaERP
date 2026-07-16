@@ -26,13 +26,16 @@ public class RegistrarFacturaMIROUseCase {
     private final IFacturaMIRORepository facturaMIRORepository;
     private final IOrdenCompraRepository ordenCompraRepository;
     private final IEntradaMercanciaRepository entradaMercanciaRepository;
+    private final AsientoContableService asientoContableService;
 
     public RegistrarFacturaMIROUseCase(IFacturaMIRORepository facturaMIRORepository,
                                         IOrdenCompraRepository ordenCompraRepository,
-                                        IEntradaMercanciaRepository entradaMercanciaRepository) {
+                                        IEntradaMercanciaRepository entradaMercanciaRepository,
+                                        AsientoContableService asientoContableService) {
         this.facturaMIRORepository = facturaMIRORepository;
         this.ordenCompraRepository = ordenCompraRepository;
         this.entradaMercanciaRepository = entradaMercanciaRepository;
+        this.asientoContableService = asientoContableService;
     }
 
     @Transactional
@@ -62,6 +65,10 @@ public class RegistrarFacturaMIROUseCase {
         FacturaMIRO factura = new FacturaMIRO(numero, request.getNumeroFactura(), ordenCompra, request.getFechaEmision());
 
         FacturaMIRO guardada = facturaMIRORepository.save(factura);
+
+        // Generar asiento contable de compra (MIRO)
+        asientoContableService.generarAsientoCompra(guardada);
+
         return FacturaMIROResponseAssembler.toResponse(guardada);
     }
 

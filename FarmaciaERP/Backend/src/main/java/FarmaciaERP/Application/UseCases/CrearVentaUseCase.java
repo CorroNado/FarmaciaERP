@@ -23,13 +23,16 @@ public class CrearVentaUseCase {
     private final IVentaRepository ventaRepository;
     private final IClienteRepository clienteRepository;
     private final IMedicamentoRepository medicamentoRepository;
+    private final AsientoContableService asientoContableService;
 
     public CrearVentaUseCase(IVentaRepository ventaRepository,
                               IClienteRepository clienteRepository,
-                              IMedicamentoRepository medicamentoRepository) {
+                              IMedicamentoRepository medicamentoRepository,
+                              AsientoContableService asientoContableService) {
         this.ventaRepository = ventaRepository;
         this.clienteRepository = clienteRepository;
         this.medicamentoRepository = medicamentoRepository;
+        this.asientoContableService = asientoContableService;
     }
 
     @Transactional
@@ -62,6 +65,9 @@ public class CrearVentaUseCase {
         for (DetalleVenta detalle : detalles) {
             medicamentoRepository.save(detalle.getMedicamento());
         }
+
+        // Generar asiento contable de venta
+        asientoContableService.generarAsientoVenta(guardada);
 
         return VentaResponseAssembler.toResponse(guardada);
     }
