@@ -17,18 +17,8 @@ import DistribucionPage  from '@/presentation/pages/logistica/DistribucionPage';
 import MiroPage          from '@/presentation/pages/logistica/MiroPage';
 import ConciliacionPage  from '@/presentation/pages/logistica/ConciliacionPage';
 import PagoPage          from '@/presentation/pages/logistica/PagoPage';
-import ExcepcionFacturacionPage from '@/presentation/pages/fiAp/ExcepcionFacturacionPage';
-import DisputaComercialPage     from '@/presentation/pages/fiAp/DisputaComercialPage';
-import AjusteContablePage       from '@/presentation/pages/fiAp/AjusteContablePage';
-import LotePagoPage             from '@/presentation/pages/fiAp/LotePagoPage';
-import PropuestaPagoPage        from '@/presentation/pages/fiAp/PropuestaPagoPage';
-import DispersionBancariaPage   from '@/presentation/pages/fiAp/DispersionBancariaPage';
 import CierreCajaPage    from '@/presentation/pages/fiAr/CierreCajaPage';
-import ContabilizacionARPage from '@/presentation/pages/fiAr/ContabilizacionARPage';
-import RecetaMedicaARPage from '@/presentation/pages/fiAr/RecetaMedicaARPage';
-import DebitoARPage      from '@/presentation/pages/fiAr/DebitoARPage';
-import CobroARPage       from '@/presentation/pages/fiAr/CobroARPage';
-import CompensacionARPage from '@/presentation/pages/fiAr/CompensacionARPage';
+import { ContabilidadPage } from '@/presentation/pages/contabilidad/ContabilidadPage';
 
 function PrivateLayout({ children }) {
   return (
@@ -66,19 +56,9 @@ export default function AppRouter() {
         <Route path="/mm/pago" element={<PrivateLayout><PagoPage /></PrivateLayout>} />
         <Route path="/qm"           element={<PrivateLayout><ComingSoonPage title="QM – Calidad y Regulación Sanitaria" /></PrivateLayout>} />
         <Route path="/crm"         element={<PrivateLayout><ComingSoonPage title="CRM – Marketing y Fidelización" /></PrivateLayout>} />
-        <Route path="/fico/fi-ap/excepciones-facturacion" element={<PrivateLayout><ExcepcionFacturacionPage /></PrivateLayout>} />
-        <Route path="/fico/fi-ap/disputas-comerciales"    element={<PrivateLayout><DisputaComercialPage /></PrivateLayout>} />
-        <Route path="/fico/fi-ap/ajustes-contables"       element={<PrivateLayout><AjusteContablePage /></PrivateLayout>} />
-        <Route path="/fico/fi-ap/lotes-pago"              element={<PrivateLayout><LotePagoPage /></PrivateLayout>} />
-        <Route path="/fico/fi-ap/propuestas-pago"         element={<PrivateLayout><PropuestaPagoPage /></PrivateLayout>} />
-        <Route path="/fico/fi-ap/dispersion-bancaria"     element={<PrivateLayout><DispersionBancariaPage /></PrivateLayout>} />
         <Route path="/fico"                element={<PrivateLayout><CierreCajaPage /></PrivateLayout>} />
         <Route path="/fico/cierre-caja"    element={<PrivateLayout><CierreCajaPage /></PrivateLayout>} />
-        <Route path="/fico/contabilizacion" element={<PrivateLayout><ContabilizacionARPage /></PrivateLayout>} />
-        <Route path="/fico/recetas" element={<PrivateLayout><RecetaMedicaARPage /></PrivateLayout>} />
-        <Route path="/fico/debitos" element={<PrivateLayout><DebitoARPage /></PrivateLayout>} />
-        <Route path="/fico/cobros" element={<PrivateLayout><CobroARPage /></PrivateLayout>} />
-        <Route path="/fico/compensacion-final" element={<PrivateLayout><CompensacionARPage /></PrivateLayout>} />
+        <Route path="/fico/contabilidad"   element={<PrivateLayout><ContabilidadPage /></PrivateLayout>} />
         <Route path="/rrhh"              element={<PrivateLayout><ComingSoonPage title="SuccessFactors – Talento Humano" /></PrivateLayout>} />
         <Route path="/pmps"   element={<PrivateLayout><ComingSoonPage title="PM/PS – Infraestructura y Expansión" /></PrivateLayout>} />
         <Route path="/bi"         element={<PrivateLayout><ComingSoonPage title="Analytics Cloud – Inteligencia de Negocio" /></PrivateLayout>} />
