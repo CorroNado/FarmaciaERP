@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { AuthContext }         from './authContext';
+import { AuthContext }         from './AuthContext';
 import { tokenStorage }        from '@/core/utils/tokenStorage';
 import { useCases }            from '@/infrastructure';
 import apiClient               from '@/core/api/apiClient';

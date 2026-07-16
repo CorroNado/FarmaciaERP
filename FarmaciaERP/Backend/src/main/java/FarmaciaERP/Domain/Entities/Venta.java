@@ -89,7 +89,9 @@ public class Venta {
     }
 
     /**
-     * SD.07 Devoluciones - repone el stock de cada detalle al anular/devolver.
+     * SD.07 Devoluciones - repone el stock de todos los detalles de la venta.
+     * Usado al anular la venta completa (ver Devolucion.aplicar() para el
+     * reingreso parcial de una devolución).
      */
     public void reponerStock() {
         for (DetalleVenta detalle : detalles) {
@@ -103,9 +105,14 @@ public class Venta {
         reponerStock();
     }
 
+    /**
+     * SD.07 Devoluciones - cierra el ciclo de vida de la venta. El reingreso de
+     * stock lo gestiona la entidad Devolucion (Domain/Entities/Devolucion),
+     * porque una devolución puede ser parcial (no siempre involucra todos los
+     * detalles ni todas las cantidades de la venta).
+     */
     public void devolver() {
         cambiarEstado(EstadoVenta.DEVUELTA);
-        reponerStock();
     }
 
     private void cambiarEstado(EstadoVenta nuevoEstado) {
