@@ -10,7 +10,7 @@ export function useClienteSelector() {
   async function buscarClientePorDni(dni) {
     setError(null);
     try {
-      const encontrado = await useCases.clientes.buscarPorDni(dni);
+      const encontrado = await useCases.clientes.buscarPorDni.execute(dni);
       if (!encontrado) {
         setError('No se encontró ningún cliente con ese DNI');
         return null;
@@ -26,7 +26,7 @@ export function useClienteSelector() {
   async function registrarClienteRapido(formData) {
     setError(null);
     try {
-      const nuevo = await useCases.clientes.crearRapido(formData);
+      const nuevo = await useCases.clientes.crearRapido.execute(formData);
       setCliente(nuevo);
       return nuevo;
     } catch (err) {
