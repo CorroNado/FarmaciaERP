@@ -17,18 +17,7 @@ import DistribucionPage  from '@/presentation/pages/logistica/DistribucionPage';
 import MiroPage          from '@/presentation/pages/logistica/MiroPage';
 import ConciliacionPage  from '@/presentation/pages/logistica/ConciliacionPage';
 import PagoPage          from '@/presentation/pages/logistica/PagoPage';
-import ExcepcionFacturacionPage from '@/presentation/pages/fiAp/ExcepcionFacturacionPage';
-import DisputaComercialPage     from '@/presentation/pages/fiAp/DisputaComercialPage';
-import AjusteContablePage       from '@/presentation/pages/fiAp/AjusteContablePage';
-import LotePagoPage             from '@/presentation/pages/fiAp/LotePagoPage';
-import PropuestaPagoPage        from '@/presentation/pages/fiAp/PropuestaPagoPage';
-import DispersionBancariaPage   from '@/presentation/pages/fiAp/DispersionBancariaPage';
 import CierreCajaPage    from '@/presentation/pages/fiAr/CierreCajaPage';
-import ContabilizacionARPage from '@/presentation/pages/fiAr/ContabilizacionARPage';
-import RecetaMedicaARPage from '@/presentation/pages/fiAr/RecetaMedicaARPage';
-import DebitoARPage      from '@/presentation/pages/fiAr/DebitoARPage';
-import CobroARPage       from '@/presentation/pages/fiAr/CobroARPage';
-import CompensacionARPage from '@/presentation/pages/fiAr/CompensacionARPage';
 import { ContabilidadPage } from '@/presentation/pages/contabilidad/ContabilidadPage';
 
 function PrivateLayout({ children }) {
@@ -69,6 +58,7 @@ export default function AppRouter() {
         <Route path="/crm"         element={<PrivateLayout><ComingSoonPage title="CRM – Marketing y Fidelización" /></PrivateLayout>} />
         <Route path="/fico"                element={<PrivateLayout><CierreCajaPage /></PrivateLayout>} />
         <Route path="/fico/cierre-caja"    element={<PrivateLayout><CierreCajaPage /></PrivateLayout>} />
+        <Route path="/fico/contabilidad"   element={<PrivateLayout><ContabilidadPage /></PrivateLayout>} />
         <Route path="/rrhh"              element={<PrivateLayout><ComingSoonPage title="SuccessFactors – Talento Humano" /></PrivateLayout>} />
         <Route path="/pmps"   element={<PrivateLayout><ComingSoonPage title="PM/PS – Infraestructura y Expansión" /></PrivateLayout>} />
         <Route path="/bi"         element={<PrivateLayout><ComingSoonPage title="Analytics Cloud – Inteligencia de Negocio" /></PrivateLayout>} />
