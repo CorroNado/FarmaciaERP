@@ -60,6 +60,7 @@ function LaneNote({ children }) {
 // TAB: Cierre de caja (flujo de la Fase 01)
 // ─────────────────────────────────────────────────────────────────────────
 function CierreCajaFlowTab() {
+  const navigate = useNavigate();
   const {
     cierre, procesando, error,
     abrirCierre, registrarArqueo, registrarJustificacion,
@@ -257,10 +258,9 @@ function CierreCajaFlowTab() {
                     <button onClick={handleNuevoCierre} className="text-xs font-medium text-emerald-700 underline hover:no-underline">
                       Registrar otro cierre de caja
                     </button>
-                    <div className="flex flex-col items-end gap-1">
-                      <Button disabled>Continuar a Fase 02 — Contabilización →</Button>
-                      <span className="text-[11px] text-slate-400">La pantalla de la Fase 02 estará disponible próximamente</span>
-                    </div>
+                    <Button onClick={() => navigate(`/fico/contabilizacion?cierreCajaId=${cierre.id}`)}>
+                      Continuar a Fase 02 — Contabilización →
+                    </Button>
                   </div>
                 </>
               )}
