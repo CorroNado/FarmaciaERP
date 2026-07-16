@@ -18,6 +18,7 @@ import MiroPage          from '@/presentation/pages/logistica/MiroPage';
 import ConciliacionPage  from '@/presentation/pages/logistica/ConciliacionPage';
 import PagoPage          from '@/presentation/pages/logistica/PagoPage';
 import CierreCajaPage    from '@/presentation/pages/fiAr/CierreCajaPage';
+import { ContabilidadPage } from '@/presentation/pages/contabilidad/ContabilidadPage';
 
 function PrivateLayout({ children }) {
   return (
@@ -57,6 +58,7 @@ export default function AppRouter() {
         <Route path="/crm"         element={<PrivateLayout><ComingSoonPage title="CRM – Marketing y Fidelización" /></PrivateLayout>} />
         <Route path="/fico"                element={<PrivateLayout><CierreCajaPage /></PrivateLayout>} />
         <Route path="/fico/cierre-caja"    element={<PrivateLayout><CierreCajaPage /></PrivateLayout>} />
+        <Route path="/fico/contabilidad"   element={<PrivateLayout><ContabilidadPage /></PrivateLayout>} />
         <Route path="/rrhh"              element={<PrivateLayout><ComingSoonPage title="SuccessFactors – Talento Humano" /></PrivateLayout>} />
         <Route path="/pmps"   element={<PrivateLayout><ComingSoonPage title="PM/PS – Infraestructura y Expansión" /></PrivateLayout>} />
         <Route path="/bi"         element={<PrivateLayout><ComingSoonPage title="Analytics Cloud – Inteligencia de Negocio" /></PrivateLayout>} />
