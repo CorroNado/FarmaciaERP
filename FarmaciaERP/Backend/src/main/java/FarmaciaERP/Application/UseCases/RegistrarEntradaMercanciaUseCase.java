@@ -14,21 +14,24 @@ import java.time.Year;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * LOG.05 Fase 04 - Entrada de mercancía y registro (MIGO). RN-F04-001 y
+ * LOG.05 Fase 04 - Entrada de mercancÃƒÂ­a y registro (MIGO). RN-F04-001 y
  * RN-F04-003: la cantidad recibida se contrasta contra la OC (tolerancia
  * 2%); RN-F04-013: lote y vencimiento obligatorios; RN-F04-014: cadena de
- * frío (2–8 °C).
+ * frÃƒÂ­o (2Ã¢â‚¬â€œ8 Ã‚Â°C).
  */
 @Service
 public class RegistrarEntradaMercanciaUseCase {
 
     private final IEntradaMercanciaRepository entradaMercanciaRepository;
     private final IOrdenCompraRepository ordenCompraRepository;
+    private final GenerarAsientoCompraUseCase generarAsientoCompraUseCase;
 
     public RegistrarEntradaMercanciaUseCase(IEntradaMercanciaRepository entradaMercanciaRepository,
-                                             IOrdenCompraRepository ordenCompraRepository) {
+                                             IOrdenCompraRepository ordenCompraRepository,
+                                             GenerarAsientoCompraUseCase generarAsientoCompraUseCase) {
         this.entradaMercanciaRepository = entradaMercanciaRepository;
         this.ordenCompraRepository = ordenCompraRepository;
+        this.generarAsientoCompraUseCase = generarAsientoCompraUseCase;
     }
 
     @Transactional
@@ -38,7 +41,7 @@ public class RegistrarEntradaMercanciaUseCase {
 
         if (entradaMercanciaRepository.existsByOrdenCompraId(ordenCompra.getId())) {
             throw new BadRequestException(
-                    "Ya existe una entrada de mercancía registrada para la Orden de Compra " + ordenCompra.getNumero());
+                    "Ya existe una entrada de mercancÃƒÂ­a registrada para la Orden de Compra " + ordenCompra.getNumero());
         }
 
         String numero = generarNumeroMIGO();
@@ -53,6 +56,10 @@ public class RegistrarEntradaMercanciaUseCase {
         );
 
         EntradaMercancia guardada = entradaMercanciaRepository.save(entrada);
+
+        // Generar asiento contable de la recepcion (Debe Mercaderias / Haber Mercaderia por Facturar)
+        generarAsientoCompraUseCase.generarAsientoRecepcion(guardada);
+
         return EntradaMercanciaResponseAssembler.toResponse(guardada);
     }
 
