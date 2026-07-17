@@ -15,9 +15,47 @@ const ESTADO_BADGE = {
   VENCIDA:   { label: 'Vencida',   className: 'bg-slate-100 text-slate-500 border border-slate-200', icon: Clock },
 };
 
+function CantidadInput({ id, cantidad, establecerCantidad }) {
+  const [val, setVal] = useState(cantidad.toString());
+
+  useEffect(() => {
+    setVal(cantidad.toString());
+  }, [cantidad]);
+
+  const handleChange = (e) => {
+    const rawValue = e.target.value;
+    if (rawValue === '' || /^\d+$/.test(rawValue)) {
+      setVal(rawValue);
+      const parsed = parseInt(rawValue, 10);
+      if (!isNaN(parsed) && parsed > 0) {
+        establecerCantidad(id, parsed);
+      }
+    }
+  };
+
+  const handleBlur = () => {
+    const parsed = parseInt(val, 10);
+    if (isNaN(parsed) || parsed <= 0) {
+      setVal('1');
+      establecerCantidad(id, 1);
+    }
+  };
+
+  return (
+    <input
+      type="text"
+      value={val}
+      onChange={handleChange}
+      onBlur={handleBlur}
+      onKeyDown={(e) => { if (e.key === 'Enter') e.target.blur(); }}
+      className="w-10 text-center text-sm font-semibold text-slate-800 border border-slate-200 rounded-md py-0.5 outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+    />
+  );
+}
+
 export default function CotizacionTab({ medicamentos, loadingCatalogo, cargarCatalogo }) {
   const {
-    items, agregarItem, cambiarCantidad, quitarItem, totalCotizado,
+    items, agregarItem, cambiarCantidad, establecerCantidad, quitarItem, totalCotizado,
     vigenciaDias, setVigenciaDias,
     historial, loadingHistorial, cargarHistorial,
     enviando, enviarCotizacion,
@@ -185,7 +223,7 @@ export default function CotizacionTab({ medicamentos, loadingCatalogo, cargarCat
                       <button onClick={() => cambiarCantidad(i.id, -1)} className="w-6 h-6 rounded-md border border-slate-200 flex items-center justify-center hover:bg-slate-50">
                         <Minus size={12} />
                       </button>
-                      <span className="text-sm w-5 text-center">{i.cantidad}</span>
+                      <CantidadInput id={i.id} cantidad={i.cantidad} establecerCantidad={establecerCantidad} />
                       <button onClick={() => cambiarCantidad(i.id, 1)} className="w-6 h-6 rounded-md border border-slate-200 flex items-center justify-center hover:bg-slate-50">
                         <Plus size={12} />
                       </button>

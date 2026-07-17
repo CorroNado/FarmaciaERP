@@ -11,6 +11,7 @@ import FarmaciaERP.Domain.Exceptions.BadRequestException;
 import FarmaciaERP.Domain.Repositories.IClienteRepository;
 import FarmaciaERP.Domain.Repositories.IMedicamentoRepository;
 import FarmaciaERP.Domain.Repositories.IVentaRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,19 +19,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CrearVentaUseCase {
 
     private final IVentaRepository ventaRepository;
     private final IClienteRepository clienteRepository;
     private final IMedicamentoRepository medicamentoRepository;
+    private final GenerarAsientoVentaUseCase generarAsientoVentaUseCase;
 
-    public CrearVentaUseCase(IVentaRepository ventaRepository,
-                              IClienteRepository clienteRepository,
-                              IMedicamentoRepository medicamentoRepository) {
-        this.ventaRepository = ventaRepository;
-        this.clienteRepository = clienteRepository;
-        this.medicamentoRepository = medicamentoRepository;
-    }
 
     @Transactional
     public VentaResponse ejecutar(CrearVentaRequest request) {
@@ -58,11 +54,13 @@ public class CrearVentaUseCase {
 
         Venta guardada = ventaRepository.save(venta);
 
+        // Generar asiento contable de la venta (Debe Clientes / Haber Ventas + IGV)
+        generarAsientoVentaUseCase.generarAsientoVenta(guardada);
+
         // SD.05 - Persistir el nuevo stock de cada medicamento afectado
         for (DetalleVenta detalle : detalles) {
             medicamentoRepository.save(detalle.getMedicamento());
         }
-
         return VentaResponseAssembler.toResponse(guardada);
     }
 }

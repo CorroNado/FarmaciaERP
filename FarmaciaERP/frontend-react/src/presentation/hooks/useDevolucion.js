@@ -61,6 +61,15 @@ export function useDevolucion() {
     });
   }
 
+  function establecerCantidad(medicamentoId, cantidadVendida, valor) {
+    setCantidades((prev) => {
+      let val = valor;
+      if (val < 0) val = 0;
+      if (val > cantidadVendida) val = cantidadVendida;
+      return { ...prev, [medicamentoId]: val };
+    });
+  }
+
   const items = ventaSeleccionada
     ? (ventaSeleccionada.detalles ?? [])
         .map((d) => ({
@@ -111,7 +120,7 @@ export function useDevolucion() {
     ventas, loadingVentas, cargarVentas,
     historial, loadingHistorial, cargarHistorial,
     ventaSeleccionada, seleccionarVenta,
-    cantidades, cambiarCantidad,
+    cantidades, cambiarCantidad, establecerCantidad,
     items, montoEstimado,
     motivo, setMotivo,
     accion, setAccion,
