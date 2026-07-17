@@ -37,6 +37,38 @@ import { deleteProveedorUseCase } from '@/domain/usecases/proveedores/deleteProv
 import { getConveniosUseCase }    from '@/domain/usecases/convenios/getConveniosUseCase';
 import { createConvenioUseCase }  from '@/domain/usecases/convenios/createConvenioUseCase';
 
+// RRHH.01 — Contratación: maestro de colaboradores y bajas inteligentes
+import { empleadoRepository } from '@/infrastructure/repositories/empleadoRepository';
+import { getEmpleadosUseCase } from '@/domain/usecases/empleados/getEmpleadosUseCase';
+import { createEmpleadoUseCase } from '@/domain/usecases/empleados/createEmpleadoUseCase';
+import { updateEmpleadoUseCase } from '@/domain/usecases/empleados/updateEmpleadoUseCase';
+import { deleteEmpleadoUseCase } from '@/domain/usecases/empleados/deleteEmpleadoUseCase';
+import { reactivarEmpleadoUseCase } from '@/domain/usecases/empleados/reactivarEmpleadoUseCase';
+import { darBajaSinTurnosUseCase } from '@/domain/usecases/empleados/darBajaSinTurnosUseCase';
+import { darBajaInmediataUseCase } from '@/domain/usecases/empleados/darBajaInmediataUseCase';
+import { programarBajaUseCase } from '@/domain/usecases/empleados/programarBajaUseCase';
+import { getAuditoriaEmpleadosUseCase } from '@/domain/usecases/empleados/getAuditoriaEmpleadosUseCase';
+
+// RRHH.02 — Control de Asistencia: programación, marcación y auditoría de turnos
+import { asistenciaRepository } from '@/infrastructure/repositories/asistenciaRepository';
+import { getAsistenciasUseCase } from '@/domain/usecases/asistencias/getAsistenciasUseCase';
+import { programarAsistenciaUseCase } from '@/domain/usecases/asistencias/programarAsistenciaUseCase';
+import { marcarEntradaUseCase } from '@/domain/usecases/asistencias/marcarEntradaUseCase';
+import { marcarSalidaUseCase } from '@/domain/usecases/asistencias/marcarSalidaUseCase';
+import { justificarInasistenciaUseCase } from '@/domain/usecases/asistencias/justificarInasistenciaUseCase';
+import { editarAsistenciaUseCase } from '@/domain/usecases/asistencias/editarAsistenciaUseCase';
+import { eliminarAsistenciaUseCase } from '@/domain/usecases/asistencias/eliminarAsistenciaUseCase';
+import { getAuditoriaAsistenciaUseCase } from '@/domain/usecases/asistencias/getAuditoriaAsistenciaUseCase';
+
+// RRHH.03 — Nómina / Planilla: cálculo mensual del sueldo neto por colaborador
+import { planillaRepository } from '@/infrastructure/repositories/planillaRepository';
+import { calcularPlanillaUseCase } from '@/domain/usecases/planilla/calcularPlanillaUseCase';
+import { guardarPlanillaUseCase } from '@/domain/usecases/planilla/guardarPlanillaUseCase';
+import { getHistorialPlanillasUseCase } from '@/domain/usecases/planilla/getHistorialPlanillasUseCase';
+import { getPlanillaByIdUseCase } from '@/domain/usecases/planilla/getPlanillaByIdUseCase';
+import { getPlanillaByMesAnioUseCase } from '@/domain/usecases/planilla/getPlanillaByMesAnioUseCase';
+import { eliminarPlanillaUseCase } from '@/domain/usecases/planilla/eliminarPlanillaUseCase';
+
 import { solPedRepository } from '@/infrastructure/repositories/solPedRepository';
 import { calcularMRPUseCase } from '@/domain/usecases/solped/calcularMRPUseCase';
 import { getSolPedsUseCase }  from '@/domain/usecases/solped/getSolPedsUseCase';
@@ -269,6 +301,35 @@ export const useCases = {
   devoluciones: {
     crear:  crearDevolucionUseCase(devolucionRepository),
     getAll: getDevolucionesUseCase(devolucionRepository),
+  },
+  empleados: {
+    getAll: getEmpleadosUseCase(empleadoRepository),
+    create: createEmpleadoUseCase(empleadoRepository),
+    update: updateEmpleadoUseCase(empleadoRepository),
+    delete: deleteEmpleadoUseCase(empleadoRepository),
+    reactivar: reactivarEmpleadoUseCase(empleadoRepository),
+    bajaSinTurnos: darBajaSinTurnosUseCase(empleadoRepository),
+    bajaInmediata: darBajaInmediataUseCase(empleadoRepository),
+    bajaProgramada: programarBajaUseCase(empleadoRepository),
+    auditoria: getAuditoriaEmpleadosUseCase(empleadoRepository),
+  },
+  asistencias: {
+    getAll: getAsistenciasUseCase(asistenciaRepository),
+    programar: programarAsistenciaUseCase(asistenciaRepository),
+    marcarEntrada: marcarEntradaUseCase(asistenciaRepository),
+    marcarSalida: marcarSalidaUseCase(asistenciaRepository),
+    justificar: justificarInasistenciaUseCase(asistenciaRepository),
+    editar: editarAsistenciaUseCase(asistenciaRepository),
+    eliminar: eliminarAsistenciaUseCase(asistenciaRepository),
+    auditoria: getAuditoriaAsistenciaUseCase(asistenciaRepository),
+  },
+  planilla: {
+    calcular: calcularPlanillaUseCase(planillaRepository),
+    guardar: guardarPlanillaUseCase(planillaRepository),
+    getHistorial: getHistorialPlanillasUseCase(planillaRepository),
+    getById: getPlanillaByIdUseCase(planillaRepository),
+    getByMesAnio: getPlanillaByMesAnioUseCase(planillaRepository),
+    eliminar: eliminarPlanillaUseCase(planillaRepository),
   },
   proveedores: {
     getAll: getProveedoresUseCase(proveedorRepository),

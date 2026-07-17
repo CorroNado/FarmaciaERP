@@ -29,6 +29,9 @@ import RecetaMedicaARPage from '@/presentation/pages/fiAr/RecetaMedicaARPage';
 import DebitoARPage      from '@/presentation/pages/fiAr/DebitoARPage';
 import CobroARPage       from '@/presentation/pages/fiAr/CobroARPage';
 import CompensacionARPage from '@/presentation/pages/fiAr/CompensacionARPage';
+import ContratacionPage   from '@/presentation/pages/rrhh/ContratacionPage';
+import AsistenciaPage     from '@/presentation/pages/rrhh/AsistenciaPage';
+import PlanillaPage       from '@/presentation/pages/rrhh/PlanillaPage';
 
 function PrivateLayout({ children }) {
   return (
@@ -79,7 +82,10 @@ export default function AppRouter() {
         <Route path="/fico/debitos" element={<PrivateLayout><DebitoARPage /></PrivateLayout>} />
         <Route path="/fico/cobros" element={<PrivateLayout><CobroARPage /></PrivateLayout>} />
         <Route path="/fico/compensacion-final" element={<PrivateLayout><CompensacionARPage /></PrivateLayout>} />
-        <Route path="/rrhh"              element={<PrivateLayout><ComingSoonPage title="SuccessFactors – Talento Humano" /></PrivateLayout>} />
+        <Route path="/rrhh"              element={<PrivateLayout><ContratacionPage /></PrivateLayout>} />
+        <Route path="/rrhh/contratacion" element={<PrivateLayout><ContratacionPage /></PrivateLayout>} />
+        <Route path="/rrhh/asistencia"   element={<PrivateLayout><AsistenciaPage /></PrivateLayout>} />
+        <Route path="/rrhh/planilla"     element={<PrivateLayout><PlanillaPage /></PrivateLayout>} />
         <Route path="/pmps"   element={<PrivateLayout><ComingSoonPage title="PM/PS – Infraestructura y Expansión" /></PrivateLayout>} />
         <Route path="/bi"         element={<PrivateLayout><ComingSoonPage title="Analytics Cloud – Inteligencia de Negocio" /></PrivateLayout>} />
 

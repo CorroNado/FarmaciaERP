@@ -182,6 +182,41 @@ export const ENDPOINTS = {
       cicloFinalizado: '/fi-ar/compensacion-final/ciclo-finalizado',
     },
   },
+  // RRHH.01 — Contratación: maestro de colaboradores y bajas inteligentes
+  rrhh: {
+    empleados: {
+      list: '/rrhh/empleados',
+      create: '/rrhh/empleados',
+      getById: (id) => `/rrhh/empleados/${id}`,
+      update: (id) => `/rrhh/empleados/${id}`,
+      delete: (id) => `/rrhh/empleados/${id}`,
+      reactivar: (id) => `/rrhh/empleados/${id}/reactivar`,
+      bajaSinTurnos: (id) => `/rrhh/empleados/${id}/baja-sin-turnos`,
+      bajaInmediata: (id) => `/rrhh/empleados/${id}/baja-inmediata`,
+      bajaProgramada: (id) => `/rrhh/empleados/${id}/baja-programada`,
+      ejecutarBajasProgramadas: '/rrhh/empleados/bajas-programadas/ejecutar',
+      auditoria: '/rrhh/empleados/auditoria',
+    },
+    asistencias: {
+      list: '/rrhh/asistencias',
+      programar: '/rrhh/asistencias',
+      getById: (id) => `/rrhh/asistencias/${id}`,
+      update: (id) => `/rrhh/asistencias/${id}`,
+      delete: (id) => `/rrhh/asistencias/${id}`,
+      entrada: (id) => `/rrhh/asistencias/${id}/entrada`,
+      salida: (id) => `/rrhh/asistencias/${id}/salida`,
+      justificar: (id) => `/rrhh/asistencias/${id}/justificar`,
+      auditoria: '/rrhh/asistencias/auditoria',
+    },
+    planillas: {
+      calcular: '/rrhh/planillas/calcular',
+      guardar: '/rrhh/planillas',
+      list: '/rrhh/planillas',
+      getById: (id) => `/rrhh/planillas/${id}`,
+      buscar: '/rrhh/planillas/buscar',
+      delete: (id) => `/rrhh/planillas/${id}`,
+    },
+  },
   logistica: {
     proveedores: {
       list: '/logistica/proveedores',
