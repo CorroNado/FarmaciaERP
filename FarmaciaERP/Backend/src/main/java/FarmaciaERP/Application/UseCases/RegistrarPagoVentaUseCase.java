@@ -4,18 +4,13 @@ import FarmaciaERP.Application.DTOs.Response.VentaResponse;
 import FarmaciaERP.Domain.Entities.Venta;
 import FarmaciaERP.Domain.Exceptions.BadRequestException;
 import FarmaciaERP.Domain.Repositories.IVentaRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class RegistrarPagoVentaUseCase {
-
     private final IVentaRepository ventaRepository;
-    private final AsientoContableService asientoContableService;
-
-    public RegistrarPagoVentaUseCase(IVentaRepository ventaRepository, AsientoContableService asientoContableService) {
-        this.ventaRepository = ventaRepository;
-        this.asientoContableService = asientoContableService;
-    }
 
     public VentaResponse ejecutar(Long id) {
         Venta venta = ventaRepository.findById(id)
@@ -23,9 +18,6 @@ public class RegistrarPagoVentaUseCase {
 
         venta.registrarPago();
         Venta actualizada = ventaRepository.save(venta);
-
-        // Generar asiento contable por el cobro/pago de la venta
-        asientoContableService.generarAsientoPagoVenta(actualizada);
 
         return VentaResponseAssembler.toResponse(actualizada);
     }
