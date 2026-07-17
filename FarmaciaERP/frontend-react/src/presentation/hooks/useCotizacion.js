@@ -50,6 +50,11 @@ export function useCotizacion() {
       .filter((i) => i.cantidad > 0));
   }
 
+  function establecerCantidad(id, valor) {
+    setItems((prev) => prev
+      .map((i) => (i.id === id ? { ...i, cantidad: Math.max(1, valor) } : i)));
+  }
+
   function quitarItem(id) {
     setItems((prev) => prev.filter((i) => i.id !== id));
   }
@@ -110,6 +115,7 @@ export function useCotizacion() {
     items,
     agregarItem,
     cambiarCantidad,
+    establecerCantidad,
     quitarItem,
     totalCotizado,
 
