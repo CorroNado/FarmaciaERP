@@ -283,7 +283,7 @@ export default function MiroPage() {
 
   return (
     <div>
-      <LogisticaRail activeStep={6} maxReached={6} onNavigate={handleRailNavigate} />
+      <LogisticaRail activeStep={6} maxReached={7} onNavigate={handleRailNavigate} />
 
       <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
         <StageHeader

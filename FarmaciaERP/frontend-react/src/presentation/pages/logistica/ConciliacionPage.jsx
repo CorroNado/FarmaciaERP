@@ -270,7 +270,7 @@ export default function ConciliacionPage() {
 
   return (
     <div>
-      <LogisticaRail activeStep={7} maxReached={7} onNavigate={handleRailNavigate} />
+      <LogisticaRail activeStep={7} maxReached={8} onNavigate={handleRailNavigate} />
 
       <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
         <StageHeader
