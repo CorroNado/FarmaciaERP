@@ -11,6 +11,7 @@ import FarmaciaERP.Domain.Exceptions.BadRequestException;
 import FarmaciaERP.Domain.Repositories.IClienteRepository;
 import FarmaciaERP.Domain.Repositories.IMedicamentoRepository;
 import FarmaciaERP.Domain.Repositories.IVentaRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,22 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CrearVentaUseCase {
 
     private final IVentaRepository ventaRepository;
     private final IClienteRepository clienteRepository;
     private final IMedicamentoRepository medicamentoRepository;
-    private final AsientoContableService asientoContableService;
 
-    public CrearVentaUseCase(IVentaRepository ventaRepository,
-                              IClienteRepository clienteRepository,
-                              IMedicamentoRepository medicamentoRepository,
-                              AsientoContableService asientoContableService) {
-        this.ventaRepository = ventaRepository;
-        this.clienteRepository = clienteRepository;
-        this.medicamentoRepository = medicamentoRepository;
-        this.asientoContableService = asientoContableService;
-    }
 
     @Transactional
     public VentaResponse ejecutar(CrearVentaRequest request) {
@@ -65,10 +57,6 @@ public class CrearVentaUseCase {
         for (DetalleVenta detalle : detalles) {
             medicamentoRepository.save(detalle.getMedicamento());
         }
-
-        // Generar asiento contable de venta
-        asientoContableService.generarAsientoVenta(guardada);
-
         return VentaResponseAssembler.toResponse(guardada);
     }
 }
