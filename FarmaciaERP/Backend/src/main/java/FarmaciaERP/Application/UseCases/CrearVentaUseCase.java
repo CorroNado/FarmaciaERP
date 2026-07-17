@@ -25,6 +25,7 @@ public class CrearVentaUseCase {
     private final IVentaRepository ventaRepository;
     private final IClienteRepository clienteRepository;
     private final IMedicamentoRepository medicamentoRepository;
+    private final GenerarAsientoVentaUseCase generarAsientoVentaUseCase;
 
 
     @Transactional
@@ -52,6 +53,9 @@ public class CrearVentaUseCase {
         venta.confirmarStock();
 
         Venta guardada = ventaRepository.save(venta);
+
+        // Generar asiento contable de la venta (Debe Clientes / Haber Ventas + IGV)
+        generarAsientoVentaUseCase.generarAsientoVenta(guardada);
 
         // SD.05 - Persistir el nuevo stock de cada medicamento afectado
         for (DetalleVenta detalle : detalles) {

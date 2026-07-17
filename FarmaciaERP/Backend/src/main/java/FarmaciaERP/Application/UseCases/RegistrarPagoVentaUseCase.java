@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class RegistrarPagoVentaUseCase {
     private final IVentaRepository ventaRepository;
+    private final GenerarAsientoVentaUseCase generarAsientoVentaUseCase;
 
     public VentaResponse ejecutar(Long id) {
         Venta venta = ventaRepository.findById(id)
@@ -18,6 +19,9 @@ public class RegistrarPagoVentaUseCase {
 
         venta.registrarPago();
         Venta actualizada = ventaRepository.save(venta);
+
+        // Generar asiento contable del cobro (Debe Caja / Haber Clientes)
+        generarAsientoVentaUseCase.generarAsientoCobro(actualizada);
 
         return VentaResponseAssembler.toResponse(actualizada);
     }
