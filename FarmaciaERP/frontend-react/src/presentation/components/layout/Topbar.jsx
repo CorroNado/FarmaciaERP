@@ -1,5 +1,5 @@
 import { NavLink }           from 'react-router-dom';
-import { useAuthContext }    from '@/presentation/hooks/useAuthContext';
+import { useAuthContext }    from '@/presentation/hooks/Seguridad/useAuthContext';
 import { getModulesForRole } from '@/core/utils/roles';
 import { ShoppingCart , TriangleAlert, Package, 
   Users, DollarSign, Megaphone,ChartLine, Settings, Lock, House}        from "lucide-react";

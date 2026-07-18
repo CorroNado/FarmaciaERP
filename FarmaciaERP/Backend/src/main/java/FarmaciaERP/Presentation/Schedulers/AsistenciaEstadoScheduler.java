@@ -1,6 +1,6 @@
 package FarmaciaERP.Presentation.Schedulers;
 
-import FarmaciaERP.Application.UseCases.ActualizarEstadosDinamicosUseCase;
+import FarmaciaERP.Application.UseCases.RRHH.ActualizarEstadosDinamicosUseCase;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 

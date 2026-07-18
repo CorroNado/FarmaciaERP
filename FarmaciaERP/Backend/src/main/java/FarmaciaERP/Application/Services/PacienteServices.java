@@ -1,9 +1,9 @@
 package FarmaciaERP.Application.Services;
 
-import FarmaciaERP.Application.UseCases.ActualizarClienteUseCase;
-import FarmaciaERP.Application.UseCases.BuscarClienteUseCase;
-import FarmaciaERP.Application.UseCases.CrearClienteUseCase;
-import FarmaciaERP.Application.UseCases.EliminarClienteUseCase;
+import FarmaciaERP.Application.UseCases.Ventas.ActualizarClienteUseCase;
+import FarmaciaERP.Application.UseCases.Ventas.BuscarClienteUseCase;
+import FarmaciaERP.Application.UseCases.Ventas.CrearClienteUseCase;
+import FarmaciaERP.Application.UseCases.Ventas.EliminarClienteUseCase;
 import org.springframework.stereotype.Service;
 
 @Service

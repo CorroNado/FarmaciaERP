@@ -7,8 +7,8 @@ import Input    from '@/presentation/components/ui/Input';
 import Select   from '@/presentation/components/ui/Select';
 import Modal    from '@/presentation/components/ui/Modal';
 import LogisticaRail, { BLOQUE_A_FASES } from '@/presentation/components/logistica/LogisticaRail';
-import { useProveedores } from '@/presentation/hooks/useProveedores';
-import { useConvenios }   from '@/presentation/hooks/useConvenios';
+import { useProveedores } from '@/presentation/hooks/Logistica/useProveedores';
+import { useConvenios }   from '@/presentation/hooks/Ventas/useConvenios';
 import { useCases }       from '@/infrastructure';
 
 const ESTADO_OPTIONS = [

@@ -8,10 +8,10 @@ import Select   from '@/presentation/components/ui/Select';
 import Modal    from '@/presentation/components/ui/Modal';
 import LogisticaRail, { BLOQUE_A_FASES } from '@/presentation/components/logistica/LogisticaRail';
 import StageHeader from '@/presentation/components/logistica/StageHeader';
-import { usePago } from '@/presentation/hooks/usePago';
-import { useFacturaMiro } from '@/presentation/hooks/useFacturaMiro';
-import { useConciliacion } from '@/presentation/hooks/useConciliacion';
-import { ESTADO_PAGO, ESTADO_PAGO_LABEL } from '@/domain/models/Pago';
+import { usePago } from '@/presentation/hooks/FI_AP/usePago';
+import { useFacturaMiro } from '@/presentation/hooks/Logistica/useFacturaMiro';
+import { useConciliacion } from '@/presentation/hooks/Contabilidad/useConciliacion';
+import { ESTADO_PAGO, ESTADO_PAGO_LABEL } from '@/domain/models/FI_AP/Pago';
 
 const ESTADO_BADGE = {
   [ESTADO_PAGO.EJECUTADO]: 'ACTIVO',
