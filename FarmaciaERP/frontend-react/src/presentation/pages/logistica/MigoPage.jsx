@@ -8,9 +8,9 @@ import Select   from '@/presentation/components/ui/Select';
 import Modal    from '@/presentation/components/ui/Modal';
 import LogisticaRail, { BLOQUE_A_FASES } from '@/presentation/components/logistica/LogisticaRail';
 import StageHeader from '@/presentation/components/logistica/StageHeader';
-import { useMigo }        from '@/presentation/hooks/useMigo';
-import { useOrdenCompra } from '@/presentation/hooks/useOrdenCompra';
-import { EntradaMercancia, ESTADO_MIGO } from '@/domain/models/EntradaMercancia';
+import { useMigo }        from '@/presentation/hooks/Logistica/useMigo';
+import { useOrdenCompra } from '@/presentation/hooks/Logistica/useOrdenCompra';
+import { EntradaMercancia, ESTADO_MIGO } from '@/domain/models/Logistica/EntradaMercancia';
 
 const ESTADO_BADGE = {
   [ESTADO_MIGO.REGISTRADA]: 'ADMINISTRADOR',

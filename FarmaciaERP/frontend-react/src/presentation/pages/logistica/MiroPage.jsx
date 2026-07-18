@@ -8,10 +8,10 @@ import Select   from '@/presentation/components/ui/Select';
 import Modal    from '@/presentation/components/ui/Modal';
 import LogisticaRail, { BLOQUE_A_FASES } from '@/presentation/components/logistica/LogisticaRail';
 import StageHeader from '@/presentation/components/logistica/StageHeader';
-import { useFacturaMiro } from '@/presentation/hooks/useFacturaMiro';
-import { useOrdenCompra } from '@/presentation/hooks/useOrdenCompra';
-import { useMigo } from '@/presentation/hooks/useMigo';
-import { FacturaMIRO, ESTADO_MIRO } from '@/domain/models/FacturaMIRO';
+import { useFacturaMiro } from '@/presentation/hooks/Logistica/useFacturaMiro';
+import { useOrdenCompra } from '@/presentation/hooks/Logistica/useOrdenCompra';
+import { useMigo } from '@/presentation/hooks/Logistica/useMigo';
+import { FacturaMIRO, ESTADO_MIRO } from '@/domain/models/Logistica/FacturaMIRO';
 
 const ESTADO_BADGE = {
   [ESTADO_MIRO.REGISTRADA]: 'ADMINISTRADOR',

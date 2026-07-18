@@ -8,8 +8,8 @@ import Select   from '@/presentation/components/ui/Select';
 import Modal    from '@/presentation/components/ui/Modal';
 import LogisticaRail, { BLOQUE_A_FASES } from '@/presentation/components/logistica/LogisticaRail';
 import StageHeader from '@/presentation/components/logistica/StageHeader';
-import { useOrdenCompra } from '@/presentation/hooks/useOrdenCompra';
-import { useSolPed }      from '@/presentation/hooks/useSolPed';
+import { useOrdenCompra } from '@/presentation/hooks/Logistica/useOrdenCompra';
+import { useSolPed }      from '@/presentation/hooks/Logistica/useSolPed';
 
 const ESTADO_BADGE = {
   BORRADOR: 'ADMINISTRADOR',

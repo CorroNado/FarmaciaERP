@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useContabilidad } from '../../hooks/useContabilidad';
+import { useContabilidad } from '../../hooks/Contabilidad/useContabilidad';
 import { PeriodoSelector } from '../../components/ui/PeriodoSelector';
 
 export const EstadoResultadosPage = () => {

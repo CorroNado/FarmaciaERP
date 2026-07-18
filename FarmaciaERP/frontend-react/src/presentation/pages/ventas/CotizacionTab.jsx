@@ -4,9 +4,9 @@ import Button from '@/presentation/components/ui/Button';
 import Select from '@/presentation/components/ui/Select';
 import ClienteSelector from '@/presentation/components/ventas/ClienteSelector';
 import NuevoClienteModal from '@/presentation/components/ventas/NuevoClienteModal';
-import { useCotizacion } from '@/presentation/hooks/useCotizacion';
-import { useClienteSelector } from '@/presentation/hooks/useClienteSelector';
-import { VIGENCIAS_COTIZACION, MOTIVOS_RECHAZO_COTIZACION } from '@/domain/models/Cotizacion';
+import { useCotizacion } from '@/presentation/hooks/Ventas/useCotizacion';
+import { useClienteSelector } from '@/presentation/hooks/Ventas/useClienteSelector';
+import { VIGENCIAS_COTIZACION, MOTIVOS_RECHAZO_COTIZACION } from '@/domain/models/Ventas/Cotizacion';
 
 const ESTADO_BADGE = {
   PENDIENTE: { label: 'Pendiente', className: 'bg-amber-50 text-amber-700 border border-amber-200', icon: Clock },

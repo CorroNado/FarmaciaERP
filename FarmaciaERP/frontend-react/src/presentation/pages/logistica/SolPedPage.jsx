@@ -8,9 +8,9 @@ import Select   from '@/presentation/components/ui/Select';
 import Modal    from '@/presentation/components/ui/Modal';
 import LogisticaRail, { BLOQUE_A_FASES } from '@/presentation/components/logistica/LogisticaRail';
 import StageHeader from '@/presentation/components/logistica/StageHeader';
-import { useSolPed }      from '@/presentation/hooks/useSolPed';
-import { useProveedores } from '@/presentation/hooks/useProveedores';
-import { useConvenios }   from '@/presentation/hooks/useConvenios';
+import { useSolPed }      from '@/presentation/hooks/Logistica/useSolPed';
+import { useProveedores } from '@/presentation/hooks/Logistica/useProveedores';
+import { useConvenios }   from '@/presentation/hooks/Ventas/useConvenios';
 import { useCases }       from '@/infrastructure';
 
 const ESTADO_BADGE = {

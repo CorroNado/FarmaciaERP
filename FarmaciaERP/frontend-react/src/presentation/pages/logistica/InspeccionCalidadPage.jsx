@@ -7,10 +7,10 @@ import Select   from '@/presentation/components/ui/Select';
 import Modal    from '@/presentation/components/ui/Modal';
 import LogisticaRail, { BLOQUE_A_FASES } from '@/presentation/components/logistica/LogisticaRail';
 import StageHeader from '@/presentation/components/logistica/StageHeader';
-import { useInspeccionCalidad } from '@/presentation/hooks/useInspeccionCalidad';
-import { useMigo } from '@/presentation/hooks/useMigo';
-import { EntradaMercancia, ESTADO_MIGO } from '@/domain/models/EntradaMercancia';
-import { InspeccionCalidad, DECISION_QA } from '@/domain/models/InspeccionCalidad';
+import { useInspeccionCalidad } from '@/presentation/hooks/Logistica/useInspeccionCalidad';
+import { useMigo } from '@/presentation/hooks/Logistica/useMigo';
+import { EntradaMercancia, ESTADO_MIGO } from '@/domain/models/Logistica/EntradaMercancia';
+import { InspeccionCalidad, DECISION_QA } from '@/domain/models/Logistica/InspeccionCalidad';
 
 const DECISION_BADGE = {
   [DECISION_QA.APROBADO]: 'ACTIVO',

@@ -3,8 +3,8 @@ import { RotateCcw, Plus, Minus, X, CheckCircle2 } from 'lucide-react';
 import Button from '@/presentation/components/ui/Button';
 import Select from '@/presentation/components/ui/Select';
 import Modal from '@/presentation/components/ui/Modal';
-import { useDevolucion } from '@/presentation/hooks/useDevolucion';
-import { MOTIVOS_DEVOLUCION, ACCIONES_DEVOLUCION } from '@/domain/models/Devolucion';
+import { useDevolucion } from '@/presentation/hooks/Ventas/useDevolucion';
+import { MOTIVOS_DEVOLUCION, ACCIONES_DEVOLUCION } from '@/domain/models/Ventas/Devolucion';
 
 const MOTIVO_LABEL = Object.fromEntries(MOTIVOS_DEVOLUCION.map((m) => [m.value, m.label]));
 const ACCION_LABEL = Object.fromEntries(ACCIONES_DEVOLUCION.map((a) => [a.value, a.label]));

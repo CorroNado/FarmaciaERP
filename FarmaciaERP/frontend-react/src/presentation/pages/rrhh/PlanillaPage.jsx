@@ -4,8 +4,8 @@ import Input  from '@/presentation/components/ui/Input';
 import Select from '@/presentation/components/ui/Select';
 import Modal  from '@/presentation/components/ui/Modal';
 import RrhhTabs from '@/presentation/components/rrhh/RrhhTabs';
-import { usePlanilla } from '@/presentation/hooks/usePlanilla';
-import { MESES_PLANILLA, MES_OPTIONS } from '@/domain/models/Planilla';
+import { usePlanilla } from '@/presentation/hooks/RRHH/usePlanilla';
+import { MESES_PLANILLA, MES_OPTIONS } from '@/domain/models/RRHH/Planilla';
 
 function StageHeader({ eyebrow, title, description, badge }) {
   return (
