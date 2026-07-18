@@ -5,9 +5,9 @@ import Select from '@/presentation/components/ui/Select';
 import Modal from '@/presentation/components/ui/Modal';
 import ClienteSelector from '@/presentation/components/ventas/ClienteSelector';
 import NuevoClienteModal from '@/presentation/components/ventas/NuevoClienteModal';
-import CotizacionTab from '@/presentation/pages/ventas/CotizacionTab';
-import DevolucionTab from '@/presentation/pages/ventas/DevolucionTab';
-import { useVenta } from '@/presentation/hooks/useVenta';
+import CotizacionTab from '@/presentation/pages/Ventas/CotizacionTab';
+import DevolucionTab from '@/presentation/pages/Ventas/DevolucionTab';
+import { useVenta } from '@/presentation/hooks/Ventas/useVenta';
 
 const METODOS_PAGO = [
   { value: 'EFECTIVO', label: 'Efectivo', icon: Banknote },

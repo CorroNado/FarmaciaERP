@@ -8,11 +8,11 @@ import Select   from '@/presentation/components/ui/Select';
 import Modal    from '@/presentation/components/ui/Modal';
 import LogisticaRail, { BLOQUE_A_FASES } from '@/presentation/components/logistica/LogisticaRail';
 import StageHeader from '@/presentation/components/logistica/StageHeader';
-import { useOrdenTraslado } from '@/presentation/hooks/useOrdenTraslado';
-import { useSucursales } from '@/presentation/hooks/useSucursales';
-import { useInspeccionCalidad } from '@/presentation/hooks/useInspeccionCalidad';
-import { ESTADO_STO } from '@/domain/models/OrdenTraslado';
-import { DECISION_QA } from '@/domain/models/InspeccionCalidad';
+import { useOrdenTraslado } from '@/presentation/hooks/Logistica/useOrdenTraslado';
+import { useSucursales } from '@/presentation/hooks/Logistica/useSucursales';
+import { useInspeccionCalidad } from '@/presentation/hooks/Logistica/useInspeccionCalidad';
+import { ESTADO_STO } from '@/domain/models/Logistica/OrdenTraslado';
+import { DECISION_QA } from '@/domain/models/Logistica/InspeccionCalidad';
 
 const ESTADO_BADGE = {
   [ESTADO_STO.EN_TRANSITO]: 'INACTIVO',

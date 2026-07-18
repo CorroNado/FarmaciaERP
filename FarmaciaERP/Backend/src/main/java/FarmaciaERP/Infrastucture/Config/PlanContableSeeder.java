@@ -1,12 +1,12 @@
 package FarmaciaERP.Infrastucture.Config;
 
 import FarmaciaERP.Domain.Constants.CuentasContables;
-import FarmaciaERP.Domain.Entities.Cuenta;
-import FarmaciaERP.Domain.Entities.SubcuentaDivisionaria;
-import FarmaciaERP.Domain.Enums.NaturalezaCuenta;
-import FarmaciaERP.Domain.Enums.TipoCuenta;
-import FarmaciaERP.Domain.Repositories.ICuentaRepository;
-import FarmaciaERP.Domain.Repositories.ISubcuentaDivisionariaRepository;
+import FarmaciaERP.Domain.Entities.Contabilidad.Cuenta;
+import FarmaciaERP.Domain.Entities.Contabilidad.SubcuentaDivisionaria;
+import FarmaciaERP.Domain.Enums.Contabilidad.NaturalezaCuenta;
+import FarmaciaERP.Domain.Enums.Contabilidad.TipoCuenta;
+import FarmaciaERP.Domain.Repositories.Contabilidad.ICuentaRepository;
+import FarmaciaERP.Domain.Repositories.Contabilidad.ISubcuentaDivisionariaRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

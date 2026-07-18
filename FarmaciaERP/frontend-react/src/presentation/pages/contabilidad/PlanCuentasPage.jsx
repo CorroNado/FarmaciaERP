@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useContabilidad } from '../../hooks/useContabilidad';
+import { useContabilidad } from '../../hooks/Contabilidad/useContabilidad';
 import { CatalogoJerarquicoTree } from '../../components/ui/CatalogoJerarquicoTree';
 
 export const PlanCuentasPage = () => {

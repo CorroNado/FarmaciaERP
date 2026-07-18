@@ -1,6 +1,6 @@
 import { useNavigate }   from 'react-router-dom';
-import { useUsers }      from '@/presentation/hooks/useUsers';
-import { useAuthContext } from '@/presentation/hooks/useAuthContext';
+import { useUsers }      from '@/presentation/hooks/Seguridad/useUsers';
+import { useAuthContext } from '@/presentation/hooks/Seguridad/useAuthContext';
 import { getModulesForRole } from '@/core/utils/roles';
 import {ShoppingCart ,Package,TriangleAlert,Megaphone,DollarSign
   ,Users,Settings,ChartLine,Lock

@@ -7,9 +7,9 @@ import Select   from '@/presentation/components/ui/Select';
 import Modal    from '@/presentation/components/ui/Modal';
 import LogisticaRail, { BLOQUE_A_FASES } from '@/presentation/components/logistica/LogisticaRail';
 import StageHeader from '@/presentation/components/logistica/StageHeader';
-import { useConciliacion } from '@/presentation/hooks/useConciliacion';
-import { useFacturaMiro } from '@/presentation/hooks/useFacturaMiro';
-import { RESULTADO_CONCILIACION, RESULTADO_CONCILIACION_LABEL } from '@/domain/models/ConciliacionTresVias';
+import { useConciliacion } from '@/presentation/hooks/Contabilidad/useConciliacion';
+import { useFacturaMiro } from '@/presentation/hooks/Logistica/useFacturaMiro';
+import { RESULTADO_CONCILIACION, RESULTADO_CONCILIACION_LABEL } from '@/domain/models/Contabilidad/ConciliacionTresVias';
 
 const RESULTADO_BADGE = {
   [RESULTADO_CONCILIACION.MATCH_OK]: 'ACTIVO',

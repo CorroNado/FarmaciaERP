@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { contabilidadRepository } from '../../../infrastructure/repositories/contabilidadRepository';
+import { contabilidadRepository } from '../../../infrastructure/repositories/Contabilidad/contabilidadRepository';
 
 export const ActivosFijosPage = () => {
   const [activos, setActivos] = useState([]);

@@ -1,5 +1,5 @@
 import { useState }  from 'react';
-import { useAuth }   from '@/presentation/hooks/useAuth';
+import { useAuth }   from '@/presentation/hooks/Seguridad/useAuth';
 import {Eye, EyeOff, User, Lock, Pill} from "lucide-react";
 
 

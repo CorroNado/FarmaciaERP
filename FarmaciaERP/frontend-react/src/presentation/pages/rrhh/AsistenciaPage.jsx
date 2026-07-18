@@ -6,9 +6,9 @@ import Input  from '@/presentation/components/ui/Input';
 import Select from '@/presentation/components/ui/Select';
 import Modal  from '@/presentation/components/ui/Modal';
 import RrhhTabs from '@/presentation/components/rrhh/RrhhTabs';
-import { useAsistencias, useAuditoriaAsistencias } from '@/presentation/hooks/useAsistencias';
-import { useEmpleados } from '@/presentation/hooks/useEmpleados';
-import { TURNOS_ASISTENCIA, ESTADOS_ASISTENCIA, MOVIMIENTOS_ASISTENCIA } from '@/domain/models/RegistroAsistencia';
+import { useAsistencias, useAuditoriaAsistencias } from '@/presentation/hooks/RRHH/useAsistencias';
+import { useEmpleados } from '@/presentation/hooks/RRHH/useEmpleados';
+import { TURNOS_ASISTENCIA, ESTADOS_ASISTENCIA, MOVIMIENTOS_ASISTENCIA } from '@/domain/models/RRHH/RegistroAsistencia';
 
 function StageHeader({ eyebrow, title, description, badge }) {
   return (

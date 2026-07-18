@@ -5,8 +5,8 @@ import Button from '@/presentation/components/ui/Button';
 import Input  from '@/presentation/components/ui/Input';
 import Select from '@/presentation/components/ui/Select';
 import Modal  from '@/presentation/components/ui/Modal';
-import { useEmpleados, useAuditoriaEmpleados } from '@/presentation/hooks/useEmpleados';
-import { ROLES_EMPLEADO, CONTRATOS_EMPLEADO, MOVIMIENTOS_RRHH } from '@/domain/models/Empleado';
+import { useEmpleados, useAuditoriaEmpleados } from '@/presentation/hooks/RRHH/useEmpleados';
+import { ROLES_EMPLEADO, CONTRATOS_EMPLEADO, MOVIMIENTOS_RRHH } from '@/domain/models/RRHH/Empleado';
 import RrhhTabs from '@/presentation/components/rrhh/RrhhTabs';
 
 function StageHeader({ eyebrow, title, description, badge }) {

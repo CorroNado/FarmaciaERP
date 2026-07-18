@@ -1,4 +1,4 @@
-import { useAuth } from '@/presentation/hooks/useAuth';
+import { useAuth } from '@/presentation/hooks/Seguridad/useAuth';
 import {Pill,Search,Bell,LogOut} from "lucide-react";
 
 export default function Navbar() {
